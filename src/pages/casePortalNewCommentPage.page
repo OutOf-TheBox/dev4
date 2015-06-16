@@ -1,0 +1,53 @@
+<apex:page showChat="false"
+           showHeader="true"
+           sidebar="true"
+           tabStyle="casePortalTab__tab"
+           title="Case: {!Case.CaseNumber}"
+           standardController="Case"
+           extensions="caseExtensionsWithSharing">
+  <script src="{!URLFOR($Resource.jquery142)}"         type="text/javascript"></script>
+  <script src="{!URLFOR($Resource.jqEasyCharCounter)}" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(document).ready(function()
+      {$('.newCommentText').jqEasyCounter(
+         {'maxChars': 4000,
+          'maxCharsWarning': 3800,
+          'msgFontSize': '12px',
+          'msgFontColor': '#000',
+          'msgFontFamily': 'Verdana',
+          'msgTextAlign': 'right',
+          'msgWarningColor': '#F00',
+          'msgAppendMethod': 'insertBefore'
+          });
+      });
+  </script>
+
+  <apex:sectionHeader title="Case" subtitle="{!Case.CaseNumber}"/>
+  <apex:form >
+    <apex:pageBlock mode="maindetail" title="Case Detail">
+      <apex:pageBlockButtons >
+        <apex:commandButton value="Save New Comment" action="{!caseCustomCommentSave}"/>
+        <apex:commandButton value="Cancel"           action="{!caseCustomCommentCancel}" immediate="true"/>
+      </apex:pageBlockButtons>
+      <apex:pageMessages />
+      <apex:pageBlockSection title="New Comment" showheader="true" collapsible="false" columns="1">
+        <br/><b><i>NOTE: Comments are limited to 4000 characters.</i></b><br/><br/>
+        <apex:inputTextArea label="New Comment Text"
+                            styleclass="newCommentText"
+                            value="{!caseCommentNewText}"
+                            cols="100"
+                            required="true"
+                            richtext="false"
+                            rows="25"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Previous Comments" showheader="true" collapsible="false" columns="1">
+        <apex:pageBlockTable value="{!caseComments}" var="cc">
+          <apex:column headerValue="Created Timestamp" value="{!cc.createdDate}"/>
+          <apex:column headerValue="Created By"        value="{!cc.createdBy.Name}"/>
+          <apex:column headerValue="Comment Body"      value="{!cc.commentBody}"/>
+        </apex:pageBlockTable>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+[casePortalNewCommentPage]
+</apex:page>

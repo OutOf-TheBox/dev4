@@ -1,0 +1,358 @@
+<!--********************************************************************************************************//
+//  Version      Date           Author      Comments                                                        //
+//  0.1          2014-05-25     Sravan      Report page to display TSE report and Team,Organization charts  //
+//*********************************************************************************************************-->
+<apex:page sidebar="false" controller="CntrbnMdl_Report" docType="html-5.0">
+   <apex:includeScript value="{!URLFOR($Resource.JSCalendar,'/calendar/calendar.js')}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.JSCalendar,'/calendar/calendar_blue.css')}" />
+   
+   <html> <!--open Html-->
+    <div class="pagesection" style="width:96%;">
+        <div style="text-align:center;height:30px;" class="topline"> 
+             <apex:outputLabel style="margin-left:10px;font-size:16px;" value="TSE Contribution Report" />
+        </div>
+        <apex:outputPanel id="main">
+              <apex:pageMessages />
+              <!--Start of Filters and TSE details-->
+              <div class="pagesection" style="height:135px;margin-top:10px;">
+                   <div style="text-align:left;" class="topline"> 
+                       <apex:outputLabel style="margin-left:10px" value="Report Filters" />
+                   </div>
+                   <apex:form id="frm">
+                   <div style="width: 50%; float:left;margin-left:35px">
+                       <div style="margin-top: 4px;margin-bottom:-15px;">
+                          <apex:outputLabel style="font-weight:bold;margin-right:60px;" value="Employee Name"/>
+                          <apex:selectList id="empid" multiselect="false" size="1" value="{!SelectedTSE}" onchange="updatedata();">  
+                              <apex:selectOption itemValue="--None--" itemLabel="--None--"/>
+                              <apex:selectoptions value="{!Items}" />  
+                          </apex:selectlist>
+                       </div><br/>
+                       <div style="margin-top: 3px;">
+                           <apex:outputLabel style="font-weight:bold;margin-right:119px;" value="Team" />
+                           <apex:selectList multiselect="false" size="1" value="{!SelectedTeam}" >  
+                               <apex:selectOption itemValue="--None--" itemLabel="--None--"/>
+                               <apex:selectoptions value="{!Teams}" />  
+                           </apex:selectlist>
+                       </div><br/>
+                       <div style="margin-top: -12px;">
+                           <apex:outputLabel style="font-weight:bold;margin-right:79px;" value="Organization"/>
+                           <apex:selectList multiselect="false" size="1" value="{!SelectedOrg}" >  
+                               <apex:selectOption itemValue="--None--" itemLabel="--None--"/>
+                               <apex:selectoptions value="{!Orgs}" />  
+                           </apex:selectlist>
+                       </div><br/>
+                       <apex:outputPanel rendered="{!ismanager}">
+                           <div style="margin-top: -12px;">
+                               <apex:outputLabel style="font-weight:bold;margin-right:15px;" value="Show Other TSE Names"/>
+                               <apex:inputCheckbox value="{!displayNames}"/>
+                           </div><br/>
+                       </apex:outputPanel>
+                       <div style="margin-top: -12px;">
+                           <apex:outputLabel id="dtlabel" style="font-weight:bold;margin-right:93px;" value="From Date"/>
+                           <apex:inputText id="startdate" size="10" value="{!fromdate}"  onmouseover="initialiseCalendar(this, '{!$Component.startdate}')">
+                                <apex:actionSupport event="onblur" action="{!dateValidation}" rerender="main" status="waitMain"/>
+                           </apex:inputText>
+                           <apex:outputLabel style="font-weight:bold;margin-right:10px;margin-left:20px;" value="To Date"/>
+                           <!--<apex:inputText value="{!todate}" size="10" id="date2" onfocus="DatePicker.pickDate(false, this , false);" />-->
+                          <!-- <apex:inputText id="enddate" size="10" value="{!todate}" onmouseover="initialiseCalendar(this, '{!$Component.enddate}')"/> -->
+                           <apex:outputText id="enddate" value="{!todate}"/> &nbsp;
+                           <apex:actionFunction name="updatelist" action="{!dateValidation}" rerender="main" status="waitMain"/>
+                          
+                           <apex:outputLabel style="font-weight:bold;margin-right:22px;" value="Range"/>
+                           <apex:selectList multiselect="false" size="1" value="{!selMonth}"> 
+                               <apex:selectoptions value="{!Months}" /> 
+                               <apex:actionSupport event="onchange" action="{!populateEndDate}" rerender="main" status="waitMain"/>
+                           </apex:selectlist>
+                       </div><br/>
+                   </div>
+                   <div style="width: 40%; float:right">
+                       <!--<apex:outputPanel rendered="{!showTSE}">-->
+                           <div style="margin-top: 8px;">
+                              <apex:outputLabel style="font-weight:bold;margin-right:20px;" value="Time On Board"/>
+                              <apex:outputText value="{!TSEDetails.Time_On_Board__c}"/>
+                              <apex:outputPanel rendered="{!IF(tseTimespeed != '',true,false)}">
+                                  &nbsp;&nbsp;[&nbsp;<apex:outputText value="{!tseTimespeed}"/> ]
+                              </apex:outputPanel>    
+                           </div><br/>
+                           <div style="margin-top: -3px;">
+                              <apex:outputLabel style="font-weight:bold;margin-right:72px;" value="Level"/>
+                              <apex:outputText value="{!TSEDetails.Level__c}"/>
+                           </div><br/>
+                           <div style="margin-top: -4px;">
+                              <apex:outputLabel style="font-weight:bold;margin-right:47px;" value="Extension"/>
+                              <apex:outputText value="{!TSEDetails.Extension__c}"/>
+                           </div><br/>
+                        <!--</apex:outputPanel><br/> -->  
+                           <div style="margin-top: -4px;">
+                              <apex:commandButton style="width:75px;height:25px;background:#006400;color:white"  value="Go" action="{!Calculation}" rerender="main,pb,rpt,chartid,chartid2,Noaction" status="waitMain"/>
+                              <apex:actionFunction name="updatedata" action="{!updateTSEDetails}" rerender="main,chartid,chartid2,Noaction" status="waitMain"/>
+                           </div>
+                       
+                   </div>
+                   </apex:form>
+              </div>
+              <!--End of Filters and TSE details-->
+              <!--Start of Report-->
+              <apex:outputPanel rendered="{!showreport}" layout="none" Id="rpt"> 
+                <div class="pagesection" > <!-- open pagesection -->
+                  <div style="text-align:left;" class="topline"> 
+                       <apex:outputLabel style="margin-left:10px" value="Report" />
+                   </div>
+                  <table id="tblMain" style="margin-bottom:0px;width:96%;margin-left:35px;">
+                      <tr>
+                          <th style="text-align:left;width:18%"></th>
+                          <th style="text-align:left;width:14%">TSE</th>
+                          <th style="text-align:left;width:14%">Team</th>
+                          <th style="text-align:left;width:14%">Team Var</th>
+                          <th style="text-align:left;width:13%">Org</th>
+                          <th style="text-align:left;width:18%">Org Var</th>
+                      </tr>
+                  </table>
+                  <div style="overflow-y:auto;margin-left:35px; width:96%; overflow-x:hidden; background-color:fff;height:525px; float:bottom;" >
+                      <apex:dataTable style="width:96%" value="{!CallData}" var="dt" rowClasses="odd,even">
+                          <apex:column style="font-weight:bold;text-align:left;width:20%;background:#C0C0C0" value="{!dt.RowName}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C0C0C0" value="{!dt.TSE}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C0C0C0" value="{!dt.Team}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C0C0C0" value="{!dt.Teamvar}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C0C0C0" value="{!dt.Org}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C0C0C0" value="{!dt.OrgVar}"/>
+                      </apex:dataTable>
+                      <apex:dataTable style="width:96%" value="{!CaseCldMfdData}" var="dt" rowClasses="even, odd">
+                          <apex:column style="font-weight:bold;text-align:left;width:20%" value="{!dt.RowName}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.TSE}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Team}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Teamvar}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Org}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.OrgVar}"/>
+                      </apex:dataTable>
+                      <apex:dataTable style="width:96%" value="{!CaseCldMfdList}" var="dt" rowClasses="even, odd">
+                          <apex:column style="font-weight:bold;text-align:left;width:20%;background:#C8BDAF" value="{!dt.RowName}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.TSE}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Team}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Teamvar}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Org}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.OrgVar}"/>
+                      </apex:dataTable>
+                      <apex:dataTable style="width:96%" value="{!CaseData}" var="dt" rowClasses="odd,even">
+                          <apex:column style="font-weight:bold;text-align:left;width:20%" value="{!dt.RowName}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.TSE}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Team}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Teamvar}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Org}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.OrgVar}"/>
+                      </apex:dataTable>
+                      <apex:dataTable style="width:96%" value="{!CasePointsData}" var="dt" rowClasses="even, odd">
+                          <apex:column style="font-weight:bold;text-align:left;width:20%;background:#C8BDAF" value="{!dt.RowName}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.TSE}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Team}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Teamvar}%"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Org}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.OrgVar}%"/>
+                      </apex:dataTable>
+                      <apex:dataTable style="width:96%" value="{!EmptyData}" var="dt" rowClasses="odd,even">
+                          <apex:column style="font-weight:bold;text-align:left;width:20%;color:#4169E1" value="{!dt.RowName}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.TSE}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Team}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Teamvar}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Org}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.OrgVar}"/>
+                      </apex:dataTable>
+                      <apex:dataTable style="width:96%" value="{!ProjectData}" var="dt" rowClasses="odd,even">
+                          <apex:column style="font-weight:bold;text-align:left;width:20%;background:#C0C0C0" value="{!dt.RowName}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C0C0C0" value="{!dt.TSE}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C0C0C0" value="{!dt.Team}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C0C0C0" value="{!dt.Teamvar}%"/>
+                          <apex:column style="text-align:left;width:15%;background:#C0C0C0" value="{!dt.Org}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C0C0C0" value="{!dt.OrgVar}%"/>
+                      </apex:dataTable>
+                      <apex:dataTable style="width:96%" value="{!ProjectPointsData}" var="dt" rowClasses="even, odd">
+                          <apex:column style="font-weight:bold;text-align:left;width:20%;;background:#C8BDAF" value="{!dt.RowName}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.TSE}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Team}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Teamvar}%"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Org}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.OrgVar}%"/>
+                      </apex:dataTable>
+                      <apex:dataTable style="width:96%" value="{!EmptyData}" var="dt" rowClasses="odd,even">
+                          <apex:column style="font-weight:bold;text-align:left;width:20%;color:#4169E1" value="{!dt.RowName}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.TSE}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Team}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Teamvar}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.Org}"/>
+                          <apex:column style="text-align:left;width:15%" value="{!dt.OrgVar}"/>
+                      </apex:dataTable>
+                      <apex:dataTable style="width:96%" value="{!TotalPointsData}" var="dt" rowClasses="odd,even">
+                          <apex:column style="font-weight:bold;text-align:left;width:20%;background:#C8BDAF" value="{!dt.RowName}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.TSE}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Team}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Teamvar}%"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.Org}"/>
+                          <apex:column style="text-align:left;width:15%;background:#C8BDAF" value="{!dt.OrgVar}%"/>
+                      </apex:dataTable>
+                  </div>
+                </div> <!-- close pagesection --> 
+                </apex:outputPanel>
+               <!--End of Report-->
+               <!--Start of Team and Organization charts--> 
+               <apex:outputPanel rendered="{!IF(showreport,true,false)}" layout="none">
+                <div class="pagesection">
+                    <div style="text-align:left;" class="topline"> 
+                       <apex:outputLabel style="margin-left:10px" value="{!SelectedTeam} Team Chart" />
+                   </div>
+                   <div style="margin-top:14px;height:510px;overflow-y: auto; overflow-x:auto;width:100%;">
+                         <apex:chart height="450" width="98%" data="{!chartdata}" id="chartid">
+                                <apex:legend position="bottom"/>
+                                <!-- <apex:axis type="Numeric" position="left" fields="axisValues"  title="Points" grid="true"/>-->
+                                <apex:axis steps="7" minimum="0" maximum="400" type="Numeric" position="left" fields="data1"  title="Contribution" grid="true"/>
+                                <apex:axis type="Category" position="bottom" fields="name"  title="{!SelectedTeam}">
+                                    <apex:chartLabel rotate="270" font="14px Arial unicode ms"/>
+                                </apex:axis>
+                                <apex:lineSeries axis="left" xField="name" yField="data2"  markerType="circle" title="Bottom Sweetspot" markerSize="4" markerFill="Red" strokeColor="Red" />
+                                <apex:lineSeries axis="left" xField="name" yField="data3"   markerType="circle" title="Top Sweetspot" markerSize="4" markerFill="Green" strokeColor="Green"/> 
+                                <apex:barSeries gutter="3" orientation="vertical" axis="left"  xField="name" title="TSE Contribution" yField="data1" >
+                                    <apex:chartTips height="25" width="150" />
+                                </apex:barSeries> 
+                            </apex:chart>
+                   </div>     
+                </div>
+                <div class="pagesection">
+                   <div style="text-align:left;" class="topline"> 
+                       <apex:outputLabel style="margin-left:10px" value="{!SelectedOrg} Organization Chart" />
+                   </div>
+                   <div style="margin-top:14px;height:510px;overflow-y: auto; overflow-x:auto;width:100%;">
+                        <apex:chart height="450" width="98%"  data="{!OrgChartData}" id="chartid2">
+                            <apex:legend position="bottom" />
+                             <!-- <apex:axis type="Numeric" position="left" fields="axisValues"  title="Points" grid="true"/>-->
+                            <apex:axis steps="7" minimum="0" maximum="400" type="Numeric" position="left" fields="data1"  title="Contribution" grid="true"/>
+                            <apex:axis type="Category" position="bottom" fields="name"  title="{!SelectedOrg}">
+                                <apex:chartLabel rotate="270" font="14px Arial unicode ms"/>
+                            </apex:axis>
+                            <apex:lineSeries axis="left" xField="name" yField="data2"  markerType="circle" title="Bottom Sweetspot" markerSize="4" markerFill="Red" strokeColor="Red"/>
+                            <apex:lineSeries axis="left" xField="name" yField="data3"  markerType="circle" title="Top Sweetspot" markerSize="4" markerFill="Green" strokeColor="Green"/>   
+                            <apex:barSeries gutter="3" orientation="vertical" axis="left"  xField="name" title="TSE Contribution" yField="data1">
+                                <apex:chartTips height="25" width="150" />
+                            </apex:barSeries>    
+                        </apex:chart>
+                   </div>      
+               </div>
+              </apex:outputPanel> 
+              <!--End of Team and Organization charts-->  
+           <!--</apex:pageBlock>--> <!--close pageblock-->
+           <!--Start of processing popup box-->
+           <apex:actionStatus id="waitMain">
+                   <apex:facet name="start">
+                      <apex:outputPanel id="processTran">
+                         <apex:outputPanel style="position: fixed; top: 0; left: 0; width: 100%; height:100%; z-index: 1100;background-image:url('{!$Resource.overlay}')" layout="block"> 
+                             <apex:outputText >&nbsp;</apex:outputText>
+                         </apex:outputPanel>
+                         <apex:outputPanel styleClass="customPopup" layout="block" > 
+                             <c:CntrbnMdl_loading text="Processing Request..." />
+                         </apex:outputPanel>
+                      </apex:outputPanel>
+                   </apex:facet>
+           </apex:actionStatus> 
+           <!--End of processing popup box--> 
+        <!--</apex:form>-->  <!--close form-->
+        </apex:outputPanel>
+   </div> 
+    <apex:outputPanel id="Noaction"/>
+  </html> <!--close Html-->
+  
+  <!--Start of CSS-->  
+  <style type="text/css">
+     .pagesection {
+        border: 1px solid #C1C1C1;
+        background: none repeat scroll 0% 0% #FBFBFB;
+        padding: 18px;
+        width: 96%;
+        border-radius: 9px;
+        margin-bottom: 18px;
+     }
+     .topline {
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        height: 25px;
+        margin-left: -18px;
+        margin-top: -18px;
+        padding: 5px;
+        margin-right: -18px;
+        background: #5F9EA0;
+        border-radius: 0px;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+     }
+     .customPopup{
+       background-color: #D8BFD8;            
+       border-radius: 18px;
+       -moz-border-radius:18px;
+       -webkit-border-radius:18px;
+       border-style: solid;
+       border-width: 2px;
+       left: 50%;
+       padding:10px;
+       position:fixed;
+       z-index: 9999;
+       -moz-box-shadow:0 0 20px #000;
+       -webkit-box-shadow: 0 0 20px #000;
+       width: 240px;
+       margin-left: -120px;
+       top:200px;           
+   }
+     .even {
+        //background-color: #F5FFFF;
+        height: 25px
+    }
+    .odd {
+        //background-color: #E6FFFF;
+        height: 25px
+    }
+    
+  </style>
+  <!--End of CSS-->
+  <script>
+   function fnSetDateFormat(oDateFormat)
+   {
+     oDateFormat['FullYear'];  //Example = 2007
+     oDateFormat['Year'];   //Example = 07
+     oDateFormat['FullMonthName']; //Example = January
+     oDateFormat['MonthName'];  //Example = Jan
+     oDateFormat['Month'];   //Example = 01
+     oDateFormat['Date'];   //Example = 01
+     oDateFormat['FullDay'];   //Example = Sunday
+     oDateFormat['Day'];    //Example = Sun
+     oDateFormat['Hours'];   //Example = 01
+     oDateFormat['Minutes'];   //Example = 01
+     oDateFormat['Seconds'];   //Example = 01
+      
+     var sDateString;
+      
+     // Use dd/mm/yyyy format
+     sDateString = oDateFormat['Month'] +"/"+ oDateFormat['Date'] +"/"+ oDateFormat['FullYear'];
+     return sDateString;
+   }
+         
+   function initialiseCalendar(obj, eleId)
+   {
+     var element=document.getElementById(eleId);
+     var params='close=true';
+     if (null!=element)
+     {
+      if (element.value.length>0)
+      {
+       // date is formatted dd/mm/yyyy - pull out the month and year
+       //var month=element.value.substr(3,2);
+       var month=element.value.substr(0,2);
+       var year=element.value.substr(6,4);
+       params+=',month='+month;
+       params+=',year='+year;
+      }
+     }
+     fnInitCalendar(obj, eleId, params);
+  }
+  window.onload = setFocus
+  function setFocus() {
+    document.getElementById("empid").focus();
+  }
+  </script>
+</apex:page>

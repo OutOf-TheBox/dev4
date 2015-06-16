@@ -1,0 +1,50 @@
+<apex:page standardController="Case"
+           extensions="caseExtensionsWithSharing"
+           tabStyle="Case">
+
+<span style="font-family: 'Arial','Helvetica',sans-serif; font-size: 1.1em; font-weight: bold; color: #4D4D4D;">
+
+Number of YOUR cases with Attn Req set:&nbsp; <apex:outputText value="{!numMyAttnReqCases}" style="color: red;"/><br/>
+Number of OTHERS cases with Attn Req set:&nbsp; <apex:outputText value="{!numNotMyAttnReqCases}" style="color: red;"/> <i>(scroll this section down to see these)</i><br/><br/>
+
+YOUR cases with Attn Req set (oldest first):<br/><br/>
+
+  <apex:pageBlock >
+    <apex:pageBlockSection columns="1" >
+      <apex:pageBlockTable value="{!listMyAttnReqCases}" var="c">
+        <apex:column headerValue="Attn Req Date/Time" value="{!c.caseAttnReqDateTime__c}"/>
+        <apex:column headerValue="Attn Req Source" value="{!c.caseAttnReqSource__c}"/>
+        <apex:column headerValue="Attn Req Creator" value="{!c.caseAttnReqCreator__c}"/>
+        <apex:column headerValue="Case #"><a target="_blank" href="{!URLFOR($Action.Case.View, c.id)}">{!c.CaseNumber}</a></apex:column>
+        <apex:column headerValue="Status" value="{!c.Status}"/>
+        <apex:column headerValue="Priority" value="{!c.Priority}"/>
+        <apex:column headerValue="Account"><a target="_blank" href="{!IF(c.accountId <> null, URLFOR($Action.Account.View, c.accountId), null)}">{!c.account.name}</a></apex:column>
+        <apex:column headerValue="Asset"><a target="_blank"   href="{!IF(c.assetId   <> null, URLFOR($Action.Asset.View,   c.assetId),   null)}">{!c.asset.name}</a></apex:column>
+        <apex:column headerValue="Contact"><a target="_blank" href="{!IF(c.contactId <> null, URLFOR($Action.Contact.View, c.contactId), null)}">{!c.contact.name}</a></apex:column>
+        <apex:column headerValue="Subject" value="{!c.Subject}"/>
+      </apex:pageBlockTable>
+    </apex:pageBlockSection>
+  </apex:pageBlock>
+
+OTHERS cases with Attn Req set (oldest first):<br/><br/>
+
+  <apex:pageBlock >
+    <apex:pageBlockSection columns="1" >
+      <apex:pageBlockTable value="{!listNotMyAttnReqCases}" var="c">
+        <apex:column headerValue="Attn Req Date/Time" value="{!c.caseAttnReqDateTime__c}"/>
+        <apex:column headerValue="Attn Req Source" value="{!c.caseAttnReqSource__c}"/>
+        <apex:column headerValue="Attn Req Creator" value="{!c.caseAttnReqCreator__c}"/>
+        <apex:column headerValue="Case #"><a target="_blank" href="{!URLFOR($Action.Case.View, c.id)}">{!c.CaseNumber}</a></apex:column>
+        <apex:column headerValue="Status" value="{!c.Status}"/>
+        <apex:column headerValue="Priority" value="{!c.Priority}"/>
+        <apex:column headerValue="Owner Name" value="{!c.Owner.Name}"/>
+        <apex:column headerValue="Account"><a target="_blank" href="{!IF(c.accountId <> null, URLFOR($Action.Account.View, c.accountId), null)}">{!c.account.name}</a></apex:column>
+        <apex:column headerValue="Asset"><a target="_blank"   href="{!IF(c.assetId   <> null, URLFOR($Action.Asset.View,   c.assetId),   null)}">{!c.asset.name}</a></apex:column>
+        <apex:column headerValue="Contact"><a target="_blank" href="{!IF(c.contactId <> null, URLFOR($Action.Contact.View, c.contactId), null)}">{!c.contact.name}</a></apex:column>
+        <apex:column headerValue="Subject" value="{!c.Subject}"/>
+      </apex:pageBlockTable>
+    </apex:pageBlockSection>
+  </apex:pageBlock>
+
+</span>
+</apex:page>

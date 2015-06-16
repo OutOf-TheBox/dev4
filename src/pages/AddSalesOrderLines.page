@@ -1,0 +1,31 @@
+<apex:page standardController="Opportunity" extensions="SalesOrderController">
+    <apex:pageMessages />
+    
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Add Products" action="{!onAddLines}"/>
+                <apex:commandButton value="Cancel" action="{!onCancel}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Available Products" columns="1">
+                <apex:pageBlockTable var="row" value="{!lineItemRows}">
+                    <apex:column >
+                        <apex:inputCheckbox value="{!row.selected}"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="Qty">
+                        <apex:outputField value="{!row.line.Quantity__c}"/>
+                    </apex:column>
+                    <!-- 
+                    <apex:column headerValue="Ordered Qty" value="{!row.orderedQuantity}"/>
+                    <apex:column headerValue="Quoted Qty" value="{!row.line.Quote_Line__r.SBQQ__Quantity__c}"/>
+                     -->
+                    <apex:column headerValue="Product Code" value="{!row.line.Quote_Line__r.SBQQ__ProductCode__c}"/>
+                    <apex:column headerValue="Product Name" value="{!row.line.Quote_Line__r.SBQQ__ProductName__c}"/>
+                    <apex:column headerValue="Sales Price" value="{!row.line.Quote_Line__r.BOM_Package_Net_Unit_Price__c}"/>
+                    <apex:column headerValue="Serial Number" value="{!row.line.Serial_Number__c}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

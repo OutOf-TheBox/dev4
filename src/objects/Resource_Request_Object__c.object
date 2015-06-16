@@ -1,0 +1,1254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>An Executive Briefing usually hosts key decision makers from a high potential account. The Executive Briefing Program&apos;s host (usually an account manager) requests an EBC via the Resource Request button in SFDC.  The host/requester fills out the necessary information and submits it.  It is then send to the EBC Coordinators to request the Briefing and works with the Executive Assistants to book the room and Presenters that will provide the appropriate level of executive interaction or a high degree of technical expertise based on the proposed agenda.
+
+The events take place at Nimble Storage Headquarters in San Jose, CA.</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Resource_Request_Objects</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Actual_End_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Actual End Time</label>
+        <picklist>
+            <picklistValues>
+                <fullName>11:00 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11:30 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12:30 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1:30 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2:30 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3:30 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4:30 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Event_Date__c</fullName>
+        <description>This will be populated by the EBC Coordinator, the AE will NOT be able to edit this field.</description>
+        <externalId>false</externalId>
+        <label>Actual Event Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Actual__c</fullName>
+        <externalId>false</externalId>
+        <label>Actual Start Time</label>
+        <picklist>
+            <picklistValues>
+                <fullName>9:00 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>9:30 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10:00 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10:30 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11:00 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11:30 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12:30 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1:30 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Additional_Notes__c</fullName>
+        <description>Additional Notes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If you have a specific request and do not see space for it, please insert here in the Additional Notes section</inlineHelpText>
+        <label>Additional Notes</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Annual_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please list the company&apos;s Annual Revenue</inlineHelpText>
+        <label>Annual Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Application_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Architecture_Deep_Dive_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <label>Architecture Deep Dive Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendee_1_Name__c</fullName>
+        <description>An accurate list of customer/partner attendees is required for ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>An accurate list of customer/partner attendees is required for ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</inlineHelpText>
+        <label>Attendee 1 Name</label>
+        <length>50</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendee_1_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Attendee 1 Title</label>
+        <length>100</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendee_2_Name__c</fullName>
+        <description>An accurate list of customer/partner attendees is required for ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>An accurate list of customer/partner attendees is required for ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</inlineHelpText>
+        <label>Attendee 2 Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendee_2_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Attendee 2 Title</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendee_3_Name__c</fullName>
+        <description>An accurate list of customer/partner attendees is required for ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>An accurate list of customer/partner attendees is required for ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</inlineHelpText>
+        <label>Attendee 3 Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendee_3_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Attendee 3 Title</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendee_4_Name__c</fullName>
+        <description>An accurate list of customer/partner attendees is required for ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>An accurate list of customer/partner attendees is required for ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</inlineHelpText>
+        <label>Attendee 4 Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendee_4_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Attendee 4 Title</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendee_5_Name__c</fullName>
+        <description>An accurate list of customer/partner attendees is required for ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>An accurate list of customer/partner attendees is required for ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</inlineHelpText>
+        <label>Attendee 5 Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendee_5_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Attendee 5 Title</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CASL_Tech_Deep_Dive_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <label>CASL / Tech Deep Dive Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Channel_Overview_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <label>Channel Overview Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company_Environment__c</fullName>
+        <description>List visitor’s technology environment including topics listed below. This section should contain enough detail to allow executives to immediately understand the prospect’s technological environment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What does their current infrastructure/environment currently look like?</inlineHelpText>
+        <label>Company Environment</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Company_Established_Since__c</fullName>
+        <description>please enter the four digit year ####</description>
+        <externalId>false</externalId>
+        <label>Company  Established Since</label>
+        <length>4</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company_Overview_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <label>Company Overview Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company_Profile__c</fullName>
+        <description>Please identify company information for the Executives to review prior to the EBC.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please identify company information for the Executives to review prior to the EBC.</inlineHelpText>
+        <label>Company Profile</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Competitors__c</fullName>
+        <description>Please list at least 5 major competitors.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please list at least 5 major competitors.</inlineHelpText>
+        <label>Competitors</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Dinner_Reservations__c</fullName>
+        <description>If you require dinner reservations to be made on your behalf, please specify the date/time.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If you require dinner reservations to be made on your behalf, please specify the date/time.</inlineHelpText>
+        <label>Dinner Reservations</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>EBC_Event_Cancelled_Rescheduled__c</fullName>
+        <description>Please identify if you need to cancel or reschedule the existing EBC.</description>
+        <externalId>false</externalId>
+        <label>EBC Event Cancelled / Rescheduled</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cancel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reschedule</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>EBC_Room_and_Technical__c</fullName>
+        <description>Please let us know your thoughts.  Was the room and technical adequate to suit the needs of your EBC?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please let us know your thoughts.  Was the room and technical adequate to suit the needs of your EBC?</inlineHelpText>
+        <label>EBC Room and Technical</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1 - Poor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2 - Needs Help</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3 - Average</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4 - Very Good</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5 - Excellent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>EBC_Schwag__c</fullName>
+        <description>The normal schwag put out for EBCs is:  Notepad, Pen and Mints
+
+Anything beyond the normal schwag may be ordered by you via the MyNimbleGearStore site or by connecting with Julie Lewis.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The normal schwag put out for EBCs is:  Notepad, Pen and Mints
+
+Anything beyond the normal schwag may be ordered by you via the MyNimbleGearStore site or by connecting with Julie Lewis.</inlineHelpText>
+        <label>EBC Schwag</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1 - Poor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2 - Needs Work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3 - Average</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4 - Very Good</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5 - Excellent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>EBC_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This will show you the current Status of your EBC</inlineHelpText>
+        <label>EBC Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Submitted by Sales Rep</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Under Review by EBC Coordinator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Date Secured / Logistics Still Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Date Secured / Event and Presenters Booked</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Event Completed / Feedback Requested / Event Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Event Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>EBC_Time_Management_Agenda_Timeline__c</fullName>
+        <description>How was the timing of your EBC?   Were there enough breaks?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How was the timing of your EBC?   Were there enough breaks?</inlineHelpText>
+        <label>EBC Time Management / Agenda Timeline</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1 - Poor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2 - Needs Work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3 - Average</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4 - Very Good</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5 - Excellent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Event_Cancelled_Reschedule_Comments__c</fullName>
+        <description>Please explain why this is being cancelled and if they wish to reschedule, which date(s) are being requested.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please explain why this is being cancelled and if they wish to reschedule, which date(s) are being requested.</inlineHelpText>
+        <label>Event Cancelled / Reschedule Comments</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Event_Cancelled_Rescheduled_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Event Cancelled / Rescheduled By</label>
+        <length>55</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Event_Cancelled_Rescheduled_On__c</fullName>
+        <externalId>false</externalId>
+        <label>Event Cancelled / Rescheduled On</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Financial_Overview_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <label>Financial Overview Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Food_and_Beverage__c</fullName>
+        <description>How were the snacks, coffee, bottled water?  If your EBC was longer than 3 hours or over lunchtime, your EBC offered catered food, how was that?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How were the snacks, coffee, bottled water?  If your EBC was longer than 3 hours or over lunchtime, your EBC offered catered food, how was that?</inlineHelpText>
+        <label>Food and Beverage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1 - Poor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2 - Needs Work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3 - Average</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4 - Very Good</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5 - Excellent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Least_applicable_presenter_presentation__c</fullName>
+        <description>If there was a presenter/presentation that you do not feel represented Nimble in the right fashion for EBCs, please let us know.  The presenter will not be made aware of this, it is merely for the EBC Coordinator.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If there was a presenter/presentation that you do not feel represented Nimble in the right fashion for EBCs, please let us know.  The presenter will not be made aware of this, it is merely for the EBC Coordinator.</inlineHelpText>
+        <label>Least applicable presenter/presentation?</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Market_Cap__c</fullName>
+        <description>Market capitalization (or market cap) is the total dollar market value of the shares outstanding of a publicly traded company; it is equal to the share price times the number of shares outstanding.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Market capitalization (or market cap) is the total dollar market value of the shares outstanding of a publicly traded company; it is equal to the share price times the number of shares outstanding.</inlineHelpText>
+        <label>Market Cap</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Objectives_for_the_EBC__c</fullName>
+        <description>What is the objective for this EBC?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the objective for this EBC?</inlineHelpText>
+        <label>Objectives for the EBC</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Amount__c</fullName>
+        <description>Please enter the value in dollars for this opportunity, for example 100,000.00.  Dollar signs ($) may not be used.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please enter the value in dollars for this opportunity, for example 100,000.00.  Dollar signs ($) may not be used.</inlineHelpText>
+        <label>Opportunity Amount</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Close_Date__c</fullName>
+        <description>Please enter the target closed date. MM/DD/YEAR</description>
+        <externalId>false</externalId>
+        <label>Opportunity Close Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Summary__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>For you to provide a summary of the the opportunity that having the EBC could bring to Nimble.</inlineHelpText>
+        <label>Opportunity Summary</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Other_Attendees__c</fullName>
+        <description>Please be sure you let us know ALL ATTENDEES.  An accurate list of customer/partner attendees is required for security purposes, ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please be sure you let us know ALL ATTENDEES.  An accurate list of customer/partner attendees is required for security purposes, ordering the normal EBC schwag (pens, mints, notepads) and the EBC catering.</inlineHelpText>
+        <label>Other Attendees</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Other_Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Any other items that should be identified to assist the EBC Coordinators with the planning or assist the presenter.</inlineHelpText>
+        <label>Other Comments</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Other_Presentation_Requests_Comments__c</fullName>
+        <description>For the above agenda items, the EBC Coordinators know who to book as the presenters with the exception of these two agenda topics:  &quot;Applications&quot; and &quot;Other&quot;.  Please provide a name of someone that you have in mind for those two agenda topics.
+
+If you are requesting and agenda topic not listed above, please include a suggestion as to whom would be best to present for that new agenda item.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For the above agenda items, the EBC Coordinators know who to book as the presenters with the exception of these two agenda topics:  &quot;Applications&quot; and &quot;Other&quot;.  Please provide a name of someone that you have in mind for those two agenda topics.</inlineHelpText>
+        <label>Other Presentation Requests / Comments</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Other_Topics_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Topics Presenter</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Overview_of_Alliances_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please identify if there are any specifics to this topic that you want discussed.</inlineHelpText>
+        <label>Overview of Alliances Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Position_in_Marketplace__c</fullName>
+        <description>A positioning statement is a single sentence or paragraph that explains exactly what the organization’s purpose for existence is AND very clearly outlines the benefits it provides to customers.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A positioning statement is a single sentence or paragraph that explains exactly what the organization’s purpose for existence is AND very clearly outlines the benefits it provides to customers.</inlineHelpText>
+        <label>Position in Marketplace</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Roadmap_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please identify if there are any specific areas in the Product Roadmap to touch on, if needed.</inlineHelpText>
+        <label>Product Roadmap Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Questions_Next_Steps_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This is traditionally presented by the EBC Requestor.</inlineHelpText>
+        <label>Questions &amp; Next Steps Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Related_Opportunity__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>Please let us know which opportunity this is linked to.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please let us know which opportunity this is linked to.</inlineHelpText>
+        <label>Related Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Resource Requests</relationshipLabel>
+        <relationshipName>Resource_Requests</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Request_1st_Choice_Date__c</fullName>
+        <description>Please enter your first choice of Date that you would like.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>We will do all that we can to reserve your 1st or 2nd choice dates; however, this will be based on availability of the EBC room and the Executives/Presenters calendars.  Please do NOT guarantee these dates or book your travel.</inlineHelpText>
+        <label>Resource Request 1st Choice Date:</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Request_2nd_Choice_Date__c</fullName>
+        <description>A second date must be selected in case the first choice is not available.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A second date must be selected in case the first choice is not available.</inlineHelpText>
+        <label>Resource Request 2nd Choice Date:</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Request_End_Time__c</fullName>
+        <description>Please select a desired end time. If the time wanted is not available, please update in the Additional Notes Section. NOTE: Most EXECS are NOT available after 4:00 PM (PST).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select a desired end time. If the time wanted is not available, please update in the Additional Notes Section. NOTE: Most EXECS are NOT available after 4:00 PM (PST).</inlineHelpText>
+        <label>Resource Request End Time:</label>
+        <picklist>
+            <picklistValues>
+                <fullName>11:00 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Request_Start_Time__c</fullName>
+        <description>Please select a start time for your event. If your desired time is not listed, please update the notes section.  Please note the Executives will not start prior to 9:00 AM and prefer not to stay later than 4:00 PM.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select a start time for your event. If your desired time is not listed, please update the notes section.  Please note the Executives will not start prior to 9:00 AM and prefer not to stay later than 4:00 PM.</inlineHelpText>
+        <label>Resource Request Start Time:</label>
+        <picklist>
+            <picklistValues>
+                <fullName>9:00 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10:00 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11:00 AM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2:00 PM (PST)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Request__c</fullName>
+        <description>An Executive Briefing usually hosts key decision makers from a high potential account. The Executive Briefing Program&apos;s host (usually an account manager) requests an EBC via the Resource Request button in SFDC.  The host/requestor fills out the necessary information and submits it.  It is then send to the EBC Coordinators to request the Briefing and works with the Executive Assistants to book the room and Presenters that will provide the appropriate level of executive interaction or a high degree of technical expertise based on the proposed agenda.
+
+The events take place at Nimble Storage Headquarters in San Jose, CA.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Use this field to identify what type of request you are seeking.</inlineHelpText>
+        <label>Resource Request</label>
+        <picklist>
+            <picklistValues>
+                <fullName>EBC</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sales_Overview_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please identify in the comments field, what topics within Sales is needed for this EBC.</inlineHelpText>
+        <label>Sales Overview Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sales_Segment_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Segment Type</label>
+        <length>55</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Storage_Solution_Currently_Used__c</fullName>
+        <description>Please help identify for the Executives the current solution this company currently uses and what Nimble Solution you feel they would benefit from.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please help identify for the Executives the current solution this company currently uses and what Nimble Solution you feel they would benefit from.</inlineHelpText>
+        <label>Storage Solution Currently Used</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Ticker_Symbol__c</fullName>
+        <externalId>false</externalId>
+        <label>Ticker Symbol</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Visitors_Attending__c</fullName>
+        <description>Please identify the number of external customer/partner attendees, as well as the total number of internal attendees.  The number of internal attendees should not include the presenters.
+
+This will help us to order any necessary catering and schwag.  The normal schwag put out for EBCs is:  Notepad, Pen and Mints.
+
+Anything beyond the normal schwag may be ordered by you via the MyNimbleGearStore site or by connecting with Julie Lewis.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please identify the number of external customer/partner attendees.  The correct number of external attendees is critical for food ordering and swag ordering.</inlineHelpText>
+        <label>Total Visitors Attending</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VDI_Demo_Sizing_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please suggest in the comment field your proposed Presenter/Executive.</inlineHelpText>
+        <label>VDI Demo &amp; Sizing Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Website__c</fullName>
+        <description>It is necessary for the company website to be listed so that the Executives/Presenters can do further research, as needed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>It is necessary for the company website to be listed so that the Executives/Presenters can do further research, as needed.</inlineHelpText>
+        <label>Website</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Welcome_Introductions_Presenter__c</fullName>
+        <description>The welcome and introductions is traditionally presented/owned by the EBC Requestor.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The welcome and introductions is traditionally presented/owned by the EBC Requestor.</inlineHelpText>
+        <label>Welcome &amp; Introductions Presenter</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Who_was_the_Top_Presenter_for_your_EBC__c</fullName>
+        <description>Was there a presenter that stood out among the rest?  Was there a presenter that your customer/partner just could not stop talking about?  The presenter will not be made aware of this, it is merely for the EBC Coordinator.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Was there a presenter that stood out among the rest?  Was there a presenter that your customer/partner just could not stop talking about?  The presenter will not be made aware of this, it is merely for the EBC Coordinator.</inlineHelpText>
+        <label>Who was the Top Presenter for your EBC?</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X10_Channel_Overview_45_min__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>10. Channel Overview (45 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X11_Applications_45_min__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>11. Applications (45 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X12_Other_Topics_see_notes_below__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>12. Other Topics (see notes below)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X13_Questions_Next_Steps_15_30_min__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>13. Questions &amp; Next Steps (15-30 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X1_Introduction_10_15_min__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>1. Welcome &amp; Introduction (10-15 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X2_Company_Overview_30_min__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>2. Company Overview (30 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X3_CASL_or_Tech_Deep_Dive_60_min__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>3. CASL or Tech Deep Dive (60 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X4_Architecture_Deep_Dive_60_min__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>4. Architecture Deep Dive (60 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X5_VDI_Demo_Sizing_45_min__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>5. VDI Demo &amp; Sizing (45 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X6_Product_Road_Map_60_min__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>6. Product Road Map (60 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X7_Overview_of_Alliances_45_min__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>7. Overview of Alliances (45 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X8_Financial_Overview_30_min__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>8. Financial Overview (30 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X9_Sales_Overview_30_min__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>9. Sales Overview (30 min)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <label>Resource Request</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Resource_Request</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Actual_Event_Date__c</columns>
+        <columns>EBC_Status__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Resource Request</label>
+    </listViews>
+    <nameField>
+        <displayFormat>RR-{00000}</displayFormat>
+        <label>Resource Request Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Resource Requests</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>EBC_Cancelled_or_Rescheduled</fullName>
+        <active>true</active>
+        <description>Notification that an EBC needs to be cancelled / rescheduled.</description>
+        <errorConditionFormula>AND(
+  OR( 
+    ISPICKVAL( EBC_Event_Cancelled_Rescheduled__c , &quot;Cancel&quot;) ,
+      ISPICKVAL( EBC_Event_Cancelled_Rescheduled__c , &quot;Reschedule&quot;)),
+ 
+ISBLANK( Event_Cancelled_Reschedule_Comments__c ))</errorConditionFormula>
+        <errorDisplayField>Event_Cancelled_Reschedule_Comments__c</errorDisplayField>
+        <errorMessage>You have chosen to cancel / reschedule your EBC, please provide comments to this box.  Why it was cancelled or a new proposed date.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Event_Date_Requested</fullName>
+        <active>true</active>
+        <description>This rule will make it so the requester cannot book an EBC that is within TWO weeks for from &quot;today.&quot;</description>
+        <errorConditionFormula>Resource_Request_1st_Choice_Date__c &lt; TODAY() + 14
+
+&amp;&amp; 
+NOT( OR( $Profile.Id =&quot;00e800000018mIq&quot;, $Profile.Name = &quot;NS-SALES-SuperUser&quot; ))</errorConditionFormula>
+        <errorDisplayField>Resource_Request_1st_Choice_Date__c</errorDisplayField>
+        <errorMessage>You may not select a date that is within a two week time frame.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Feedback_Section</fullName>
+        <active>true</active>
+        <description>It is necessary to fill out your thoughts/customer thoughts on how the EBC went.</description>
+        <errorConditionFormula>(AND(
+ OR(
+ ISPICKVAL( EBC_Room_and_Technical__c, &quot;&quot;),
+ ISPICKVAL( Food_and_Beverage__c, &quot;&quot;),
+ ISPICKVAL( EBC_Schwag__c, &quot;&quot;),
+ ISPICKVAL( EBC_Time_Management_Agenda_Timeline__c, &quot;&quot;),
+ ISBLANK( Who_was_the_Top_Presenter_for_your_EBC__c ),
+ ISBLANK( Least_applicable_presenter_presentation__c ),
+ ISBLANK( Other_Comments__c )),
+ 
+ISPICKVAL( EBC_Status__c , &quot;Event Completed / Feedback Requested / Event Closed&quot;)))
+&amp;&amp;
+NOT( OR( $Profile.Id =&quot;00e800000018mIq&quot;, $Profile.Name = &quot;NS-SALES-SuperUser&quot; ))</errorConditionFormula>
+        <errorMessage>Please scroll down to the Feedback Section and complete the required fields. It is necessary to fill out your thoughts/customer thoughts on how the EBC went.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Feedback_Section_Not_Allowed</fullName>
+        <active>true</active>
+        <description>It is necessary to fill out your thoughts/customer thoughts on how the EBC went.</description>
+        <errorConditionFormula>AND(
+ OR(
+ NOT (ISPICKVAL( EBC_Room_and_Technical__c, &quot;&quot;)),
+ NOT (ISPICKVAL( Food_and_Beverage__c, &quot;&quot;)),
+ NOT (ISPICKVAL( EBC_Schwag__c, &quot;&quot;)),
+ NOT (ISPICKVAL( EBC_Time_Management_Agenda_Timeline__c, &quot;&quot;)),
+ NOT (ISBLANK( Who_was_the_Top_Presenter_for_your_EBC__c )),
+ NOT (ISBLANK( Least_applicable_presenter_presentation__c )),
+ NOT (ISBLANK( Other_Comments__c ))),
+ 
+ NOT (ISPICKVAL( EBC_Status__c , &quot;Event Completed / Feedback Requested / Event Closed&quot;))
+&amp;&amp;
+NOT( OR( $Profile.Id =&quot;00e800000018mIq&quot;, $Profile.Name = &quot;NS-SALES-SuperUser&quot; )))</errorConditionFormula>
+        <errorMessage>You may not enter Feedback until the EBC is closed and feedback is requested.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Resource_Request_2nd_Date</fullName>
+        <active>true</active>
+        <description>two weeks</description>
+        <errorConditionFormula>Resource_Request_2nd_Choice_Date__c &lt; TODAY() + 14
+
+&amp;&amp; 
+NOT( OR( $Profile.Id =&quot;00e800000018mIq&quot;, $Profile.Name = &quot;NS-SALES-SuperUser&quot; ))</errorConditionFormula>
+        <errorDisplayField>Resource_Request_2nd_Choice_Date__c</errorDisplayField>
+        <errorMessage>You may not select a date that is within a two week time frame.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>EBC_FAQ</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>EBC FAQ</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://cs30.salesforce.com/015n0000000DP7P</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,6 @@
+<apex:component controller="SalesOrderAndSOlinesTemplate" access="global">
+    <apex:attribute name="opportunityID" description="To pass ID to controller" type="id" assignTo="{!oppID}"/>
+    <apex:outputText value="{!SO.Name}"></apex:outputText>
+    <apex:outputText value=" - "/>
+    <apex:outputText value="{!SO.Type__c}"></apex:outputText>
+</apex:component>

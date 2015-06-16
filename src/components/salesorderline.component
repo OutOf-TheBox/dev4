@@ -1,0 +1,32 @@
+<apex:component controller="saleslinecntlr" access="global">
+<apex:attribute name="SalesOrderId" assignTo="{!soID}" type="String" description="id of salesorder"/>
+
+<b> Sales Order Line Details</b>
+ <br/>
+    <table style="border:1px solid #000000;border-collapse:collapse;" cellpadding="2" cellspacing="2" width="100%">
+        <!-- <tr height="10px"></tr>-->
+         <tr>
+            <th style="border:1px solid #000000;" width="19%" >SO Line #</th>
+            <th style="border:1px solid #000000;" width="23%" >Product</th>
+            <th style="border:1px solid #000000;" width="16%" >Serial Number</th>
+            <th style="border:1px solid #000000;" width="10%" >Quantity</th>
+            <th style="border:1px solid #000000;" width="16%" >Sale Price</th>
+            <th style="border:1px solid #000000;" width="16%" >Total</th>
+         </tr>
+          <apex:repeat value="{!saOrderLin}" var="sol">
+           <tr>
+                <td style="border:1px solid #000000;">{!sol.Name}</td>
+                <td style="border:1px solid #000000;">{!sol.Product__r.Name}</td>
+                <td style="border:1px solid #000000;">{!sol.Serial_Number__c}</td>
+                <td style="border:1px solid #000000;">{!sol.Quantity__c}</td>
+                <td style="border:1px solid #000000;">{!sol.Sale_Price__c}</td>
+                <td style="border:1px solid #000000;">{!sol.Total__c}</td>
+            </tr>
+  
+  </apex:repeat>
+              
+  </table>
+
+
+  
+</apex:component>

@@ -1,0 +1,29 @@
+<apex:Page tabStyle="Case" >
+<script src="/soap/ajax/15.0/connection.js"></script>
+<script type="text/javascript" />
+<script>
+     window.onload = function() {
+
+     sforce.connection.sessionId = '{!$Api.Session_ID}';
+
+     var describeSObjectResult = sforce.connection.describeSObject("case");
+     var prefix = describeSObjectResult.keyPrefix;
+
+     // Determine the View based on the User
+     //var cView = '';
+     //if ("{!$User.ContactId}") {
+     //    cView = "00B80000008FMrn"; 
+     //    parent.document.location.href = "/" + prefix + "?fcf=" + cView ;
+     //}
+     //else if ("{!$UserRole.Name}" == 'Support') {
+     //    cView = "00B80000008FNLs"; 
+     //    parent.document.location.href = "/" + prefix + "?fcf=" + cView ;
+     //}
+     //else {
+         parent.document.location.href = "/" + prefix ;
+     //}
+     //00B80000008FMrn  Portal View - All Open Cases
+     //00B80000008FNLs  Support Queue - General
+     }
+</script>
+</apex:page>

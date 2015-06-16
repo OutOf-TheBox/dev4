@@ -1,0 +1,4 @@
+<apex:page standardController="Contact"
+           extensions="contactExtensionsWithSharing"
+           action="{!contactDispatchNewUrl}">
+</apex:page>

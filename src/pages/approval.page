@@ -1,0 +1,112 @@
+<apex:page showHeader="false" standardController="SBQQ__Quote__c" sidebar="false" extensions="approval_controller">
+    <script type="text/javascript">
+        function myClose(){
+            window.opener.location.href="/partner/{!$CurrentPage.parameters.id}";
+            window.top.close();
+        }
+        function disableButton(){
+            document.getElementById("submit").disabled=true;
+        }
+    </script>
+    <apex:form >
+    <apex:outputPanel rendered="{!renderNewPanel}">
+        <apex:inputCheckbox value="{!Competitive_Pressures}" />
+        <apex:outputLabel >Competitive Pressures</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!New_Customer_Acquisition}"/>
+        <apex:outputLabel >New Customer Acquisition</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Timeline_for_Closing}"/>
+        <apex:outputLabel >Timeline for Closing</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Customer_Satisfaction}"/>
+        <apex:outputLabel >Customer Satisfaction</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Customer_Budget}"/>
+        <apex:outputLabel >Customer Budget</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Multi_Quote_Deal}"/>
+        <apex:outputLabel >Multi-Quote Deal</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Missing_Wrong_Part_on_Quote}"/>
+        <apex:outputLabel >Missing Wrong Part on Quote</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Design_Sizing_Error}"/>
+        <apex:outputLabel >Design Sizing Error</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Match_Previous_Discounts}"/>
+        <apex:outputLabel >Matching Previous Discounts</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!X100_Deal_Discount}"/>
+        <apex:outputLabel >100% Deal Discount</apex:outputLabel><BR/>
+        <table>
+            <tr>
+                <td><apex:outputLabel >Comments:</apex:outputLabel></td>
+                <td><apex:inputTextarea value="{!Comment}"/></td>
+            </tr>
+        </table>
+    </apex:outputPanel>
+    <apex:outputPanel rendered="{!renderViewPanel}">
+        <apex:inputCheckbox value="{!Competitive_Pressures}" disabled="true"/>
+        <apex:outputLabel >Competitive Pressures</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!New_Customer_Acquisition}" disabled="true"/>
+        <apex:outputLabel >New Customer Acquisition</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Timeline_for_Closing}" disabled="true"/>
+        <apex:outputLabel >Timeline for Closing</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Customer_Satisfaction}" disabled="true"/>
+        <apex:outputLabel >Customer Satisfaction</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Customer_Budget}" disabled="true"/>
+        <apex:outputLabel >Customer Budget</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Multi_Quote_Deal}" disabled="true"/>
+        <apex:outputLabel >Multi-Quote Deal</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Missing_Wrong_Part_on_Quote}" disabled="true"/>
+        <apex:outputLabel >Missing Wrong Part on Quote</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Design_Sizing_Error}" disabled="true"/>
+        <apex:outputLabel >Design Sizing Error</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Match_Previous_Discounts}" disabled="true"/>
+        <apex:outputLabel >Matching Previous Discounts</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!X100_Deal_Discount}" disabled="true"/>
+        <apex:outputLabel >100% Deal Discount</apex:outputLabel><BR/>
+        <table>
+            <tr>
+                <td><apex:outputLabel >Comments:</apex:outputLabel></td>
+                <td><apex:inputTextarea value="{!Comment}" disabled="true"/></td>
+            </tr>
+        </table>
+    </apex:outputPanel>
+    <apex:outputPanel rendered="{!renderEditPanel}">
+        <apex:inputCheckbox value="{!Competitive_Pressures}" />
+        <apex:outputLabel >Competitive Pressures</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!New_Customer_Acquisition}"/>
+        <apex:outputLabel >New Customer Acquisition</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Timeline_for_Closing}"/>
+        <apex:outputLabel >Timeline for Closing</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Customer_Satisfaction}"/>
+        <apex:outputLabel >Customer Satisfaction</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Customer_Budget}"/>
+        <apex:outputLabel >Customer Budget</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Multi_Quote_Deal}"/>
+        <apex:outputLabel >Multi-Quote Deal</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Missing_Wrong_Part_on_Quote}"/>
+        <apex:outputLabel >Missing Wrong Part on Quote</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Design_Sizing_Error}"/>
+        <apex:outputLabel >Design Sizing Error</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!Match_Previous_Discounts}"/>
+        <apex:outputLabel >Matching Previous Discounts</apex:outputLabel><BR/>
+        <apex:inputCheckbox value="{!X100_Deal_Discount}"/>
+        <apex:outputLabel >100% Deal Discount</apex:outputLabel><BR/>
+        <table>
+            <tr>
+                <td><apex:outputLabel >Comments:</apex:outputLabel></td>
+                <td><apex:inputTextarea value="{!Comment}"/></td>
+            </tr>
+        </table>
+    </apex:outputPanel>        
+        <!--<apex:commandButton action="{!SaveRecord}" value="Save" oncomplete="alert('Record has been Saved.\nPress Submit to Initiate Approval.')" rendered="{!renderSaveSubmitButton}"/>-->
+        <!--<apex:commandButton action="{!Submit}" value="Submit"  oncomplete="myClose()" rendered="{!renderSaveSubmitButton}"/>-->
+        <apex:actionFunction action="{!Submit}" name="submitFunction" status="status" reRender="" oncomplete="myClose()"/>
+        <!--<apex:actionStatus startText="Start" stopText="Stop" id="status" rendered="true"></apex:actionStatus>-->
+        <BR/>
+        <input type="button" value="Submit" onclick="submitFunction(),disableButton()" id="submit"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" value="Cancel" onclick="window.close()" id="submit"/>
+        <!--<apex:commandButton value="Cancel" oncomplete="window.close()" />-->
+    </apex:form>
+    <script type="text/javascript">
+        var showSubmit="{!renderSaveSubmitButton}";
+        if(showSubmit=="false"){
+        document.getElementById("submit").style.visibility="hidden";
+        }
+    </script>    
+</apex:page>

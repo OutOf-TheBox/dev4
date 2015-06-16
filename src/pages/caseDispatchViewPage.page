@@ -1,0 +1,4 @@
+<apex:page standardController="Case"
+           extensions="caseExtensionsWithSharing"
+           action="{!caseDispatchViewUrl}">
+</apex:page>

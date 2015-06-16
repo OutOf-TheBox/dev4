@@ -1,0 +1,267 @@
+<apex:page controller="SiteLoginController" showHeader="false" sidebar="false" standardStylesheets="false">
+    <apex:stylesheet value="{!URLFOR($Resource.Partner2, 'css/sfdc190_global.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.Partner2, 'css/sfdc192_page.css')}" />
+    <style type="text/css">
+        a {
+            color: #015BA7;
+        }
+        input.primary, .button, .btnPrimary {
+            background: #81C73A;
+            border: 1px solid #81C73A;
+        }
+        .button .label {
+            color: #222222;
+        }
+        body {
+            background-color:#FFFFFF;
+        }
+        #footer, #footer a {
+            color:#222222;
+        }
+        #content {
+            background-color:#f3f5f6;
+        }
+        #content {
+            border:1px solid #CCCCCC;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            padding:10px;
+        }
+        #left_side {
+            float:left;
+            width: 320px;
+        }
+        #right_side {
+            margin-left:350px;
+            margin-top:100px;
+        }
+        @media (max-width: 900px) {
+            #right_side {
+                padding-left:25px;
+                display:block;
+                margin-left:1px;
+                margin-top:15px;
+            }
+        }
+    </style>
+    <title>Partner Community2 Login</title>
+    <style type="text/css">
+        a {
+            color: #015BA7;
+        }
+        input.primary, .button, .btnPrimary {
+            background: #81C73A;
+            border: 1px solid #81C73A;
+        }
+        .button .label {
+            color: #222222;
+        }
+        body {
+            background-color:#FFFFFF;
+        }
+        #footer, #footer a {
+            color:#222222;
+        }
+        #content {
+            background-color:#f3f5f6;
+        }
+        #content {
+            border:1px solid #CCCCCC;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            padding:10px;
+        }
+        #left_side {
+            float:left;
+            width: 320px;
+        }
+        #right_side {
+            margin-left:350px;
+            margin-top:100px;
+        }
+        @media (max-width: 900px) {
+            #right_side {
+                padding-left:25px;
+                display:block;
+                margin-left:1px;
+                margin-top:15px;
+            }
+        }
+        .account {
+            background: #222;
+            /*padding: .25em 30px;*/
+            color: #fff;
+            font-size: .85em;
+            position: relative;
+            /*margin: 0 -30px;*/
+            height:35px;
+            line-height: 20px
+            
+        }
+    </style>
+    <script type="text/javascript">
+       /* if (self == top) {
+            document.documentElement.style.visibility = 'visible';
+        } else {
+            document.write = '';
+            top.location = self.location;
+            setTimeout(function() {
+                document.body.innerHTML = '';
+            }, 1);
+            window.self.onload = function(evt) {
+                document.body.innerHTML = '';
+            };
+        }*/
+    </script>
+    <script>
+        /*var SFDCSessionVars = {
+            "ic": true,
+            "lh": false,
+            "host": "login.salesforce.com",
+            "le": false,
+            "su": "#p# saved user name(s)",
+            "ur": "https://nimblestorage.force.com/partner2",
+            "sum": "#p# saved usernames",
+            "server": "https://login.salesforce.com/login/sessionserver190.html",
+            "im": false,
+            "suo": "1 saved username"
+        };*/
+    </script>
+    <!--<script src="/partner2/jslibrary/SfdcSessionBase190.js"></script>
+<script src="/partner2/jslibrary/LoginHint190.js"></script>-->
+    <script>
+        LoginHint.hideLoginForm();
+    </script>
+    <link rel="canonical" href="https://nimblestorage.force.com/partner2/CommunitiesLogin?locale=us" />
+    
+    <body onload="lazyload();">
+    <div class="account">
+    </div>
+        <table border="0" cellpadding="0" cellspacing="0" class="tablewrapper" style="padding-top: 20px;">
+            <tbody>
+                <tr valign="top">
+                    <td>
+                        <div id="login">
+                            <div id="login_wrapper">
+                                <div id="left_side">
+                                    <div id="login_component">
+                                        <div id="logo_wrapper">
+                                            <apex:image url="{!URLFOR($Resource.Partner2,'images/logo.png')}" />
+                                        </div>
+                                        <div id="loginwidget">
+                                            <div id="manageheader" class="loginbox_container">
+                                                <div id="backFromEdit"><a href="javascript:void(0);" onclick="LoginHint.dismissEdit();" id="hint_back_edit">Back</a>
+                                                </div>
+                                                <br/>
+                                                <div id="managetitle">Manage your usernames:</div>
+                                                <div id="editscale">
+                                                    <div id="editlist"></div>
+                                                </div>
+                                            </div>
+                                            <div id="loginformarea">
+                                                <div id="idscale" class="loginbox_container">
+                                                    <div id="hinttop">
+                                                        <div id="notMydomain" style="display: none;"><a href="javascript:void(0);" onclick="DomainSwitcher.dismissCustomDomain();" id="hint_back_domain">Back</a>
+                                                        </div>
+                                                        <div id="hints" style="display: none;"><a href="javascript:void(0);" onclick="LoginHint.showChooser();" id="hint_back_chooser">Back</a>
+                                                        </div>
+                                                        <div id="loginwith" style="display: none;">Select a username:</div>
+                                                        <div id="edit" style="display: none;"><a href="javascript:void(0);" onclick="LoginHint.showEdit();">Edit</a>
+                                                        </div>
+                                                    </div>
+                                                    <div id="chooser" style="display: none;">
+                                                        <div id="idlist"></div>
+                                                        <div id="another" style="display: none;"><a href="javascript:void(0);" onclick="LoginHint.useNewIdentity();">Log in with a different username</a>
+                                                        </div>
+                                                    </div>
+                                                    <div id="mydomainContainer" style="display: none;">
+                                                        <div class="loginbox_container">
+                                                            <div onclick="document.getElementById('mydomain').value = ''; this.style.display='none'; document.getElementById('mydomain').focus();" id="clrDomain" class="clrField" style="display: none;">&nbsp;</div>
+                                                            <form onsubmit="DomainSwitcher.handleMyDomain();return false;">
+                                                                <div class="identity first">
+                                                                    <label for="mydomain" class="zen-assistiveText">Custom domain prefix</label>
+                                                                    <input type="text" placeholder="Enter your custom domain" value="" class="input identityinput" name="mydomain" id="mydomain" onkeyup="DomainSwitcher.updateMyDomain(this, event);" />
+                                                                </div>
+                                                            </form>
+                                                            <div id="mydomain_preview" class="loginbox_container">https://DOMAIN.my.salesforce.com</div>
+                                                            <div class="loginbox_container">
+                                                                <input type="hidden" id="mydomain_suffix" value=".my.salesforce.com" />
+                                                                <input type="hidden" id="community_suffix" value=".force.com" />
+                                                                <button class="button" id="mydomainContinue" name="Continue" onclick="DomainSwitcher.handleMyDomain();"><span class="label">Continue</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="loginbox_container" id="mydomain_help">Example: Enter "company" if your domain is https://company.my.salesforce.com.</div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="theloginform" style="display: inline;">
+                                                        <apex:form >
+                                                            <div class="loginbox_container" onclick="document.login.username.focus();">
+                                                                <div onclick="LoginHint.clearUsr();" id="clrUsr" class="clrField" style="display: none;">&nbsp;</div>
+                                                                <div class="identity first">
+                                                                    <label for="username" class="zen-assistiveText">Username</label>    <span class="t">
+         <apex:image url="{!URLFOR($Resource.Partner2,'images/user188.png')}" id="loginthumb" width="28" height="28"  title="Username"/>   
+        </span>
+
+                                                                    <apex:inputText value="{!username}" id="username" styleclass="input identityinput" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="loginbox_container" onclick="document.login.password.focus();">
+                                                                <div onclick="document.getElementById('password').value = '';this.style.display='none';document.login.pw.focus();" id="clrPw" class="clrField">&nbsp;</div>
+                                                                <div class="identity last">
+                                                                    <label for="password" class="zen-assistiveText">Password</label><span class="t">
+      <apex:image url="{!URLFOR($Resource.Partner2,'images/lock188.png')}" id="Password" width="28" height="28"  title="Password"/>
+    </span>
+                                                                    <apex:inputSecret value="{!password}" styleclass="input identityinput" title="Password"/>
+                                                                </div>
+                                                            </div>
+                                                            <div id="pwcaps" class="loginbox_container" style="display:none">
+                                                                <img id="pwcapsicon" alt="Caps Lock is ON!" width="16" height="16" src="/img/icon/warning16.png" />Caps Lock is ON!</div>
+                                                            <div class="loginbox_container">
+                                                                <apex:commandButton action="{!login}" styleClass="button" value="Login" style="width: 280px;margin-top: 15px;"/>
+                                                                
+                                                            </div>
+                                                            <apex:pageMessages id="error"/>
+                                                            
+                                                            <div class="loginbox_container" id="forgot"><span><a href="#" onclick="window.open('https://nimblestorage.force.com/partner2/secur/forgotpassword.jsp?locale=us')">Forgot your password?</a></span>
+                                                            </div>
+                                                        </apex:form>
+                                                        <div>
+                                                            Note: Your previous Nimble Storage partner portal login will not authenticate to the new portal.  Users will need to request a new username and password using their company’s email address.  Please contact <a href='mailto:partner_portal@nimblestorage.com'>partner_portal@nimblestorage.com</a> with any issues or questions.
+                                                            </div>
+                                                        <script>
+                                                            LoginHint.getSavedIdentities(false);
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                            <div id="footer">Copyright © 2015 salesforce.com. All rights reserved.</div>
+                        </div>
+                        <script src="/nspoc/jslibrary/baselogin.js"></script>
+                        <script>
+                            function handleLogin() {
+                                document.login.un.value = document.login.username.value;
+                                document.login.width.value = screen.width;
+                                document.login.height.value = screen.height;
+                            }
+                            function lazyload() {
+                                document.getElementById("pwcapsicon").src = "/img/icon/warning16.png";
+                            }
+                            //loader();
+                        </script>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</apex:page>

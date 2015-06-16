@@ -1,0 +1,4 @@
+<apex:page standardController="Asset"
+           extensions="assetExtensionsWithSharing"
+           action="{!assetDispatchEditUrl}">
+</apex:page>

@@ -1,0 +1,21 @@
+<apex:page standardController="SBQQ__Quote__c" >
+ <apex:form >
+ <apex:pageBlock >
+ <!-- <apex:pageblockSection title="Quote Line Items (Standard)" columns="1" > -->
+<apex:pageblockTable value="{!SBQQ__Quote__c.SBQQ__LineItems__r}" var="con" >
+<apex:column value="{!con.name}"/>
+ <apex:column value="{!con.BOM_Line_Number_Read_Only__c}"/>
+<apex:column value="{!con.Part_Number__c}"/>
+ <apex:column value="{!con.Serial_Number__c}"/>
+ <apex:column value="{!con.SBQQ__Quantity__c}"/>
+  <apex:column value="{!con.BOM_Package_Regular_Total__c}"/>
+<apex:column value="{!con.Additional_Discount_Percent__c}"/>
+<apex:column value="{!con.BOM_Package_Net_Unit_Price__c}"/>
+<apex:column value="{!con.BOM_Package_Net_Total__c}"/>
+<apex:column value="{!con.SBQQ__SubscriptionTerm__c}"/>
+
+ </apex:pageblockTable>
+<!-- </apex:pageblockSection> -->
+</apex:pageBlock> 
+ </apex:form>    
+</apex:page>

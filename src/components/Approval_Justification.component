@@ -1,0 +1,105 @@
+<apex:component controller="Approval_Justifictn_Component_Controller" access="Global">
+  <apex:attribute name="QID" assignTo="{!QuoteID}" type="ID" description="To pass Quote ID to controller"/>
+  <HTML>
+  <TABLE>
+      <tr>
+          <td>
+              <apex:outputText value="Competitive Pressures"/>&nbsp;
+          </td>
+          <td>
+              <apex:outputPanel rendered="{!Competitive_Pressures}"><input type="checkbox" checked="true" disabled="true"/></apex:outputPanel>
+              <apex:outputPanel rendered="{!NOT(Competitive_Pressures)}"><input type="checkbox" disabled="true"/></apex:outputPanel>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <apex:outputText value="New Customer Acquisition"/>&nbsp;
+          </td>
+          <td>
+              <apex:outputPanel rendered="{!New_Customer_Acquisition}"><input type="checkbox" checked="true" disabled="true"/></apex:outputPanel>
+              <apex:outputPanel rendered="{!NOT(New_Customer_Acquisition)}"><input type="checkbox" disabled="true"/></apex:outputPanel>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <apex:outputText value="Timeline for Closing"/>&nbsp;
+          </td>
+          <td>
+              <apex:outputPanel rendered="{!Timeline_for_Closing}"><input type="checkbox" checked="true" disabled="true"/></apex:outputPanel>
+              <apex:outputPanel rendered="{!NOT(Timeline_for_Closing)}"><input type="checkbox" disabled="true"/></apex:outputPanel>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <apex:outputText value="Customer Satisfaction"/>&nbsp;
+          </td>
+          <td>
+              <apex:outputPanel rendered="{!Customer_Satisfaction}"><input type="checkbox" checked="true" disabled="true"/></apex:outputPanel>
+              <apex:outputPanel rendered="{!NOT(Customer_Satisfaction)}"><input type="checkbox" disabled="true"/></apex:outputPanel>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <apex:outputText value="Customer Budget"/>&nbsp;
+          </td>
+          <td>
+              <apex:outputPanel rendered="{!Customer_Budget}"><input type="checkbox" checked="true" disabled="true"/></apex:outputPanel>
+              <apex:outputPanel rendered="{!NOT(Customer_Budget)}"><input type="checkbox" disabled="true"/></apex:outputPanel>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <apex:outputText value="Multi-Quote Deal"/>&nbsp;    
+          </td>
+          <td>
+              <apex:outputPanel rendered="{!Multi_Quote_Deal}"><input type="checkbox" checked="true" disabled="true"/></apex:outputPanel>
+              <apex:outputPanel rendered="{!NOT(Multi_Quote_Deal)}"><input type="checkbox" disabled="true"/></apex:outputPanel>    
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <apex:outputText value="Missing/Wrong Part on Quote"/>&nbsp;
+          </td>
+          <td>
+              <apex:outputPanel rendered="{!Missing_Wrong_Part_on_Quote}"><input type="checkbox" checked="true" disabled="true"/></apex:outputPanel>
+              <apex:outputPanel rendered="{!NOT(Missing_Wrong_Part_on_Quote)}"><input type="checkbox" disabled="true"/></apex:outputPanel>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <apex:outputText value="Design/Sizing Error"/>&nbsp;
+          </td>
+          <td>
+              <apex:outputPanel rendered="{!Design_Sizing_Error}"><input type="checkbox" checked="true" disabled="true"/></apex:outputPanel>
+              <apex:outputPanel rendered="{!NOT(Design_Sizing_Error)}"><input type="checkbox" disabled="true"/></apex:outputPanel>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <apex:outputText value="Match Previous Discounts"/>&nbsp;
+          </td>
+          <td>
+              <apex:outputPanel rendered="{!Match_Previous_Discounts}"><input type="checkbox" checked="true" disabled="true"/></apex:outputPanel>
+              <apex:outputPanel rendered="{!NOT(Match_Previous_Discounts)}"><input type="checkbox" disabled="true"/></apex:outputPanel>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <apex:outputText value="100% Deal Discount"/>&nbsp;
+          </td>
+          <td>
+              <apex:outputPanel rendered="{!X100_Deal_Discount}"><input type="checkbox" checked="true" disabled="true"/></apex:outputPanel>
+              <apex:outputPanel rendered="{!NOT(X100_Deal_Discount)}"><input type="checkbox" disabled="true"/></apex:outputPanel>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <apex:outputText value="Comment:"/>&nbsp;
+          </td>
+          <td>
+              <apex:outputText value="{!Comment}"></apex:outputText>
+          </td>
+      </tr>
+  </TABLE>
+  </HTML> 
+</apex:component>

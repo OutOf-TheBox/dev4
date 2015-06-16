@@ -1,0 +1,26 @@
+<apex:page standardController="Case" extensions="DynamicCaseValues"  tabStyle="Case">
+<span style="font-family: 'Arial','Helvetica',sans-serif; font-size: 1.1em; font-weight: bold; color: #4D4D4D;">
+<apex:outputText value="Number of Open Cases with this Asset: " />&nbsp;&nbsp;
+<apex:outputText value="{!NumCasesAsset}" style="color: red;"/><br/>
+<apex:outputText value="Number of Open Cases with this Contact: "/>&nbsp;&nbsp;
+<apex:outputText value="{!NumCasesContact}" style="color: red;"/><br/><br/></span>
+<span style="font-weight: bold; color: #C30000; font-size: 2em;">
+<apex:outputText escape="false" rendered="{!IF(case.Asset.SLA__c = 'Premium 4 Hour',true, false)}" value="*** SLA: PREMIUM 4 HOUR ***"/>
+<apex:outputText escape="false" rendered="{!IF(case.Asset.SLA__c = 'Premium 4 Hour Onsite',true, false)}" value="*** SLA: PREMIUM 4 HOUR ONSITE ***"/></span>
+<span style="font-weight: bold; color: #C30000; font-size: 2em;">
+<apex:outputText escape="false" rendered="{!IF(case.Account.accountDoNotProvideSupport__c,true, false)}" value="*** Do not provide case support for this account except for P1 cases.  Do not issue ANY RMAs.  See Rod Bagg for any exceptions to these. ***"/></span>
+<b>Cases for this Asset (Newest first): </b> <br/><br/>
+<apex:pageBlock >
+    <apex:pageBlockSection columns="1" >
+      <apex:pageBlockTable value="{!listOpenCasesWithAsset}" var="c">
+        <apex:column headerValue="Case Open Date" value="{!c.CreatedDate}" width="120"/>
+       <apex:column headerValue="Case #" width="70"><a target="_blank" href="{!URLFOR($Action.Case.View, c.id)}">{!c.CaseNumber}</a></apex:column>
+        <apex:column headerValue="Status" width="100" value="{!c.Status}"/>
+        <apex:column headerValue="Priority" width="30" value="{!c.Priority}"/>
+        <apex:column headerValue="Account" width="100"><a target="_blank" href="{!IF(c.accountId <> null, URLFOR($Action.Account.View, c.accountId), null)}">{!c.account.name}</a></apex:column>
+        <apex:column headerValue="Contact" width="120"><a target="_blank" href="{!IF(c.contactId <> null, URLFOR($Action.Contact.View, c.contactId), null)}">{!c.contact.name}</a></apex:column>
+        <apex:column headerValue="Subject" value="{!c.Subject}"/>  
+      </apex:pageBlockTable> 
+    </apex:pageBlockSection>
+  </apex:pageBlock>
+</apex:page>

@@ -1,0 +1,91 @@
+<apex:page standardController="Expedite_Request__c"  tabStyle="Expedite_Request__c" extensions="ctrl_Expedite_Request_edit">
+ <apex:form >
+ <apex:pageMessages ></apex:pageMessages>
+ <apex:outputPanel rendered="{!checkexp}">
+  <apex:sectionHeader title="Expedite Request Edit" subtitle="{!Exprecord.name}"/>
+
+ <apex:pageBlock title="Expedite Request Edit" tabStyle="Expedite_Request__c">
+ <apex:outputPanel rendered="{!showerror}">
+ <div  style="font-weight: bold;color: #c00;text-align: center;" id="errorDiv_ep">Error: Invalid Data. <br/>Review all error messages below to correct your data.</div>
+ </apex:outputPanel>
+ <apex:pageBlockButtons >
+ <apex:commandButton value="Save" action="{!SaveRecord}"/>
+ <apex:commandButton value="Cancel" action="{!Cancel}"/>
+ </apex:pageBlockButtons>
+ <apex:pageBlockSection title="Expedite Request details" collapsible="false" columns="2" >
+ 
+  <apex:outputField value="{!Exprecord.name}"/>
+  <apex:outputField value="{!Exprecord.Ownerid}"/>
+    <apex:inputField value="{!Exprecord.Current_Ship_Date__c}"/>
+
+  <apex:inputField value="{!Exprecord.Expedite_Status__c}" required="true" rendered="{!expstatus}"/>
+  
+  <apex:inputHidden rendered="{!expstatus=false}"/>
+      <apex:inputField value="{!Exprecord.Sales_Order__c}"/>
+  <apex:inputField value="{!Exprecord.Sales_Order_Type__c}" />
+
+
+  <!--
+  <apex:inputField value="{!Exprecord.Last_Act_Ship_Date_Update__c}"/>-->
+  <apex:inputField value="{!Exprecord.Target_Install_Date__c}"/>
+  <apex:outputField value="{!Exprecord.Account__c}"/>
+
+
+  <apex:inputField value="{!Exprecord.Total_Price__c}"/>
+    <apex:inputField value="{!Exprecord.Opportunity__c}"/>
+
+   <apex:outputField value="{!Exprecord.Ship_to_Customer__c}"/>
+<apex:inputHidden />
+  <apex:inputField value="{!Exprecord.Ship_To_Address__c}"/>
+  <apex:inputHidden />
+
+  <apex:inputField value="{!Exprecord.Overnight__c}"/>
+ 
+ 
+ </apex:pageBlockSection>
+ <br/>
+ <apex:pageBlockSection columns="1">
+<table border="0" cellpadding="0" cellspacing="0"><tr style="padding:bottom:0px;">
+<td style="padding:bottom:0px;">
+ <apex:inputField styleClass="data2Col" value="{!Exprecord.Approval_To_Overnight__c}" style="width:800px;height:48px;"/>
+ </td></tr>
+ <tr style="padding:top:0px;vertical-align: top;"><td style="padding:top:0px;vertical-align: top;">
+  <apex:outputPanel rendered="{!showerror}">
+ <div style="font-weight: bold;color: #c00;text-align: center;"><strong>Error:</strong> If Overnight is checked, Approval to Overnight is required.  Please complete the Approval to Overnight field.</div>
+  </apex:outputPanel>
+ </td></tr>
+ <tr>
+  <apex:inputField value="{!Exprecord.Reason_For_Expedite__c}" style="width:800px;height:48px;" required="true"/>
+</tr>
+</table>
+ 
+ </apex:pageBlockSection>
+ <!--
+  <apex:pageBlockSection title="Associated Users" collapsible="false">
+  <apex:inputField value="{!Exprecord.SO_Owner__c}"/>
+    <apex:inputField value="{!Exprecord.Opp_Team_6__c}"/>
+    <apex:inputField value="{!Exprecord.Opp_Team_1__c}"/>
+
+    <apex:inputField value="{!Exprecord.Opp_Team_7__c}"/>
+
+    <apex:inputField value="{!Exprecord.Opp_Team_2__c}"/>
+
+    <apex:inputField value="{!Exprecord.Opp_Team_8__c}"/>
+
+    <apex:inputField value="{!Exprecord.Opp_Team_3__c}"/>
+
+    <apex:inputField value="{!Exprecord.Opp_Team_9__c}"/>
+
+    <apex:inputField value="{!Exprecord.Opp_Team_4__c}"/>
+    <apex:inputField value="{!Exprecord.Opp_Team_10__c}"/>
+    <apex:inputField value="{!Exprecord.Opp_Team_5__c}"/>
+
+
+
+ </apex:pageBlockSection> -->
+
+ </apex:pageBlock>
+ </apex:outputPanel>
+ 
+ </apex:form>
+</apex:page>

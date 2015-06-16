@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object is used to track Evals/Pilots that are in the field</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Approval_Required__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Projected_Eval_Age__c  &gt;= 150, &quot;Global VP&quot;,  
+
+ IF(Projected_Eval_Age__c  &gt;= 120, &quot;Theater VP&quot;,  
+
+  IF(Projected_Eval_Age__c  &gt;= 90, &quot;Area VP&quot;,  
+
+   IF(Projected_Eval_Age__c  &gt;= 60, &quot;Region Manager&quot;,  
+
+     IF(Projected_Eval_Age__c  &gt;= 30, &quot;Sales Operations&quot;, 
+
+        &quot;Sales Rep&quot;) ) ) ) )</formula>
+        <label>Approval Required</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Requested</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Expired</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Submission_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Submission Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Completed_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Completed Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Converted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partial Conversion / Partial Return</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trunk Unit - Temporary Eval</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Completion_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Completion Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Eval_Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(Completion_Date__c) , TODAY() -   Eval_Started_On__c , Completion_Date__c -   Eval_Started_On__c  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Commit_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Commit Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Eval_Forecast_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Forecast Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Expected to Convert</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Expected to Return</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Eval_Notes_Archive__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Notes Archive</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Eval_Notes_Last_Updated_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Notes Last Updated By</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Notes_Last_Updated_On__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Notes Last Updated On</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Eval_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Eval_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Eval Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Evals</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Eval_Record_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;https://login.salesforce.com/&quot;&amp;Id</formula>
+        <label>Eval Record Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Started_On__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Started On</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Eval_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Eval_Age__c   &gt;= 180, &quot;F - High Priority (past 180 days)&quot;,IF( Eval_Age__c   &gt;= 135, &quot;E - Priority (135-180 days)&quot;, IF( Eval_Age__c   &gt;= 90, &quot;D - High Risk (90-135 days)&quot;,IF( Eval_Age__c   &gt;= 60, &quot;C - At Risk (60-90 days)&quot;,IF( Eval_Age__c   &gt;= 30, &quot;B - Overdue (30-60 days)&quot;,IF(   Eval_Age__c   &gt;= 0, &quot;A - On Schedule (0-30 days)&quot;, &quot;N/A&quot;) ) ) ) ) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Notes_to_Approver__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please provide thorough notes explaining the business need to keep this Eval in the field.</inlineHelpText>
+        <label>Notes to Approver</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Evals</relationshipLabel>
+        <relationshipName>Evals</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Projected_Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>Eval_Commit_Date__c - Eval_Started_On__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Projected Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Projected_Eval_Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>Eval_Commit_Date__c  -  Eval_Started_On__c</formula>
+        <label>Projected Eval Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Resolution__c</fullName>
+        <externalId>false</externalId>
+        <label>Resolution?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes - RMA issued</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes - Conversion commit date is accurate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes - Return pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No - Conversion commit date has been pushed out</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No - Rep not providing accurate commit date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No - Extension not approved, needs RMA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No - Pending extension approval</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <label>Eval</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Eval_Owner__c</columns>
+        <columns>Eval_Age__c</columns>
+        <columns>Eval_Commit_Date__c</columns>
+        <columns>Eval_Forecast_Status__c</columns>
+        <columns>Projected_Eval_Age__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Active_Evals</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Eval_Age__c</columns>
+        <columns>Eval_Status__c</columns>
+        <columns>Eval_Forecast_Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Completed_Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </filters>
+        <label>My Active Evals</label>
+    </listViews>
+    <nameField>
+        <displayFormat>E-{00000}</displayFormat>
+        <label>Eval Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Evals</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <webLinks>
+        <fullName>Eval_Extension_Approval_Thresholds</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Eval Extension Approval Thresholds</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://login.salesforce.com/01580000001w0VR</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Training_Doc_Eval_and_Contingent_PO_Ordering_Process</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Training Doc - Eval and Contingent PO Ordering Process</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://login.salesforce.com/01580000001w0Vl</url>
+    </webLinks>
+</CustomObject>

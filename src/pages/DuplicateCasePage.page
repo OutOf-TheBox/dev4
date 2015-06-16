@@ -1,0 +1,9 @@
+<apex:page standardController="Case" extensions="DuplicateCaseController">
+<apex:messages />
+<apex:form >
+<apex:outputLabel value="Select the parent case:" for="dupCase" />
+<apex:inputField id="dupCase" value="{!Case.Duplicate_Case__c}"/>
+<apex:commandButton action="{!saveDuplicate}" value="Click to Add"/>
+<apex:commandButton action="{!Cancel}" value="Cancel"/>
+</apex:form>
+</apex:page>

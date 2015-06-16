@@ -1,0 +1,17 @@
+<apex:page standardController="Category_Notes__c" extensions="CategoryNotesNewController">
+    <apex:form >
+        <apex:pageBlock mode="center">
+            <apex:pageBlockButtons >
+            <apex:commandButton value="Save" action="{!saveCategoryUserOnInsert}">         
+        	</apex:commandButton>
+            </apex:pageBlockButtons>        
+            <apex:pageBlockSection title="Add Category Note" >             
+        	<!--<apex:outputLabel value="Category" for="pick1"/> -->
+ 			<apex:inputField id="text1" required="true" value="{!c.casecatCategory__c}"/> <br/> 
+			<!--<apex:outputLabel value="Sub Category" for="pick2"/> -->
+     	    <apex:inputField id="text2" required="true" value="{!c.caseSubCategory__c}"/><br/> 
+       		<apex:inputField label="Notes" value="{!cn.Notes__c}"/><br/> 
+            </apex:pageBlockSection>       
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

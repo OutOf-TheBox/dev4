@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>FYFQ__c</fullName>
+        <description>Fiscal Year Fiscal Quarter</description>
+        <externalId>false</externalId>
+        <label>FYFQ</label>
+        <length>8</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FollowingWeekCommit__c</fullName>
+        <externalId>false</externalId>
+        <label>Following Week Commit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>LastEdited__c</fullName>
+        <description>Date and time the user made last edit to data</description>
+        <externalId>false</externalId>
+        <label>Last Edited</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Locked__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Submitted</description>
+        <externalId>false</externalId>
+        <label>Locked</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Month1Commit__c</fullName>
+        <externalId>false</externalId>
+        <label>Month 1 Commit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month2Commit__c</fullName>
+        <externalId>false</externalId>
+        <label>Month 2 Commit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Month3Commit__c</fullName>
+        <externalId>false</externalId>
+        <label>Month 3 Commit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>QuarterCommit__c</fullName>
+        <externalId>false</externalId>
+        <label>Qtr Commit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>QuarterGut__c</fullName>
+        <externalId>false</externalId>
+        <label>Qtr Gut</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>QuarterUpside__c</fullName>
+        <externalId>false</externalId>
+        <label>Qtr Upside</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>SubmittedOn__c</fullName>
+        <description>Date and time of submission</description>
+        <externalId>false</externalId>
+        <label>Submitted On</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>UpcomingWeekCommit__c</fullName>
+        <externalId>false</externalId>
+        <label>Upcoming Week Commit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipLabel>Custom Forecasts</relationshipLabel>
+        <relationshipName>CustomForecasts</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>YYWW__c</fullName>
+        <description>Calendar Year and Week #</description>
+        <externalId>false</externalId>
+        <label>YYWW</label>
+        <length>8</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Custom Forecast</label>
+    <nameField>
+        <displayFormat>CF#{YY}{MM}{DD}-{0}</displayFormat>
+        <label>Custom Forcast NO.</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Custom Forecast</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

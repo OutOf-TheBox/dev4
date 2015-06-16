@@ -1,0 +1,23 @@
+<apex:page showChat="false"
+           showHeader="true"
+           sidebar="true"
+           tabStyle="assetPortalTab__tab"
+           title="Assets">
+
+  <style type="text/css">
+
+    .listHeader h2 {color: #333333;}
+
+  </style>
+
+  <apex:outputPanel styleClass="listHeader">
+
+    <apex:enhancedList customizable="false"
+                       height="400"
+                       type="Asset"
+                       listId="00B80000008GdsA"/>
+
+  </apex:outputPanel>
+
+[assetPortalTabPage]
+</apex:page>

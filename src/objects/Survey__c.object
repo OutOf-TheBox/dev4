@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>surveyAccount__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Surveys</relationshipLabel>
+        <relationshipName>Surveys</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>surveyCase__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Surveys</relationshipLabel>
+        <relationshipName>Surveys</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>surveyContact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Surveys</relationshipLabel>
+        <relationshipName>Surveys</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>surveyCustomerComments__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>surveyExcludeFromReporting__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Exclude From Reporting</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>surveyManagerComments__c</fullName>
+        <externalId>false</externalId>
+        <label>Manager Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>surveyOverallSatisfactionText__c</fullName>
+        <externalId>false</externalId>
+        <label>Overall Satisfaction (Text)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>surveyOverallSatisfaction__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(surveyOverallSatisfactionText__c,
+     &quot;Strongly Disagree&quot;, 1,
+     &quot;Somewhat Disagree&quot;, 2,
+     &quot;Neutral&quot;,           3,
+     &quot;Somewhat Agree&quot;,    4,
+     &quot;Strongly Agree&quot;,    5,
+                          0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Overall Satisfaction</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>surveyTimeTakenToResolveCaseText__c</fullName>
+        <externalId>false</externalId>
+        <label>Time Taken To Resolve Case (Text)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>surveyTimeTakenToResolveCase__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(surveyTimeTakenToResolveCaseText__c,
+     &quot;Strongly Disagree&quot;, 1,
+     &quot;Somewhat Disagree&quot;, 2,
+     &quot;Neutral&quot;,           3,
+     &quot;Somewhat Agree&quot;,    4,
+     &quot;Strongly Agree&quot;,    5,
+                          0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Time Taken To Resolve Case</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>surveyTseCommunicationsText__c</fullName>
+        <externalId>false</externalId>
+        <label>TSE Communications (Text)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>surveyTseCommunications__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(surveyTseCommunicationsText__c,
+     &quot;Strongly Disagree&quot;, 1,
+     &quot;Somewhat Disagree&quot;, 2,
+     &quot;Neutral&quot;,           3,
+     &quot;Somewhat Agree&quot;,    4,
+     &quot;Strongly Agree&quot;,    5,
+                          0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TSE Communications</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>surveyTseHelpText__c</fullName>
+        <externalId>false</externalId>
+        <label>TSE Help (Text)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>surveyTseHelp__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(surveyTseHelpText__c,
+     &quot;Strongly Disagree&quot;, 1,
+     &quot;Somewhat Disagree&quot;, 2,
+     &quot;Neutral&quot;,           3,
+     &quot;Somewhat Agree&quot;,    4,
+     &quot;Strongly Agree&quot;,    5,
+                          0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TSE Help</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>surveyTseKnowledgeText__c</fullName>
+        <externalId>false</externalId>
+        <label>TSE Knowledge (Text)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>surveyTseKnowledge__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(surveyTseKnowledgeText__c,
+     &quot;Strongly Disagree&quot;, 1,
+     &quot;Somewhat Disagree&quot;, 2,
+     &quot;Neutral&quot;,           3,
+     &quot;Somewhat Agree&quot;,    4,
+     &quot;Strongly Agree&quot;,    5,
+                          0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TSE Knowledge</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>surveyTseUnderstoodMyIssueText__c</fullName>
+        <externalId>false</externalId>
+        <label>TSE Understood My Issue (Text)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>surveyTseUnderstoodMyIssue__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(surveyTseUnderstoodMyIssueText__c,
+     &quot;Strongly Disagree&quot;, 1,
+     &quot;Somewhat Disagree&quot;, 2,
+     &quot;Neutral&quot;,           3,
+     &quot;Somewhat Agree&quot;,    4,
+     &quot;Strongly Agree&quot;,    5,
+                          0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TSE Understood My Issue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Survey</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>SURVEY-{000000}</displayFormat>
+        <label>Survey Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Surveys</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Support_Closed_Case_01</fullName>
+        <active>true</active>
+        <label>Support Closed Case 01</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

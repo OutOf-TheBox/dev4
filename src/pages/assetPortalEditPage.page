@@ -1,0 +1,45 @@
+<apex:page showChat="false"
+           showHeader="true"
+           sidebar="true"
+           tabStyle="assetPortalTab__tab"
+           title="Asset Edit: {!Asset.Name}"
+           standardController="Asset"
+           extensions="assetExtensionsWithSharing,assetExtensionsWithoutSharing">
+  <apex:sectionHeader title="Asset Edit" subtitle="{!Asset.Name}"/>
+  <apex:form >
+    <apex:pageBlock mode="maindetail" title="Asset Edit">
+      <apex:pageBlockButtons >
+        <apex:commandButton value="Save"   action="{!assetCustomSave}"/>
+        <apex:commandButton value="Cancel" action="{!Cancel}"/>
+      </apex:pageBlockButtons>
+      <apex:pageMessages />
+      <apex:pageBlockSection title="Asset General Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Serial Number"     value="{!Asset.Name}"/>
+        <apex:outputField label="System Name"       value="{!Asset.System_Name__c}"/>
+        <apex:outputField label="Model"             value="{!Asset.Product2.ProductCode}"/>
+        <apex:outputField label="Nimble OS Version" value="{!Asset.Nimble_Version__c}"/>
+        <apex:outputField label="Order Type"        value="{!Asset.Order_Type__c}"/>
+        <apex:outputField label="Status"            value="{!Asset.Status}"/>
+        <apex:outputField label="Ship Date"         value="{!Asset.Ship_Date__c}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Asset Support/Maintenance Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputText label="Parts Delivery SLA" value="{!Asset.SLA__c} ({!if(CONTAINS(Asset.SLA__c, 'Premium 4 Hour'), '4-Hour', 'Next Business Day')})"/>
+        <apex:outputText label="Includes Onsite Parts Replacement?" value="{!if(CONTAINS(Asset.SLA__c, 'Onsite'), 'Yes', 'No')}"/>
+        <apex:outputField label="Support Start Date" value="{!Asset.Support_Start_Date__c}"/>
+        <apex:outputField label="Support End Date"   value="{!Asset.Support_End_Date__c}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Asset Contact Information" showheader="true" collapsible="false" columns="1">
+        <apex:inputField label="Contact Name" value="{!Asset.ContactId}" required="true"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Asset Install Address Information" showheader="true" collapsible="false" columns="1">
+        <apex:inputField label="Install Street 1"       value="{!Asset.Install_Street1__c}"  required="true"/>
+        <apex:inputField label="Install Street 2"       value="{!Asset.Install_Street2__c}"/>
+        <apex:inputField label="Install City"           value="{!Asset.Install_City__c}"     required="true"/>
+        <apex:inputField label="Install State/Province" value="{!Asset.Install_State_Province__c}"/>
+        <apex:inputField label="Install Postal Code"    value="{!Asset.Install_Zip_Code__c}" required="true"/>
+        <apex:inputField label="Install Country"        value="{!Asset.Install_Country__c}"  required="true"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+[assetPortalEditPage]
+</apex:page>

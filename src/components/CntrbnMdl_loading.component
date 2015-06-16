@@ -1,0 +1,6 @@
+<apex:component >
+    <apex:attribute name="text" description="The text come after loading image." type="String" required="false"/>      
+    <span>&nbsp;&nbsp;<apex:image url="{!$Resource.loading}" alt="loading..." height="20" width="20" />&nbsp;
+       <font color="#0066FF" size="3" style="vertical-align:top;">{!text}</font>
+    </span>
+</apex:component>

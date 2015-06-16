@@ -1,0 +1,69 @@
+<apex:page standardController="Asset">
+
+<span style="font-family: 'Arial','Helvetica',sans-serif; font-size: 1.1em; font-weight: bold; color: #4D4D4D;">
+
+<apex:outputText value="SUPPORT: This asset is marked critical, and has SHI (Special Handling Instructions).  Review the 'Critical Asset' and 'Asset SHI' sections below for details.<br/><br/>"
+                 rendered="{!asset.assetCritical__c}"
+                 style="color: red;"
+                 escape="false"/>
+
+<apex:outputText value="SUPPORT: This asset has SHI (Special Handling Instructions).  Review the 'Asset SHI' section below for details.<br/><br/>"
+                 rendered="{!AND(NOT(asset.assetCritical__c), LEN(asset.assetShi__c) > 4)}"
+                 style="color: red;"
+                 escape="false"/>
+
+<apex:outputText value="SUPPORT: This asset's account is marked critical, and has SHI (Special Handling Instructions).  "
+                 rendered="{!asset.account.accountCritical__c}"
+                 style="color: red;"/>
+<apex:outputLink value="{!URLFOR($Action.Account.View, asset.account.id)}"
+                 rendered="{!asset.account.accountCritical__c}"
+                 style="color: red;"
+                 target="_blank">CLICK HERE</apex:outputLink>
+<apex:outputText value=" to view account in a separate window.<br/><br/>"
+                 rendered="{!asset.account.accountCritical__c}"
+                 style="color: red;"
+                 escape="false"/>
+
+<apex:outputText value="SUPPORT: This asset's account has SHI (Special Handling Instructions).  "
+                 rendered="{!AND(NOT(asset.account.accountCritical__c), LEN(asset.account.accountShi__c) > 4)}"
+                 style="color: red;"/>
+<apex:outputLink value="{!URLFOR($Action.Account.View, asset.account.id)}"
+                 rendered="{!AND(NOT(asset.account.accountCritical__c), LEN(asset.account.accountShi__c) > 4)}"
+                 style="color: red;"
+                 target="_blank">CLICK HERE</apex:outputLink>
+<apex:outputText value=" to open the account in a separate window.<br/><br/>"
+                 rendered="{!AND(NOT(asset.account.accountCritical__c), LEN(asset.account.accountShi__c) > 4)}"
+                 style="color: red;"
+                 escape="false"/>
+
+<apex:outputText value="SUPPORT: This asset is marked 'Customer Elected Not To Renew'.  DO NOT PROVIDE ANY SUPPORT FOR THIS ASSET!<br/><br/>"
+                 rendered="{!asset.Customer_Elected_Not_to_Renew__c}"
+                 style="color: red;"
+                 escape="false"/>
+
+<apex:outputText value="SUPPORT: This asset's support has expired, but is still within the 30 day grace period.  Provide 100% support, including RMAs.<br/><br/>"
+                 rendered="{!AND(NOT(asset.Customer_Elected_Not_to_Renew__c),asset.assetSupportExpiredGracePeriodActive__c)}"
+                 style="color: red;"
+                 escape="false"/>
+
+<apex:outputText value="SUPPORT: This asset's support has expired, and 30 day grace period has expired.  Provide P1 support only.  Provide RMA only if one of the following is true:
+                        <ul><li>Support renewal PO has been issued.</li>
+                            <li>Support renewal is currently in progress.</li>
+                            <li>Senior manager has approved.</li></ul><br/><br/>"
+                 rendered="{!AND(NOT(asset.Customer_Elected_Not_to_Renew__c),asset.assetSupportExpiredGracePeriodInactive__c)}"
+                 style="color: red;"
+                 escape="false"/>
+
+<apex:outputText value="SUPPORT: This asset's Status is something OTHER than 'Shipped' or 'Return Pending'.  Be aware of this when working with this asset.  <br/><br/>"
+                 rendered="{!AND(asset.Status <> 'Shipped', asset.Status <> 'Return Pending')}"
+                 style="color: red;"
+                 escape="false"/>
+
+<apex:outputText style="font-weight: bold; color: red; font-size: 2em;" value="*** SLA: PREMIUM 4 HOUR *** <br/><br/>" rendered="{!IF(AND(asset.SLA__c <> null,asset.SLA__c == 'Premium 4 Hour'), true, false)}"
+                  escape="false"/>
+
+<apex:outputText style="font-weight: bold; color: red; font-size: 2em;" value="*** SLA: PREMIUM 4 HOUR ONSITE *** <br/><br/>" rendered="{!IF(AND(asset.SLA__c <> null,asset.SLA__c == 'Premium 4 Hour Onsite'), true, false)}"
+                  escape="false"/>
+
+</span>
+</apex:page>

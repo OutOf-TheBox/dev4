@@ -1,0 +1,60 @@
+<apex:page showChat="false"
+           showHeader="true"
+           sidebar="true"
+           tabStyle="casePortalTab__tab"
+           title="Case: {!Case.CaseNumber}"
+           standardController="Case"
+           extensions="caseExtensionsWithSharing">
+  <apex:sectionHeader title="Case" subtitle="{!Case.CaseNumber}"/>
+  <apex:form >
+    <apex:pageBlock mode="maindetail" title="Case Detail">
+      <apex:pageBlockButtons >
+        <apex:commandButton value="Edit"         action="{!Edit}"/>
+        <apex:commandButton value="Resolve Case" action="{!caseCustomResolve}" rendered="{!displayResolveButton}"/>
+      </apex:pageBlockButtons>
+
+      <apex:pageBlockSection title="Case General Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Case Number"  value="{!Case.CaseNumber}"/>
+        <apex:outputField label="Status"       value="{!Case.Status}"/>
+        <apex:outputField label="Created Date" value="{!Case.CreatedDate}"/>
+        <apex:outputField label="Closed Date"  value="{!Case.ClosedDate}"/>
+      </apex:pageBlockSection>
+
+      <apex:pageBlockSection title="Case Asset/Contact Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Asset Serial Number" value="{!Case.AssetId}"/>
+        <apex:outputField label="Contact Name"        value="{!Case.ContactId}"/>
+      </apex:pageBlockSection>
+
+      <apex:pageBlockSection title="Case Issue Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Priority"    value="{!Case.Priority}" rendered="false"/>  <!-- Hidden field.  Required to load Priority field into controller. -->
+        <apex:outputText label="Impact"      value="{!casePortalImpact} {!casePortalImpactDescription}" />
+        <apex:outputField label="Subject"     value="{!Case.Subject}"/>
+        <apex:outputField label="Description" value="{!Case.Description}"/>
+      </apex:pageBlockSection>
+
+      <apex:pageBlockSection title="Case Resolution Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Resolution Notes" value="{!Case.casePortalResolutionNotes__c}"/>
+      </apex:pageBlockSection>
+
+      <apex:pageBlockSection title="Case Articles" showheader="true" collapsible="false" columns="1">
+        <b><i>NOTE: After clicking on an article Title, scroll to the top of the browser window to see the article information</i></b>
+        <apex:pageBlockTable value="{!caseArticles}" var="ca">
+          <apex:column headerValue="Title"   value="{!ca.KnowledgeArticleId}" width="300px"/>
+          <apex:column headerValue="Summary" value="{!ca.Summary}"/>
+        </apex:pageBlockTable>
+      </apex:pageBlockSection>
+
+      <apex:pageBlockSection title="Case Comments" showheader="true" collapsible="false" columns="1">
+        <apex:outputPanel layout="block" style="margin-left:27%">
+        <apex:commandButton value="New Comment" action="{!caseCustomCommentNew}" rendered="{!displayNewCommentButton}"/>
+        </apex:outputPanel>
+        <apex:pageBlockTable value="{!caseComments}" var="cc">
+          <apex:column headerValue="Created Timestamp" value="{!cc.createdDate}"/>
+          <apex:column headerValue="Created By"        value="{!cc.createdBy.Name}"/>
+          <apex:column headerValue="Comment Body"      value="{!cc.commentBody}"/>
+        </apex:pageBlockTable>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+[casePortalViewPage]
+</apex:page>

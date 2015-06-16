@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>caseEscalationTypeDefinitionEditPage</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>caseEscalationTypeDefinitionNewPage</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>caseEscalationTypeDefinitionGroup__c</fullName>
+        <externalId>false</externalId>
+        <label>Group</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Engineering Consult</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering Escalation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Executive Escalation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PEAK Escalation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales Escalation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>caseEscalationTypeDefinitionUser__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Case_Escalation_Type_Definitions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <label>Case Escalation Type Definition</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Case Escalation Type Definition Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Case Escalation Type Definitions</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>caseEscalationTypeDefinitionGroup01</fullName>
+        <active>true</active>
+        <description>Error if Group is blank.</description>
+        <errorConditionFormula>ISBLANK(TEXT(caseEscalationTypeDefinitionGroup__c))</errorConditionFormula>
+        <errorDisplayField>caseEscalationTypeDefinitionGroup__c</errorDisplayField>
+        <errorMessage>&quot;Group&quot; cannot be blank.  Pick the group for this record.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>caseEscalationTypeDefinitionUser01</fullName>
+        <active>true</active>
+        <description>Error if Group is &quot;PEAK Escalation&quot; and User is blank.</description>
+        <errorConditionFormula>AND(ISPICKVAL(caseEscalationTypeDefinitionGroup__c, &quot;PEAK Escalation&quot;),
+    ISBLANK(caseEscalationTypeDefinitionUser__c)
+   )</errorConditionFormula>
+        <errorDisplayField>caseEscalationTypeDefinitionUser__c</errorDisplayField>
+        <errorMessage>&quot;User&quot; cannot be blank if Group is &quot;PEAK Escalation&quot;.  Pick the user for this record.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>caseEscalationTypeDefinitionUser02</fullName>
+        <active>true</active>
+        <description>Error if Group is not &quot;PEAK Escalation&quot; and User is not blank.</description>
+        <errorConditionFormula>AND(NOT(ISPICKVAL(caseEscalationTypeDefinitionGroup__c, &quot;PEAK Escalation&quot;)),
+    NOT(ISBLANK(caseEscalationTypeDefinitionUser__c))
+   )</errorConditionFormula>
+        <errorDisplayField>caseEscalationTypeDefinitionUser__c</errorDisplayField>
+        <errorMessage>&quot;User&quot; must be blank unless Group is &quot;PEAK Escalation&quot;.</errorMessage>
+    </validationRules>
+</CustomObject>

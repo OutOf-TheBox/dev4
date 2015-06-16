@@ -1,0 +1,6 @@
+<apex:page id="mainpage">  
+  <script type="text/javascript"> 
+    setTimeout(function () { location.reload(1); }, 30000);
+  </script>
+  <apex:enhancedList type="Case" height="600" rowsPerPage="100" listid="00B80000008FNLs" customizable="True" />  
+</apex:page>

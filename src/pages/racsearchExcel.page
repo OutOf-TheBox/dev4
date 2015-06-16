@@ -1,0 +1,23 @@
+<apex:page controller="ContactSearchController" contentType="application/vnd.ms-excel#SalesForceExport.xls" cache="true">
+    <apex:pageBlock title="Export Results" >
+        <apex:pageBlockTable value="{!opportunities}" var="opp">
+            
+            <apex:column value="{!opp.account.ownerid}"/>
+            <apex:column value="{!opp.account.name}"/>
+            <apex:column value="{!opp.Vertical__c}"/>
+            <apex:column value="{!opp.Name}"/>
+            <apex:column value="{!opp.Deal_Size__c}"/>
+            <apex:column value="{!opp.closedate}"/>
+            <apex:column value="{!opp.Customer_Referenceable__c}"/>
+            <apex:column value="{!opp.Did_Win_Include_VDI__c}"/>
+            <apex:column value="{!opp.Primary_Competitor__c}"/>
+            <apex:column value="{!opp.Did_Win_Include_SmartStack__c}"/>
+            <apex:column value="{!opp.Backup_Software__c}"/>
+            <apex:column value="{!opp.Related_Alliance_Partner__c}"/>
+            <apex:column value="{!opp.account.Service_Provider_Type__c}"/>
+            <apex:column value="{!opp.account.G5000_Account_Status__c}"/>
+      
+            
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

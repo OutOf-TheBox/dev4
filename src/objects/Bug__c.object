@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>AsupId_BUGZILLA__c</fullName>
+        <externalId>false</externalId>
+        <label>AsupId (Bugzilla)</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>AsupId_JIRA__c</fullName>
+        <externalId>false</externalId>
+        <label>AsupId (JIRA)</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>AsupId__c</fullName>
+        <description>Path to associated autosupport</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Path to associated autosupport.
+
+Format is:  &lt;customer&gt;/&lt;serial number&gt;/&lt;timestamp&gt;</inlineHelpText>
+        <label>AsupId</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>BugID_BUGZILLA__c</fullName>
+        <externalId>false</externalId>
+        <label>BugID (Bugzilla)</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BugID_JIRA__c</fullName>
+        <externalId>false</externalId>
+        <label>BugID (JIRA)</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BugID__c</fullName>
+        <externalId>false</externalId>
+        <label>BugID</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bugzilla_BUGZILLA__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;https://in.nimblestorage.com/bugzilla/show_bug.cgi?id=&quot;+BugID__c</formula>
+        <label>Bugzilla (Bugzilla)</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bugzilla_JIRA__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;https://nimblejira.nimblestorage.com/browse/&quot;+BugID_JIRA__c</formula>
+        <label>Bugzilla (JIRA)</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bugzilla__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;https://nimblejira.nimblestorage.com/browse/&quot;+BugID__c</formula>
+        <label>Bugzilla</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Bugs</relationshipLabel>
+        <relationshipName>Bugs</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>DuplicateBugID_BUGZILLA__c</fullName>
+        <externalId>false</externalId>
+        <label>DuplicateBugID (Bugzilla)</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>DuplicateBugID_JIRA__c</fullName>
+        <externalId>false</externalId>
+        <label>DuplicateBugID (JIRA)</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>DuplicateBugID__c</fullName>
+        <description>This bug object was originally created as this bug number which was later marked as a duplicate of another Bug which is reflected in the BugId property</description>
+        <externalId>false</externalId>
+        <label>DuplicateBugID</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Occurrences_BUGZILLA__c</fullName>
+        <externalId>false</externalId>
+        <label>Occurrences (Bugzilla)</label>
+        <length>4</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Occurrences_JIRA__c</fullName>
+        <externalId>false</externalId>
+        <label>Occurrences (JIRA)</label>
+        <length>4</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Occurrences__c</fullName>
+        <defaultValue>&quot;1&quot;</defaultValue>
+        <description>Number of intances of this bug that have occurred.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of intances of this bug that have occurred.
+If there is an associated AutoSupport (asupid), it is the number of occurrences that can be determined in that autosupport - typically count of backtraces or restarts</inlineHelpText>
+        <label>Occurrences</label>
+        <length>4</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Bug</label>
+    <nameField>
+        <displayFormat>BUG-{000000}</displayFormat>
+        <label>Bug Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Bugs</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>bugBugId_01</fullName>
+        <active>true</active>
+        <description>Throws error if Bug ID is not in JIRA format.</description>
+        <errorConditionFormula>OR(ISBLANK(BugID__c),
+   NOT(REGEX(BugID__c, &quot;^[A-Z]{1,}-\\d{1,}$&quot;)))</errorConditionFormula>
+        <errorDisplayField>BugID__c</errorDisplayField>
+        <errorMessage>Bug ID cannot be blank, and must be in JIRA issue format (ex: AS-12345).</errorMessage>
+    </validationRules>
+</CustomObject>

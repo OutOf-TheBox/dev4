@@ -1,0 +1,14 @@
+<apex:page showHeader="false" sidebar="false">
+  <body>
+  Some content before
+<script language="javascript" type="text/javascript">
+  function resizeIframe(obj) {
+    //obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
+</script>
+
+<iframe src="https://nimblestorage.force.com/partner2/Partner2Login" name="login" scrolling="yes" frameborder="no" align="center" height = "450px" width = "1100px" style="margin: 0 -2.05em 0;" onload='javascript:resizeIframe(this);'>
+</iframe>
+Some content after
+</body>
+</apex:page>

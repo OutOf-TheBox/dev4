@@ -1,0 +1,34 @@
+<apex:page Controller="ResellerContactController" >
+<apex:form >
+<apex:outputPanel id="list">
+<apex:pageBlock >
+<apex:pageBlockTable value="{!Resconts}" var="rc"> 
+<apex:column value="{!rc.resAccName}">
+<apex:facet name="header">Reseller Account Name</apex:facet>
+</apex:column> 
+<apex:column value="{!rc.status}">
+<apex:facet name="header">Request Status</apex:facet>
+</apex:column>
+<apex:column value="{!rc.resName}">
+<apex:facet name="header">Reseller Name</apex:facet>
+</apex:column>
+<apex:column value="{!rc.resLastAccessedDate}">
+<apex:facet name="header">Last Accessed Date</apex:facet>
+</apex:column>
+<apex:column value="{!rc.resCreatedDate}">
+<apex:facet name="header"> CreateDate</apex:facet>
+</apex:column>
+<apex:column >
+<apex:commandButton action="{!Approve}" value="Approve" id="thebutton" rerender="list">
+<apex:param assignTo="{!resId}" value="{!rc.Id}" name="param"/>
+</apex:commandButton>
+&nbsp;&nbsp;
+<apex:commandButton action="{!Reject}" value="Reject" id="thebutton1" rerender="list">
+<apex:param assignTo="{!resId}" value="{!rc.Id}" name="param1" />
+</apex:commandButton>
+</apex:column>
+</apex:pageBlockTable>
+</apex:pageBlock>
+</apex:outputPanel>
+</apex:form>
+</apex:page>

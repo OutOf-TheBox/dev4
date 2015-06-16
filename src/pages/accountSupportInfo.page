@@ -1,0 +1,14 @@
+<apex:page standardController="Account">
+
+<span style="font-family: 'Arial','Helvetica',sans-serif; font-size: 1.1em; font-weight: bold; color: #4D4D4D;">
+
+<apex:outputText value="SUPPORT: This account is marked critical, and has SHI (Special Handling Instructions).  Review the 'Critical Account' and 'Account SHI' sections below for details."
+                 rendered="{!account.accountCritical__c}"
+                 style="color: red;"/>
+
+<apex:outputText value="SUPPORT: This account has SHI (Special Handling Instructions).  Review the 'Account SHI' section below for details."
+                 rendered="{!AND(NOT(account.accountCritical__c), LEN(account.accountShi__c) > 4)}"
+                 style="color: red;"/>
+
+</span>
+</apex:page>

@@ -1,0 +1,25 @@
+<apex:page showChat="false"
+           showHeader="true"
+           sidebar="true"
+           tabStyle="casePortalTab__tab"
+           title="Case: {!Case.CaseNumber}"
+           standardController="Case"
+           extensions="caseExtensionsWithSharing">
+  <apex:sectionHeader title="Case" subtitle="{!Case.CaseNumber}"/>
+  <apex:form >
+    <apex:pageBlock mode="maindetail" title="Case Detail">
+      <apex:pageBlockButtons >
+        <apex:commandButton value="Save"   action="{!caseCustomResolveSave}"/>
+        <apex:commandButton value="Cancel" action="{!caseCustomResolveCancel}" immediate="true"/>
+      </apex:pageBlockButtons>
+      <apex:pageMessages />
+      <apex:pageBlockSection title="Resolution Notes" showheader="true" collapsible="false" columns="1">
+        <apex:inputField label="Resolution Notes"
+                         value="{!Case.casePortalResolutionNotes__c}"
+                         required="true"
+                         style="width:400px;height:200px"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+[casePortalResolvePage]
+</apex:page>

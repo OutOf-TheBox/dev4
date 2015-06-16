@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Status fields for cases dealing with bug 40451</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Bug40451_Account_team_in_the_loop__c</fullName>
+        <description>Have you contacted the account team to give them details and ask advice?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Have you contacted the account team to give them details and ask advice?</inlineHelpText>
+        <label>Account team in the loop</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Bug40451_Case__c</fullName>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Bug40451</relationshipLabel>
+        <relationshipName>Bug40451</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Bug40451_Customer_Contacted__c</fullName>
+        <description>Has customer been contacted with a live phone call (email/vm doesn&apos;t count)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Has customer been contacted with a live phone call (email/vm doesn&apos;t count)</inlineHelpText>
+        <label>Customer Contacted Live</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Bug40451_Customer_Reaction__c</fullName>
+        <description>How is the customer taking the news of this issue? Are they Upset or OK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How is the customer taking the news of this issue? Are they Upset or OK</inlineHelpText>
+        <label>Customer Reaction</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Customer not yet contacted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Calm - understanding</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Annoyed - but ok</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Upset at first - ok now</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Upset - may need intervention</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Bug40451_Downstream_updated_release__c</fullName>
+        <description>What safe version has the downstream array been updated to?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What safe version has the downstream array been updated to?</inlineHelpText>
+        <label>Downstream updated release</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1.4.7.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.4.8.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.4.9.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.4.10.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not yet updated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not required - upstream will be updated instead</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Bug40451_Partner_Array__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>Partner asset SN</description>
+        <externalId>false</externalId>
+        <label>Partner Array</label>
+        <referenceTo>Asset</referenceTo>
+        <relationshipLabel>Bug40451</relationshipLabel>
+        <relationshipName>Bug40451</relationshipName>
+        <required>true</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Bug40451_Recovery_Approach__c</fullName>
+        <description>What approach are we taking for the recovery of the downstream snapshots?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What approach are we taking for the recovery of the downstream snapshots?</inlineHelpText>
+        <label>Recovery Approach</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Re-Replicate entire volume</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Re-Replicate from last common good snapshot</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Re-Replicate last good and entire volume both</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Use 1.4.10.0 to auto repair next snapshot</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not yet determined</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Volume checksum OK - no recovery needed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Bug40451_Seed_Array_Required__c</fullName>
+        <description>Is a seed array required to assist with the recovery plan?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is a seed array required to assist with the recovery plan?</inlineHelpText>
+        <label>Seed Array Required</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not determined</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Bug40451_Upstream_updated_release__c</fullName>
+        <description>What safe version has the upstream array been updated to?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What safe version has the upstream array been updated to?</inlineHelpText>
+        <label>Upstream updated release</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1.4.7.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.4.8.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.4.9.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1.4.10.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not yet updated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not required - downstream will be updated instead</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Bug40451_number_of_volumes_affected__c</fullName>
+        <defaultValue>&quot;TBD&quot;</defaultValue>
+        <description>How many volumes were identified as suspect?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How many volumes were identified as suspect? Count ALL suspect volumes even if they didn&apos;t need repairing (e.g. they may have self-corrected)</inlineHelpText>
+        <label>Number of suspect volumes</label>
+        <length>128</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Bug40451</label>
+    <nameField>
+        <displayFormat>B-{00000}</displayFormat>
+        <label>Bug40451</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Bug40451</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

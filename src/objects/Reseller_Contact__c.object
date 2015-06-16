@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>Approved_Or_Rejected_By_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Approved_Rejected_By__r.FirstName + &apos; &apos; + Approved_Rejected_By__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Approved Or Rejected By Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approved_Rejected_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Approved/Rejected By</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Reseller Contacts (Approved/Rejected By)</relationshipLabel>
+        <relationshipName>Reseller_Contacts1</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Asset_Contact_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Asset__r.Contact.FirstName + &apos; &apos; + Asset__r.Contact.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Asset Contact Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Asset__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is to store the Asset S.NO/Asset Name on the Reseller Contact object.</description>
+        <externalId>false</externalId>
+        <label>Asset</label>
+        <referenceTo>Asset</referenceTo>
+        <relationshipLabel>Reseller Contacts</relationshipLabel>
+        <relationshipName>Reseller_Contacts</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Customer_Account_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>resellerCustomerAccount__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Customer Account Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Key__c</fullName>
+        <externalId>true</externalId>
+        <label>External Key</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Accessed_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Accessed Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Res_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>ResellerContact__r.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Reseller Email</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ResellerContact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Reseller Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Reseller Contacts</relationshipLabel>
+        <relationshipName>Reseller_Contacts</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reseller_Account_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Reseller_Account__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Reseller Account Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reseller_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Reseller Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Reseller Contacts (Reseller Account)</relationshipLabel>
+        <relationshipName>Reseller_Contacts1</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reseller_Contact_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>ResellerContact__r.FirstName+&apos; &apos;+ResellerContact__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Reseller Contact Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sales_Region__c</fullName>
+        <description>This is the Sales Region on the Opportunity which is associated with an Asset.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Asset__r.Opportunity__r.Sales_Region__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is the Sales Region on the Opportunity which is associated with an Asset.</inlineHelpText>
+        <label>Sales Region</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Support_Provider_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Support Provider Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>resellerContactCase__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Attach the Approval Case from Customer to Provide access to Reseller. This is a required field if there is no opportunity link between Customer and Reseller.</inlineHelpText>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Reseller Contacts</relationshipLabel>
+        <relationshipName>Reseller_Contacts</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>resellerCustomerAccount__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Reseller Contacts</relationshipLabel>
+        <relationshipName>Reseller_Contacts</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <label>Reseller Contact</label>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>NAME</columns>
+        <columns>Asset__c</columns>
+        <columns>Reseller_Account__c</columns>
+        <columns>resellerCustomerAccount__c</columns>
+        <columns>Customer_Account_Name__c</columns>
+        <columns>Approved_Rejected_By__c</columns>
+        <columns>Reseller_Contact_Name__c</columns>
+        <columns>Status__c</columns>
+        <columns>Res_Email__c</columns>
+        <columns>ResellerContact__c</columns>
+        <columns>Reseller_Account_Name__c</columns>
+        <columns>Last_Accessed_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>A-{0000}</displayFormat>
+        <label>Reseller Contact Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Reseller Contacts</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+</CustomObject>

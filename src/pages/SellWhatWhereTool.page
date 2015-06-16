@@ -1,0 +1,706 @@
+<apex:page standardController="SWW_Country__c" docType="html-5.0" extensions="SellWhatWhereTool" sidebar="true" standardStylesheets="false" showHeader="true" id="thepage">
+<apex:form id="theform">
+
+
+<div style="background-color:#F2F2F2;height:100%"> 
+
+<table align="center" style="padding-top:20px;" width="100%"  cellspacing="5" id="tab">
+<tr>
+
+<td colspan="2" valign="top" bgcolor="#A4A4A4" height="30px;" style="font-size:25px;text-align:center; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;">
+SellWhatWhereTool
+</td>
+</tr>
+<tr>
+<td  colspan="2" style="font-size:15px;text-align:left;padding-top:10px; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+         
+Please select a country from the drop down menu below to access the details for that country.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" >
+
+<apex:selectList value="{!CountrySelected}" multiselect="false" size="1" style="align:center;width:250px;" onchange="showdetail();">
+            <apex:selectOptions value="{!Countrylist}"/>
+        </apex:selectList>
+   <apex:actionFunction action="{!Showdetail}" name="showdetail"/>    
+</td>
+</tr>
+
+
+
+<apex:outputPanel rendered="{!Showdetail }">
+
+<tr>
+<td colspan="2" align="left" valign="top" bgcolor="#CFEEF8" height="30px;" style="font-size:25px;padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;">
+Country Details
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;padding-top:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Country Name
+</td>
+<td width="70%" style="padding-left:10px;padding-top:10px;text-align:left font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.name!='',ObjCountry.name,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Region
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.Region__c!='',ObjCountry.Region__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Country Website
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><a href='{!ObjCountry.Country_Website__c}' target="_blank" style="text-decoration:none;"><apex:outputText value="{!if(ObjCountry.Country_Website__c!='',ObjCountry.Country_Website__c,'-')}" ></apex:outputText></a>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Shipping terms
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><a href='{!ObjCountry.Shipping_Terms__c}' target="_blank" style="text-decoration:none;"><apex:outputText value="{!if(ObjCountry.Shipping_Terms__c!='',ObjCountry.Shipping_Terms__c,'-')}" ></apex:outputText></a>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Country Notes
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.Country_Notes__c!='',ObjCountry.Country_Notes__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<apex:repeat value="{!RelCompliances}" var="re">
+<tr>
+<td colspan="2" align="left" valign="top" bgcolor="#81DAF5" height="30px;" style="font-size:25px;padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;">
+         Compliance
+         </td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;padding-top:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Product Family</td>
+<td width="70%" style="padding-left:10px;padding-top:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(re.Product_Family__c!='',re.Product_Family__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Approval
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(re.Approval__c!=null,re.Approval__c,'-')}" ></apex:outputText> 
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+ETA for Approval
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"> <apex:outputText value="{!if(re.Approval_ETA__c!=null,re.Approval_ETA__c,'-')}" ></apex:outputText> 
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Status
+</td>
+<td width="70%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;padding-top:0px;padidng-bottom:0px;Background-color:{!IF(re.Status__c=='Open', '#F3F781', '')};Background-color:{!IF(re.Status__c=='Closed', '#58FA58', '')};Background-color:{!IF(re.Status__c=='Completed', '#58FA58', '')};"><apex:outputText value="{!if(re.Status__c!='',re.Status__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Notes 
+</td>
+<td width="70%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(re.Notes__c!='',re.Notes__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+</apex:repeat>
+<tr>
+
+<td colspan="2" align="left" valign="top" bgcolor="#CFEEF8" height="30px;" style="font-size:25px;padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;">
+Revenue Shipment
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;padding-top:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Importer of Record
+</td>
+<td width="70%" style="padding-left:10px;padding-top:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.RevShip_ImportRecord__c!='',ObjCountry.RevShip_ImportRecord__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Shipping Terms
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.RevShip_ShipTerms__c!='',ObjCountry.RevShip_ShipTerms__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Title Transfer
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.RevShip_TitleTransfer__c!='',ObjCountry.RevShip_TitleTransfer__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+VAT/GST Process
+</td>
+<td width="70%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.RevShip_VATGST__c!='',ObjCountry.RevShip_VATGST__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Set Up Status
+</td>
+<td width="70%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.RevShip_SetupStatus__c!='',ObjCountry.RevShip_SetupStatus__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+
+<td colspan="2" align="left" valign="top" bgcolor="#CFEEF8" height="30px;" style="font-size:25px;padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;">
+Service Parts
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;padding-top:10px;text-align:left;
+ font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Importer of Record
+</td>
+<td width="70%" style="padding-left:10px;padding-top:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.SvcParts_ImportRecord__c!='',ObjCountry.SvcParts_ImportRecord__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Shipping Terms
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.SvcPart_ShipTerms__c!='',ObjCountry.SvcPart_ShipTerms__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Title Transfer
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.SvcPart_TitleTransfer__c!='',ObjCountry.SvcPart_TitleTransfer__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+VAT/GST Process
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.SvcPart_VATGST__c!='',ObjCountry.SvcPart_VATGST__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Set Up Status
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.SvcPart_SetupStatus__c!='',ObjCountry.SvcPart_SetupStatus__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+
+
+<tr>
+
+<td colspan="2" align="left" valign="top" bgcolor="#CFEEF8" height="30px;" style="font-size:25px;padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;">
+Demo/Eval(In  Out)
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;padding-top:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Importer of Record
+</td>
+<td width="70%" style="padding-left:10px;padding-top:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.DemoEval_ImportRecord__c!='',ObjCountry.DemoEval_ImportRecord__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Shipping Terms
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.DemoEval_ShipTerms__c!='',ObjCountry.DemoEval_ShipTerms__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Title Transfer
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.DemoEval_TitleTransfer__c!='',ObjCountry.DemoEval_TitleTransfer__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+VAT/GST Process
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.DemoEval_VATGST__c!='',ObjCountry.DemoEval_VATGST__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Set Up Status
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.DemoEval_SetupStatus__c!='',ObjCountry.DemoEval_SetupStatus__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+
+<tr>
+
+<td colspan="2" align="left" valign="top" bgcolor="#CFEEF8" height="30px;" style="font-size:25px;padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;">
+Trunk Units (Assets)
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;padding-top:10px; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Importer of Record
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; padding-top:10px;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.Trunk_ImportRecord__c!='',ObjCountry.Trunk_ImportRecord__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Shipping Terms
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.Trunk_ShipTerms__c!='',ObjCountry.Trunk_ShipTerms__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Title Transfer
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.Trunk_TitleTransfer__c!='',ObjCountry.Trunk_TitleTransfer__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+VAT/GST Process
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.Trunk_VATGST__c!='',ObjCountry.Trunk_VATGST__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Set Up Status
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.Trunk_SetupStatus__c!='',ObjCountry.Trunk_SetupStatus__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+
+<tr>
+
+<td colspan="2" align="left" valign="top" bgcolor="#CFEEF8" height="30px;" style="font-size:25px;padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;">
+Demo Eval Conversions
+</td>
+</tr>
+
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;padding-top:10px; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Importer of Record
+</td>
+<td width="70%" style="padding-left:10px;text-align:left;padding-top:10px; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.DemoEvalConv_ImportRecord__c!='',ObjCountry.DemoEvalConv_ImportRecord__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Shipping Terms
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.DemoEvalConv_ShipTerms__c!='',ObjCountry.DemoEvalConv_ShipTerms__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Title Transfer
+
+</td>
+<td width="70%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.DemoEvalConv_TitleTransfer__c!='',ObjCountry.DemoEvalConv_TitleTransfer__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+VAT/GST Process
+</td>
+<td width="70%" style="padding-left:10px;text-align:left;font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"><apex:outputText value="{!if(ObjCountry.DemoEvalConv_VATGST__c!='',ObjCountry.DemoEvalConv_VATGST__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="color:#BDBDBD;padding-top:0px;padidng-bottom:0px;">
+<hr></hr>
+</td>
+</tr>
+<tr>
+<td width="30%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Set Up Status
+</td>
+<td width="70%" style="padding-left:10px;text-align:left; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;"> <apex:outputText value="{!if(ObjCountry.DemoEvalConv_SetupStatus__c!='',ObjCountry.DemoEvalConv_SetupStatus__c,'-')}" ></apex:outputText>
+</td>
+</tr>
+</apex:outputPanel>
+<tr>
+
+<apex:outputPanel rendered="{!showText}">
+<tr>
+<td colspan="2"  style="font-size:15px;text-align:left;padding-top:5px; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+Before we ship into a new country, we have to ask and answer several questions about how we do business there.  This tool can help you answer the following questions before selling:
+</td></tr>
+
+<td colspan="2"  style="font-size:15px;text-align:left;padding-top:0px; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+<ul><li> Do we have proper regulatory compliance in place for our products? These include certifications and markings such as UL, CE, WEEE, KCC, CCC, etc.</li><br/>
+<li>How do we import Revenue orders into countries and who pays taxes? Nimble sales model relies on resellers or distributors in country or region to stand up as Importer of Record, pay taxes and be responsible for any import licenses where required.  For additional Reseller information in any given country, please contact that countries Sales Team Lead.</li><br/>
+<li>How do we import Evaluation or Internal orders into countries and who pays taxes? Nimble cannot act as importer in most countries but can facilitate entries for Eval/Demo units only via carnets and other means as to not impact the potential customer. Taxes will be paid by Nimble when levied and cross charged to departments on Internal orders.</li><br/>
+<li> Do we have RMA Depot support available? We can support Next Business Day, 4 hour and 4 hour Onsite in most established countries. New depot set up is planned in conjunction with the Quarterly Sales Roadmap reviews or as required.</li><br/>
+<li>What Price List do I use? Please contact Sales Operations.</li></ul>
+</td>
+<tr>
+<td colspan="2"  style="font-size:15px;text-align:left;padding-top:5px; font-family:ProximaNovaSoft-Regular, Calibri, 
+       Gill Sans, Gill Sans MT, Candara, Segoe, Segoe UI, 
+         Arial, sans-serif;font-weight: bold;">
+<p>If the country or group of countries that you are inquiring about is not accessible from the drop-down, then we do not currently do business there, and there are no roadmap plans to do business there.
+</p>
+</td></tr>
+</apex:outputPanel>
+</tr>
+</table>
+
+
+
+</div>
+
+
+</apex:form>
+  
+</apex:page>

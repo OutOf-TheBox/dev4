@@ -1,0 +1,62 @@
+<apex:page standardController="SBQQ__Quote__c" extensions="QuoteRenewalController">
+	<apex:sectionHeader title="Upgrade/Renew Support" subtitle="{!SBQQ__Quote__c.Name}"/>
+	
+	<apex:pageMessages />
+	
+	<apex:form >
+	<apex:pageBlock mode="edit">
+		<apex:pageBlockButtons rendered="{!selectedAsset != null}">
+			<apex:commandButton value="{!transactionType}" action="{!onUpgradeRenew}"/>
+			<apex:commandButton value="Cancel" action="{!onCancel}"/>
+		</apex:pageBlockButtons>
+		<apex:pageBlockSection rendered="{!selectedAsset == null}" columns="1">
+			<apex:pageBlockTable var="asset" value="{!assets}">
+				<apex:column headerValue="{!$ObjectType.Asset.fields.SerialNumber.label}" value="{!asset.SerialNumber}"/>
+				<apex:column headerValue="{!$ObjectType.Asset.fields.Product_Name__c.label}" value="{!asset.Product_Name__c}"/>
+				<apex:column headerValue="{!$ObjectType.Asset.fields.Status.label}" value="{!asset.Status}"/>
+				<apex:column headerValue="{!$ObjectType.Asset.fields.Support_End_Date__c.label}" value="{!asset.Support_End_Date__c}"/>
+				<apex:column headerValue="{!$ObjectType.Asset.fields.Order_Type__c.label}" value="{!asset.Order_Type__c}"/>
+				<apex:column headerValue="{!$ObjectType.Asset.fields.Ship_Date__c.label}" value="{!asset.Ship_Date__c}"/>
+				<apex:column headerValue="{!$ObjectType.Asset.fields.Install_City__c.label}" value="{!asset.Install_City__c}"/>
+				<apex:column >
+					<apex:commandLink value="Renew" action="{!onSelectToRenew}">
+						<apex:param name="assetId" assignTo="{!selectedAssetId}" value="{!asset.Id}"/>
+					</apex:commandLink>
+					&nbsp;|&nbsp;
+					<apex:commandLink value="Upgrade" action="{!onSelectToUpgrade}">
+						<apex:param name="assetId" assignTo="{!selectedAssetId}" value="{!asset.Id}"/> 
+					</apex:commandLink>
+				</apex:column>
+			</apex:pageBlockTable>
+		</apex:pageBlockSection>
+		<apex:pageBlockSection rendered="{!selectedAsset != null}" columns="1">
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="Current Support Level"/>
+				<apex:outputText value="{!selectedAsset.Support_Level__c}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="Support End Date"/>
+				<apex:outputField value="{!selectedAsset.Support_End_Date__c}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="New Support Level"/>
+				<apex:selectList size="1" value="{!supportLevel}">
+					<apex:selectOption itemValue="NBD" itemLabel="NBD" rendered="{!NOT(toshiba)}"/>
+					<apex:selectOption itemValue="4HR" itemLabel="4HR" rendered="{!NOT(toshiba)}"/>
+					<apex:selectOption itemValue="4ON" itemLabel="4HR ONSITE" rendered="{!NOT(toshiba)}"/>
+					<apex:selectOption itemValue="NBO" itemLabel="TSC NBD ONSITE" rendered="{!toshiba}"/>
+					<apex:selectOption itemValue="4ON" itemLabel="TSC 4HR ONSITE" rendered="{!toshiba}"/>
+				</apex:selectList>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="Support Term"/>
+				<apex:inputText value="{!supportTerm}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="Support Start Date"/>
+				<apex:inputField value="{!selectedAsset.Support_Start_Date__c}"/>
+			</apex:pageBlockSectionItem>
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+	</apex:form>
+</apex:page>

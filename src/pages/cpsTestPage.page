@@ -1,0 +1,25 @@
+<apex:page >
+  <apex:pageBlock >
+    <apex:pageBlockSection columns="1">
+      <apex:outputText value="{!$Profile.Description}" label="$Profile.Description"/>
+      <apex:outputText value="{!$Profile.Name}" label="$Profile.Name"/>
+      <apex:outputText value="{!$Profile.Id}" label="$Profile.Id"/>
+
+      <apex:outputText value="{!$User.ContactId}" label="$User.ContactId"/>
+      <apex:outputText value="{!$User.FirstName}" label="$User.FirstName"/>
+      <apex:outputText value="{!$User.LastName}" label="$User.LastName"/>
+      <apex:outputText value="{!$User.ProfileId}" label="$User.ProfileId"/>
+      <apex:outputText value="{!$User.UserRoleId}" label="$User.UserRoleId"/>
+      <apex:outputText value="{!$User.Id}" label="$User.Id"/>
+      <!-- <apex:outputText value="{!$User.UserType}" label="$User.UserType"/>  -->
+
+      <apex:outputText value="{!$UserRole.RollupDescription}" label="$UserRole.RollupDescription"/>
+      <apex:outputText value="{!$UserRole.Name}" label="$UserRole.Name"/>
+      <!-- <apex:outputText value="{!$UserRole.PortalRole}" label="$UserRole.PortalRole"/> -->
+      <!-- <apex:outputText value="{!$UserRole.PortalType}" label="$UserRole.PortalType"/> -->
+      <apex:outputText value="{!$UserRole.Id}" label="$UserRole.Id"/>
+
+      <apex:enhancedList type="Contact" listId="00B80000008FlFU" height="200" customizable="false"/>
+    </apex:pageBlockSection>
+  </apex:pageBlock>
+</apex:page>

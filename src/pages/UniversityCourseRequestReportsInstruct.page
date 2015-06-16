@@ -1,0 +1,19 @@
+<apex:page standardController="University_Course_Request__c">
+  <span>Note: To view Class Registration reports, you must have an account with Nimble University and log into the system for updates. At the top right hand corner of the Nimble University homepage, you will see a drop down menu under</span>
+<h1> Role.</h1>
+<span> There should be a view called</span>
+<h1> Class Registrations </h1>
+<span>for you to select, and you can navigate to your course by entering in the City Name.</span>
+<br></br>
+<br></br>
+<span>1.  After the course, please use the following URLs to track exam scores under your account (</span>
+<apex:outputText style="font-weight:800;text-decoration:underline;" value="Note:"/>
+<span>  we can only reveal scores to Nimble employees). We will also be sending out monthly survey and exam score reports: </span>
+<br></br>
+<br></br>
+<h1>Sales Reps: </h1> 
+<apex:outputLink value="https://na6.salesforce.com/00O80000005Gy0W" target="_blank">https://na6.salesforce.com/00O80000005Gy0W</apex:outputLink> 
+<br></br>
+<h1>Channel Reps: </h1> 
+<apex:outputLink value="https://na6.salesforce.com/00O80000005ILJw" target="_blank">https://na6.salesforce.com/00O80000005ILJw</apex:outputLink>
+</apex:page>

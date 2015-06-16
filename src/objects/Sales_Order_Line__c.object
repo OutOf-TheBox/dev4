@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>Account_ID__c</fullName>
+        <description>This field stores account id from opportunity and this field will refer from sales order line item</description>
+        <externalId>false</externalId>
+        <formula>Sales_Order__r.Opportunity__r.AccountId</formula>
+        <label>Account ID</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Actual_Shipping_Date__c</fullName>
+        <description>Actual Shipping Date</description>
+        <externalId>false</externalId>
+        <label>Actual Shipping Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Attached_to_Sales_Line__c</fullName>
+        <description>The Item that this SLA is associated with.</description>
+        <externalId>false</externalId>
+        <label>Attached to Sales Line</label>
+        <length>18</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>B2B_Order_Line_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>B2B Order Line Id</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>B2B_Order_Line__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>B2B Order Line</label>
+        <referenceTo>B2B_Order_Line__c</referenceTo>
+        <relationshipLabel>Sales Order Lines</relationshipLabel>
+        <relationshipName>Sales_Order_Lines</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BOM_Level__c</fullName>
+        <externalId>false</externalId>
+        <label>BOM Level</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BOM_Line_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>BOM Line Number</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Discount__c</fullName>
+        <description>Total Discount % from Quote Line</description>
+        <externalId>false</externalId>
+        <formula>Quote_Line__r.Calculated_Discount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Discount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Eval_Conversion_Indicator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates if Eval Conversion update was received from Navision on a Sales Order Line Record.</description>
+        <externalId>false</externalId>
+        <label>Eval Conversion Indicator</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Item__c</fullName>
+        <description>Product Code from Product</description>
+        <externalId>false</externalId>
+        <formula>Product__r.ProductCode</formula>
+        <label>Item</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>List_Price_BOM__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quote_Line__r.BOM_Package_Regular_Total__c /  Quote_Line__r.SBQQ__Quantity__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>List Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>List_Price__c</fullName>
+        <description>List Unit Price from Quote Line</description>
+        <externalId>false</externalId>
+        <formula>Quote_Line__r.SBQQ__ListPrice__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>List Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Package_Product_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Package Product Code</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Sales Order Lines</relationshipLabel>
+        <relationshipName>Sales_Order_Lines</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Purchase_Order_Line_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Purchase Order Line Number</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quote_Line_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quote_Line__r.Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Quote Line Id</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quote_Line__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Quote Line</label>
+        <referenceTo>SBQQ__QuoteLine__c</referenceTo>
+        <relationshipLabel>Sales Order Lines</relationshipLabel>
+        <relationshipName>Sales_Order_Lines</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SO_Last_Submission_DateTime__c</fullName>
+        <externalId>false</externalId>
+        <formula>Sales_Order__r.Last_Submission_DateTime__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SO Last Submission DateTime</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>SO_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Sales_Order__r.Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SO Status</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SO_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Sales_Order__r.Type__c)</formula>
+        <label>SO Type</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sale_Price_BOM__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quote_Line__r.BOM_Package_Net_Unit_Price__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sale Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sale_Price_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quote_Line__r.BOM_Package_Net_Unit_Price__c * Quantity__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sale Price Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sale_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Sale Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sales_Order__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Order</label>
+        <referenceTo>Sales_Order__c</referenceTo>
+        <relationshipLabel>Sales Order Lines</relationshipLabel>
+        <relationshipName>Sales_Order_Lines</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Serial_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Serial Number</label>
+        <length>30</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Shipping_Agent_Link__c</fullName>
+        <description>Shipping Agent Link for the Sales Order Line Record</description>
+        <externalId>false</externalId>
+        <label>Shipping Agent Link</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Shipping_Agent__c</fullName>
+        <description>Shipping Agent for the Sales Order Line Record</description>
+        <externalId>false</externalId>
+        <label>Shipping Agent</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Shipping_Email_Indicator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates if Shipping Email was sent on a Sales Order Line Record.</description>
+        <externalId>false</externalId>
+        <label>Shipping Email Indicator</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Submission_Indicator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to trigger interface workflow rule outbound messaging to Informatica</description>
+        <externalId>false</externalId>
+        <label>Submission Indicator</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Subscription_Term__c</fullName>
+        <externalId>false</externalId>
+        <label>Subscription Term</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Support_Renewal_Indicator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Support Renewal Indicator</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quantity__c *  Sale_Price_BOM__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Tracking_Number__c</fullName>
+        <description>Tracking Number for Sales Order Line Record</description>
+        <externalId>false</externalId>
+        <label>Tracking Number</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Sales Order Line</label>
+    <nameField>
+        <displayFormat>SOLI-{000000}</displayFormat>
+        <label>Sales Order Line #</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Sales Order Lines</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

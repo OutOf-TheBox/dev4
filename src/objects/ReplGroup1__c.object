@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Object to track cases for Bug 40451 Group 1C and 1D</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Case__c</fullName>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>ReplGroup1</relationshipLabel>
+        <relationshipName>ReplGroup1</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Grp1_Account_team_in_the_loop__c</fullName>
+        <description>Has the Nimble account team for this customer been informed about this case.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Has the Nimble account team for this customer been informed about this case.</inlineHelpText>
+        <label>Account team in the loop</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Grp1_Customer_Reaction__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>How has customer responded to this issue</inlineHelpText>
+        <label>Customer Reaction</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Customer not yet contacted</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Calm - understanding</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Annoyed - but ok</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Upset at first - ok now</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Upset - may need intervention</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Grp1_Customer_responded__c</fullName>
+        <description>Customer has contacted us in response to the case and we now have the case actively being worked by TSE</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customer has contacted us in response to the case and we now have the case actively being worked by TSE</inlineHelpText>
+        <label>Customer responded</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Grp1_HB_Alert_AutoSupport_Status__c</fullName>
+        <description>It&apos;s imperative we get ALL systems sending AutoSupports and eartbeats and email alerts</description>
+        <externalId>false</externalId>
+        <inlineHelpText>It&apos;s imperative we get ALL systems sending AutoSupports and heartbeats and email alerts. Please make sure these are working if you are engaged with customer for this case and verify receipt.</inlineHelpText>
+        <label>Status of HB, Alert, AutoSupport</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Have not discussed with customer</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Discussed with customer and they WILL NOT enable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Discussed with customer and they WILL enable (have not verified it&apos;s working)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Verified everything is now sending to Nimble</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Grp1_Partner_Array__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Partner Array (if applicable)</label>
+        <referenceTo>Asset</referenceTo>
+        <relationshipLabel>ReplGroup1</relationshipLabel>
+        <relationshipName>ReplGroup1</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Grp1_Recovery_Approach__c</fullName>
+        <description>Select approach used to de-risk array
+
+1.4.9.0 is they have never replicated - ensure they can;t hit the issue later on
+1.4.10 then 1.4.11 - ensures everything is corrected and is a necessary step before going to 2.0</description>
+        <externalId>false</externalId>
+        <inlineHelpText>No Action needed - never replicated and on 1.4.9 or  2.0.6 already 
+Update to 1.4.9.0 - never replicated.
+Update to 1.4.10 then 1.4.11 - ensure potential out of sync snaps are corrected</inlineHelpText>
+        <label>Recovery Approach</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No Action needed - never replicated and on 1.4.9 or  2.0.6 already</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No Action needed - Replicated but not susceptible to condition and on 1.4.9.0/2.0.6.1 already</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Update to 1.4.9.0 - never replicated.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Update to 1.4.9.0/2.0.6.x - Replicated but not susceptible to condition</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Update to 1.4.10 then 1.4.11 - ensure potential out of sync snaps are corrected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Grp1_Recovery_Verified__c</fullName>
+        <description>Verified recovery approach has been completed</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Only set to Yes if you have written verification or Heartbeats or Autosupports verifying all recovery steps are completed and they run NO risk of out of sync snapshots</inlineHelpText>
+        <label>Recovery Verified</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Grp1_Replicating_now_or_ever__c</fullName>
+        <description>Has this array ever been in a replication relationship</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Has this array ever been in a replication relationship</inlineHelpText>
+        <label>Replicating now or ever</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <label>ReplGroup1</label>
+    <nameField>
+        <displayFormat>GRP1-{00000}</displayFormat>
+        <label>ReplGroup1 Tracking</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>ReplGroup1</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

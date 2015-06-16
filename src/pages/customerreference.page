@@ -1,0 +1,602 @@
+<apex:page controller="ContactSearchController" sidebar="false"  action="{!controllsupport}">
+<style>
+input[type="button"]{
+height:30px;
+background:  #65b707; 
+
+
+padding:3px;
+color: white;
+cursor:pointer;
+font-weight:bold;
+border: none;
+width:173px;
+font-family: Arial;
+font-size: 1.08em;
+border-radius:3px;
+}
+
+</style>
+
+ 
+  <apex:form >
+  <apex:pageMessages id="errors" />
+ 
+  <apex:pageBlock title="Customer Reference Lookup Tool" mode="edit">
+<!--<apex:commandButton value="Export to computer" action="{!export}"/>-->
+     
+<p style="font-weight:bold;">
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;1. Information pulled from this tool is Confidential – results may not be shared outside of Nimble.<br/>
+
+&nbsp;&nbsp;&nbsp;&nbsp;2. Do not contact references without approval from Account / Opp Owner.<br/> 
+
+&nbsp;&nbsp;&nbsp;&nbsp;3. Information is only as good as Sales Teams have provided – Garbage In, Garbage Out.<br/> 
+
+&nbsp;&nbsp;&nbsp;&nbsp;4. To access the Chatter Group - click <a href="https://na6.salesforce.com/0F980000000GurN">here</a>.<br/> 
+
+ </p>
+  <table width="20" border="0">
+  <tr> 
+  
+    <td width="20" valign="top">
+ 
+      <apex:pageBlock title="Filters" mode="edit" id="criteria">
+ 
+      <script type="text/javascript">
+      function mailsent()
+      {alert('Mail has been sent');
+      }
+      function doSearch() {
+      //alert('haiiiiii');
+   
+//alert('hai=='+document.getElementById("accountspent").value );
+        searchServer(
+          <!-- document.getElementById("Opportunity Name").value,-->
+          <!-- document.getElementById("opportunity Dealsize").value,-->
+           document.getElementById("CustomerReferenceable").options[document.getElementById("CustomerReferenceable").selectedIndex].value,
+           document.getElementById("DidWinincludeVDI").options[document.getElementById("DidWinincludeVDI").selectedIndex].value,
+        <!--document.getElementById("SubVertical").value,-->
+       document.getElementById("PrimaryCompetitor").options[document.getElementById("PrimaryCompetitor").selectedIndex].value,
+       document.getElementById("DidWinincludeSmartStack").options[document.getElementById("DidWinincludeSmartStack").selectedIndex].value,
+       document.getElementById("BackupSOftware").options[document.getElementById("BackupSOftware").selectedIndex].value,
+       document.getElementById("RelatedAlliancePartner").options[document.getElementById("RelatedAlliancePartner").selectedIndex].value,
+    document.getElementById("SalesArea").options[document.getElementById("SalesArea").selectedIndex].value,
+    document.getElementById("ServiceProvidor").options[document.getElementById("ServiceProvidor").selectedIndex].value,
+        document.getElementById("SalesTheater").options[document.getElementById("SalesTheater").selectedIndex].value,
+
+        document.getElementById("Applications").options[document.getElementById("Applications").selectedIndex].value,
+ document.getElementById("IsNimble").options[document.getElementById("IsNimble").selectedIndex].value,
+
+    document.getElementById("G5000AccountStatus").options[document.getElementById("G5000AccountStatus").selectedIndex].value,
+     <!-- <document.getElementById("ServiceProvidor").value,-->
+            <!-- document.getElementById("Account Name").value,-->
+     <!-- document.getElementById("Account Owner").value,-->
+          document.getElementById("vertical").options[document.getElementById("vertical").selectedIndex].value,
+          document.getElementById("amountspent").value,
+          document.getElementById("noofvdiseats").value,
+          document.getElementById("billingcity").value,
+          document.getElementById("billingstate").value
+          );
+      }
+      </script> 
+ 
+      <apex:actionFunction name="searchServer" action="{!runSearch}" rerender="results,debug,errors">
+         <!-- <apex:param name="Opportunity Name" value="" />-->
+          <!--<apex:param name="Opportunity Dealsize" value="" />-->
+          <apex:param name="CustomerReferenceable" value="" />
+          <apex:param name="DidWinincludeVDI" value="" />
+      <!-- <apex:param name="SubVertical" value="" />-->
+          <apex:param name="PrimaryCompetitor" value="" />
+          <apex:param name="DidWinincludeSmartStack" value="" />
+          <apex:param name="BackupSOftware" value="" />
+<apex:param name="RelatedAlliancePartner" value="" />
+<apex:param name="SalesArea" value="" />
+<apex:param name="ServiceProvidor" value="" />
+<apex:param name="SalesTheater" value="" />
+<apex:param name="Applications" value="" />
+<apex:param name="IsNimble" value="" />
+<apex:param name="G5000AccountStatus" value="" />
+          <apex:param name="vertical" value="" />
+         <!--  <apex:param name="AccountOwner" value="" />-->
+          <!--  <apex:param name="ServiceProvidor" value="" />-->
+         <apex:param name="amountspent" value="" />
+         <apex:param name="noofvdiseats" value="" />
+         <apex:param name="billingcity" value="" />
+         <apex:param name="billingstate" value="" />
+      </apex:actionFunction>
+ 
+     
+  <table cellpadding="4" cellspacing="10">
+      
+   <tr>
+
+<td style="font-weight:bold;">Sales Theater<br/>
+       <select id="SalesTheater" style="width:200px" >
+            <option value=""></option>
+            <apex:repeat value="{!SalesTheater}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>     
+        </td>
+        
+<td style="font-weight:bold;">G5000 Account Status<br/>
+
+       <select id="G5000AccountStatus" style="width:200px">
+
+            <option value=""></option>
+
+            <apex:repeat value="{!G5000AccountStatus}" var="tech">
+
+              <option value="{!tech}">{!tech}</option>
+
+            </apex:repeat>
+
+          </select>
+
+        </td>
+<td style="font-weight:bold;">Primary Competitor<br/>
+       <select id="PrimaryCompetitor" style="width:200px">
+            <option value=""></option>
+            <apex:repeat value="{!PrimaryCompetitor}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+<td style="font-weight:bold;">Applications<br/>
+       <select id="Applications" style="width:200px">
+            <option value=""></option>
+            <apex:repeat value="{!Applications}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+
+ <td style="font-weight:bold;">Estimated Number of VDI Seats<br/>
+       <select id="noofvdiseats" style="width:200px">
+            <option value=""></option>
+            <apex:repeat value="{!noofvdiseats}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+
+  </tr>
+      
+
+   <tr>
+
+<td style="font-weight:bold;">Sales Region<br/>
+       <select id="SalesArea" style="width:200px" >
+            <option value=""></option>
+            <apex:repeat value="{!SalesArea}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+
+ <td style="font-weight:bold;">Service Provider Type<br/>
+       <select id="ServiceProvidor" style="width:200px">
+            <option value=""></option>
+            <apex:repeat value="{!ServiceProviderType}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+
+<td style="font-weight:bold;">Related Alliance Partner<br/>
+       <select id="RelatedAlliancePartner" style="width:200px" >
+            <option value=""></option>
+            <apex:repeat value="{!RelatedAlliancePartner}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+
+<td style="font-weight:bold;">Backup Software<br/>
+       <select id="BackupSOftware" style="width:200px">
+            <option value=""></option>
+            <apex:repeat value="{!BackupSOftware}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+        
+ <!--<td style="font-weight:bold;">Show Win Notes
+        <input type="checkbox" id="winnotes" style="width:50px">
+        <apex:actionSupport event="onclick" rerender="theBlock"/>
+        </input>
+        
+        </td>-->
+      <!---<td> Show Win Notes: 
+      <apex:inputcheckbox value="{!winotesCheckbox}">
+      <apex:actionSupport event="onclick" rerender="results"/>
+</apex:inputcheckbox>
+      </td>--->
+      
+      <td style="font-weight:bold;"> Display Win Notes <br/>
+      <apex:selectList value="{!Winnotesvisible}" multiselect="false" size="1" style="width:200px">
+              
+               <apex:selectOption itemValue="Win Notes Hidden" itemLabel="Win Notes Hidden"/>
+               <apex:selectOption itemValue="Win Notes Displayed" itemLabel="Win Notes Displayed"/>
+               <apex:actionSupport event="onchange" rerender="results" action="{!Winnotesvisiblemethod}"/>
+           </apex:selectList>
+           
+ </td>
+       
+        </tr>
+   <tr>
+
+ <td style="font-weight:bold;">Account Billing State<br/>
+        <input type="text" id="billingstate" style="width:200px"/>
+         <span class="helpButton" id="example-title-_help">
+<img src="/s.gif" class="helpOrb"/>
+ <script type="text/javascript">
+   sfdcPage.setHelp('example-title', 'For US States, please enter Billing State of the Account as the 2 letter State code');
+ </script>
+</span>
+        </td>
+
+<td style="font-weight:bold;">Vertical<br/>
+          <select id="vertical" style="width:200px">
+            <option value=""></option>
+            <apex:repeat value="{!vertical}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+
+<td style="font-weight:bold;">Did Win Include VDI?<br/>
+       <select id="DidWinincludeVDI" style="width:200px">
+            <option value=""></option>
+            <apex:repeat value="{!DidWinincludeVDI}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+
+<td style="font-weight:bold;">Did Win Include SmartStack?<br/>
+       <select id="DidWinincludeSmartStack" style="width:200px">
+            <option value=""></option>
+            <apex:repeat value="{!DidWinincludeSmartStack}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+
+ </tr>
+              
+   <tr>
+
+<td style="font-weight:bold;">Account Billing City<br/>
+        <input type="text" id="billingcity" style="width:200px"/>
+        </td>
+     
+ <td style="font-weight:bold;">Customer Referenceable<br/>
+       <select id="CustomerReferenceable" style="width:200px">
+            <option value=""></option>
+            <apex:repeat value="{!CustomerReferenceable}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+ 
+
+       <td style="font-weight:bold;">Total Amount Spent w Nimble<br/>
+       <select id="amountspent" style="width:200px">
+            <option value=""></option>
+            <apex:repeat value="{!amountspent}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+        
+        <td style="font-weight:bold;">Is Customer Replicating w Nimble?<br/>
+       <select id="IsNimble" style="width:200px" >
+            <option value=""></option>
+            <apex:repeat value="{!IsNimble}" var="tech">
+              <option value="{!tech}">{!tech}</option>
+            </apex:repeat>
+          </select>
+        </td>
+      
+      </tr>
+             
+
+
+      
+       <tr>
+      
+       <td >
+       
+       <input type="Button" id="dosearch" value="Search SFDC for Results" onclick="doSearch();" />
+       
+       </td>
+      
+       <td >
+       <apex:commandButton value="Email Search Results" onclick="mailsent();" action="{!export2}" style="background-image:none; 
+    background: #65b707; 
+
+padding:6px;
+color: white;
+width:163px;
+height:30px;
+border: none;
+font-family: Arial;
+font-size: 1.08em;
+border-radius:3px;"/>
+       
+       </td >
+       
+       <td align="right"> 
+       
+       <style> h2{color:black; font-size: 1.08em;}</style>
+<br></br>
+    <h2 > &nbsp;&nbsp;&nbsp;&nbsp; Total Views <apex:outputText value=" {!count}"/> </h2>
+    </td>
+       
+     </tr>
+      </table>
+ 
+      </apex:pageBlock>
+      <apex:pageBlock title="Total Number Of Records: {!debugSoql}" id="debug">
+      <!--<apex:outputText value="{!debugSoql}" />   -->        
+  </apex:pageBlock>    
+ 
+ 
+    </td></tr><tr>
+    <td valign="top">
+ 
+    <apex:pageBlock mode="edit" id="results">
+ 
+        <apex:pageBlockTable value="{!opportunities}" var="opportunity">
+ 
+
+  <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Account Owner" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Account.ownerid" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.account.ownerID}"/>
+            </apex:column>
+ 
+ <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Account Name" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Account.name" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <!--<apex:outputField value="{!opportunity.account.name}"/>-->
+                <apex:outputLink value="/{!opportunity.accountid}">{!opportunity.account.name}</apex:outputLink>
+            </apex:column>
+ 
+
+
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Vertical" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="vertical__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Vertical__c}"/>
+            </apex:column>
+ 
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Opportunity Name" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Name" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <!--<apex:outputField value="{!opportunity.Name}"/>-->
+                 <apex:outputLink value="/{!opportunity.id}">{!opportunity.Name}</apex:outputLink>
+            </apex:column>
+ 
+ 
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Opportunity Deal Size" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="deal_size__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Deal_Size__c}"/>
+            </apex:column>
+ 
+   <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Close Date" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="closedate" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.closedate}"/>
+            </apex:column>
+ 
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Customer Referenceable" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Customer_Referenceable__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Customer_Referenceable__c}"/>
+            </apex:column>
+
+<apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Did Win Include VDI?" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Did_Win_Include_VDI__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Did_Win_Include_VDI__c}"/>
+            </apex:column>
+ 
+ 
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Amount Spent" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Account.Amount_Spent__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Account.amount_spent__c}"/>
+            </apex:column>
+ 
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Primary Competitor" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Primary_Competitor__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Primary_Competitor__c}"/>
+            </apex:column>
+
+<apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Did Win Include SmartStack?" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Did_Win_Include_SmartStack__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Did_Win_Include_SmartStack__c}"/>
+            </apex:column>
+
+<apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Backup Software" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Backup_Software__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Backup_Software__c}"/>
+            </apex:column>
+
+<apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Related Alliance Partner" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Related_Alliance_Partner__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Related_Alliance_Partner__c}"/>
+            </apex:column>
+
+
+
+<apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Service Provider" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="account.Service_Provider_Type__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.account.Service_Provider_Type__c}"/>
+            </apex:column>
+ 
+  <apex:column >
+
+                <apex:facet name="header">
+
+                    <apex:commandLink value="G5000 Account Status" action="{!toggleSort}" rerender="results,debug">
+
+                        <apex:param name="sortField" value="account.G5000_Account_Status__c" assignTo="{!sortField}"/>
+
+                    </apex:commandLink>
+
+                </apex:facet>
+
+                <apex:outputField value="{!opportunity.account.G5000_Account_Status__c}"/>
+
+            </apex:column>
+            
+           
+             <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Applications" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Applications__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Applications__c}"/>
+            </apex:column>
+           <!--- <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Sales Theater" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Sales_Theater__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Sales_Theater__c}"/>              
+            </apex:column>-->
+            
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Estimated Number of VDI Seats" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Estimated_Number_of_VDI_Seats__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Estimated_Number_of_VDI_Seats__c}"/>
+            </apex:column>  
+            
+            <!---<apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Amount Spent" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Amount_Spent" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.account.amount_spent__c}"/>
+            </apex:column>  -->
+            
+               <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Sales Theater" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Sales_Theater__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Sales_Theater__c}"/>
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Sales Region" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="Sales_Area__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Sales_Area__c}"/>
+            </apex:column>      
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Billing City" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="account.billingcity" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.account.billingcity}"/>
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Billing State" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="account.billingstate" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.account.billingstate}"/>
+            </apex:column>
+            
+            
+             <apex:column rendered="{!(Isvisible)}" >
+                <apex:facet name="header">
+                    <apex:commandLink value="Win Notes" action="{!toggleSort}" rerender="results,debug" >
+                        <apex:param name="sortField" value="Win_Loss_DQ_Notes__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!opportunity.Win_Loss_DQ_Notes__c}"/>
+            </apex:column>
+            
+            
+            
+            
+        </apex:pageBlockTable>
+ 
+    </apex:pageBlock>
+ 
+    </td>
+  </tr>
+  </table>
+ 
+  
+  </apex:pageBlock>
+ 
+  </apex:form>
+ 
+</apex:page>

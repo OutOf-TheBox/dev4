@@ -1,0 +1,39 @@
+<apex:page showChat="false"
+           showHeader="true"
+           sidebar="true"
+         	  tabStyle="casePortalTab__tab"
+           title="Case Edit: New Case"
+           standardController="Case"
+           extensions="caseExtensionsWithSharing">
+  <apex:sectionHeader title="Case Edit" subtitle="New Case"/>
+  <apex:form >
+    
+    <apex:pageBlock mode="maindetail" title="Case Edit">
+      <apex:pageBlockButtons >
+        <apex:commandButton value="Save" action="{!caseCustomSave}"/>
+        <apex:commandButton value="Cancel" action="{!Cancel}"/>
+      </apex:pageBlockButtons>
+      <apex:pageMessages escape="false" />
+      <apex:pageBlockSection title="Case General Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Status"       value="{!Case.Status}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Case Asset/Contact Information" showheader="true" collapsible="false" columns="1">
+        <apex:inputField label="Asset Serial Number" value="{!Case.AssetId}"   required="true"/>
+        <apex:inputField label="Contact Name"        value="{!Case.ContactId}" required="true"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Case Issue Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Priority"    value="{!Case.Priority}" rendered="false"/>  <!-- Hidden field.  Required to load Priority field into controller. -->
+        <apex:selectList label="Impact"
+                         value="{!casePortalImpact}"
+                         multiselect="false"
+                         required="true"
+                         size="1">
+          <apex:selectOptions value="{!casePortalImpactValues}"/>
+        </apex:selectList>
+        <apex:inputField label="Subject"     value="{!Case.Subject}"     style="width:400px" required="true"/>
+        <apex:inputField label="Description" value="{!Case.Description}" style="width:400px;height:300px" required="true"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+[casePortalNewPage]
+</apex:page>

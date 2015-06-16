@@ -1,0 +1,499 @@
+<apex:page showHeader="true" sidebar="false" controller="ForecastingController" extensions="ForecastingStatsService" action="{!setupForecast}" tabStyle="Forecasting__tab">
+    <script src="{!URLFOR($Resource.Forecasting, 'js/jquery.min.js')}"></script>
+    <script src="{!URLFOR($Resource.Forecasting, 'js/angular.min.js')}"></script>
+    <script src="{!URLFOR($Resource.Forecasting, 'js/angular-animate.min.js')}"></script>
+    <script src="{!URLFOR($Resource.Forecasting, 'js/ngStorage.js')}"></script>
+    <apex:stylesheet value="{!URLFOR($Resource.Forecasting, 'css/fq.css')}" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var forecastEditable = {!CurrentViewingUser.UserId == $User.Id};
+        var forecastEnabled = {!CurrentViewingUser.ForecastEnabled == true};
+        var fiscalQtr = "{!CurrentFiscalQuarter.FormattedString}";
+        var currentWeek = "{!CurrentWeek.FormattedString}";
+        var weeks = {!CurrentFiscalQuarter.JsonWeeks};
+        var startDate = "{!CurrentFiscalQuarter.StartDate}";
+        var endDate = "{!CurrentFiscalQuarter.EndDate}";
+        var currentViewingUserId = "{!CurrentViewingUser.UserId}";
+        var userPath = "{!UserPath}";
+    </script>
+    <script src="{!URLFOR($Resource.Forecasting, 'js/forecast.js')}"></script>
+    
+    <apex:sectionHeader title="Forecasting" subTitle="{!CurrentFiscalQuarter.FormattedString} - {!CurrentViewingUser.UserName}" />
+    <apex:PageMessages id="pageMessage" escape="true" />
+
+    <apex:form id="form">
+        <div id="ngContainer" ng-app="forecastingApp" ng-controller="forecastingCtrl">
+            <div class="ptBreadcrumb"><span class="fa fa-user"></span>
+                <apex:variable var="p" value="" />
+                <apex:repeat value="{!UserNavPath}" var="usr">
+                    <apex:variable var="p" value="{!p + '/' + usr.UserId}" />
+                    <a href="{!$Page.Forecasting}?path={!p}">{!usr.UserName}</a> &gt;
+                </apex:repeat>
+                <span style="margin-left:30%;color:red;" ng-show="requestInProgress>0">Loading...</span>
+                <span style="color:red;" ng-show="errorMessage != null">{{errorMessage}}</span>
+            </div>      
+            <br/>
+            <div id="wrap">
+                <div class="fqTitleCon">
+                    <span class="fqTitle">Fiscal Quarter</span>
+                    <span class="fqNum">{!CurrentFiscalQuarter.FormattedString}</span>
+                    <a class="fqBtn" href="{!$Page.Forecasting}?quarter={!CurrentFiscalQuarter.Previous.FormattedString}" title="Previous quarter"><img src="{!URLFOR($Resource.Forecasting, 'img/fqBtnLeft.gif')}" /></a>
+                    <a class="fqBtn" href="{!$Page.Forecasting}?quarter={!CurrentFiscalQuarter.Next.FormattedString}" title="Next quarter"><img src="{!URLFOR($Resource.Forecasting, 'img/fqBtnRight.gif')}" /></a>
+                    <span class="displayUnits">
+                        <input type="radio" name="displayUnits" value="M" ng-click="displayFormat='M'" />Millions
+                        <input type="radio" name="displayUnits" value="K" checked="true" ng-click="displayFormat='K'" />Thousands
+                        <input type="radio" name="displayUnits" value="W" ng-click="displayFormat='W'" />Whole
+                        <input type="radio" name="displayUnits" value="E" ng-click="displayFormat='E'" />Exact
+                    </span>
+                </div>
+            </div>
+        
+            <apex:pageBlock id="summaryBlock" title="Your Weekly Forecast Metrics">
+                <table class="report">
+                    <thead>
+                        <tr class="center">
+                            <td class="noBd"></td>
+                            <td ng-repeat="w in weeks" class="noBd">{{w.FormattedShortString}}</td>
+                        </tr>
+                        <tr class="header">
+                            <th style="W150">Forecast Metrics</th>
+                            <th ng-class="{'W80': !w.Editable, 'W100': w.Editable, 'highlight': w.Editable}" ng-repeat="w in forecastSummary.data.WeeklyForecasts">Week {{$index+1}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="line">
+                            <td class="center">CQ Bookings</td>
+                            <td class="number" ng-repeat="w in forecastSummary.data.WeeklyForecasts">{{formatDecimal(w.QtrBooking, displayFormat)}}</td>
+                        </tr>
+                        <tr class="line2">
+                            <td class="center">CQ Commit</td>
+                            <td class="number" ng-class="{'highlight': w.Editable}" ng-repeat="w in forecastSummary.data.WeeklyForecasts">
+                                <span ng-show="w.Editable && forecastEditable">
+                                    <span class="fa fa-edit editBtn" ng-click="editForecast()" ng-hide="forecastSummary.isEditing" title="Edit"></span>
+                                    <span class="fa fa-check saveBtn" ng-click="saveForecast()" title="Save" ng-show="forecastSummary.isEditing"></span>
+                                    <span class="fa fa-times undoBtn" ng-click="cancelForecast()" title="Undo" ng-show="forecastSummary.isEditing"></span>
+                                    <input ng-show="forecastSummary.isEditing" type="text" class="edit" ng-model="forecastSummary.editingModal.QtrCommit" />
+                                    <span ng-hide="forecastSummary.isEditing">{{formatDecimal(forecastSummary.data.QtrCommit, displayFormat)}}</span>
+                                </span>
+                                <span ng-hide="w.Editable && forecastEditable">{{formatDecimal(w.QtrCommit, displayFormat)}}</span>
+                            </td>
+                        </tr>
+                        <tr class="line">
+                            <td class="center">CQ Gut</td>
+                            <td class="number" ng-class="{'highlight': w.Editable}" ng-repeat="w in forecastSummary.data.WeeklyForecasts">
+                                <span ng-show="w.Editable && forecastEditable">
+                                    <span class="fa fa-edit editBtn" ng-click="editForecast()" ng-hide="forecastSummary.isEditing" title="Edit"></span>
+                                    <span class="fa fa-check saveBtn" ng-click="saveForecast()" title="Save" ng-show="forecastSummary.isEditing"></span>
+                                    <span class="fa fa-times undoBtn" ng-click="cancelForecast()" title="Undo" ng-show="forecastSummary.isEditing"></span>
+                                    <input ng-show="forecastSummary.isEditing" type="text" class="edit" ng-model="forecastSummary.editingModal.QtrGut" />
+                                    <span ng-hide="forecastSummary.isEditing">{{formatDecimal(forecastSummary.data.QtrGut, displayFormat)}}</span>
+                                </span>
+                                <span ng-hide="w.Editable && forecastEditable">{{formatDecimal(w.QtrGut, displayFormat)}}</span>
+                            </td>
+                        </tr>
+                        <tr class="line2">
+                            <td class="center">CQ Upside</td>
+                            <td class="number" ng-class="{'highlight': w.Editable}" ng-repeat="w in forecastSummary.data.WeeklyForecasts">
+                                <span ng-show="w.Editable && forecastEditable">
+                                    <span class="fa fa-edit editBtn" ng-click="editForecast()" ng-hide="forecastSummary.isEditing" title="Edit"></span>
+                                    <span class="fa fa-check saveBtn" ng-click="saveForecast()" title="Save" ng-show="forecastSummary.isEditing"></span>
+                                    <span class="fa fa-times undoBtn" ng-click="cancelForecast()" title="Undo" ng-show="forecastSummary.isEditing"></span>
+                                    <input ng-show="forecastSummary.isEditing" type="text" class="edit" ng-model="forecastSummary.editingModal.QtrUpside" />
+                                    <span ng-hide="forecastSummary.isEditing">{{formatDecimal(forecastSummary.data.QtrUpside, displayFormat)}}</span>
+                                </span>
+                                <span ng-hide="w.Editable && forecastEditable">{{formatDecimal(w.QtrUpside, displayFormat)}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="14" class="noBd">&nbsp;</td>
+                        </tr>
+                        <tr class="line">
+                            <td class="center">Month 1 Commit</td>
+                            <td class="number" ng-class="{'highlight': w.Editable}" ng-repeat="w in forecastSummary.data.WeeklyForecasts">
+                                <span ng-show="w.Editable && forecastEditable">
+                                    <span class="fa fa-edit editBtn" ng-click="editForecast()" ng-hide="forecastSummary.isEditing" title="Edit"></span>
+                                    <span class="fa fa-check saveBtn" ng-click="saveForecast()" title="Save" ng-show="forecastSummary.isEditing"></span>
+                                    <span class="fa fa-times undoBtn" ng-click="cancelForecast()" title="Undo" ng-show="forecastSummary.isEditing"></span>
+                                    <input ng-show="forecastSummary.isEditing" type="text" class="edit" ng-model="forecastSummary.editingModal.Month1Commit" />
+                                    <span ng-hide="forecastSummary.isEditing">{{formatDecimal(forecastSummary.data.Month1Commit, displayFormat)}}</span>
+                                </span>
+                                <span ng-hide="w.Editable && forecastEditable">{{formatDecimal(w.Month1Commit, displayFormat)}}</span>
+                            </td>
+                        </tr>
+                        <tr class="line2">
+                            <td class="center">Month 2 Commit</td>
+                            <td class="number" ng-class="{'highlight': w.Editable}" ng-repeat="w in forecastSummary.data.WeeklyForecasts">
+                                <span ng-show="w.Editable && forecastEditable">
+                                    <span class="fa fa-edit editBtn" ng-click="editForecast()" ng-hide="forecastSummary.isEditing" title="Edit"></span>
+                                    <span class="fa fa-check saveBtn" ng-click="saveForecast()" title="Save" ng-show="forecastSummary.isEditing"></span>
+                                    <span class="fa fa-times undoBtn" ng-click="cancelForecast()" title="Undo" ng-show="forecastSummary.isEditing"></span>
+                                    <input ng-show="forecastSummary.isEditing" type="text" class="edit" ng-model="forecastSummary.editingModal.Month2Commit" />
+                                    <span ng-hide="forecastSummary.isEditing">{{formatDecimal(forecastSummary.data.Month2Commit, displayFormat)}}</span>
+                                </span>
+                                <span ng-hide="w.Editable && forecastEditable">{{formatDecimal(w.Month2Commit, displayFormat)}}</span>
+                            </td>
+                        </tr>
+                        <tr class="line">
+                            <td class="center">Month 3 Commit</td>
+                            <td class="number" ng-class="{'highlight': w.Editable}" ng-repeat="w in forecastSummary.data.WeeklyForecasts">
+                                <span ng-show="w.Editable && forecastEditable">
+                                    <span class="fa fa-edit editBtn" ng-click="editForecast()" ng-hide="forecastSummary.isEditing" title="Edit"></span>
+                                    <span class="fa fa-check saveBtn" ng-click="saveForecast()" title="Save" ng-show="forecastSummary.isEditing"></span>
+                                    <span class="fa fa-times undoBtn" ng-click="cancelForecast()" title="Undo" ng-show="forecastSummary.isEditing"></span>
+                                    <input ng-show="forecastSummary.isEditing" type="text" class="edit" ng-model="forecastSummary.editingModal.Month3Commit" />
+                                    <span ng-hide="forecastSummary.isEditing">{{formatDecimal(forecastSummary.data.Month3Commit, displayFormat)}}</span>
+                                </span>
+                                <span ng-hide="w.Editable && forecastEditable">{{formatDecimal(w.Month3Commit, displayFormat)}}</span>
+                            </td>
+                        </tr>
+                        <tr class="line2">
+                            <td class="center">Total</td>
+                            <td class="number" ng-repeat="w in forecastSummary.data.WeeklyForecasts"><span ng-hide="forecastSummary.isEditing && w.Editable">{{formatDecimal(w.Month1Commit + w.Month2Commit + w.Month3Commit, displayFormat)}}</span><span ng-show="forecastSummary.isEditing && w.Editable">{{formatDecimal(enforceNumberValidated(forecastSummary.editingModal.Month1Commit) + enforceNumberValidated(forecastSummary.editingModal.Month2Commit) + enforceNumberValidated(forecastSummary.editingModal.Month3Commit), displayFormat)}}</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="14" class="noBd">&nbsp;</td>
+                        </tr>
+                        <tr class="line">
+                            <td class="center">Upcoming Week Commit</td>
+                            <td class="number" ng-class="{'highlight': w.Editable}" ng-repeat="w in forecastSummary.data.WeeklyForecasts">
+                                <span ng-show="w.Editable && forecastEditable">
+                                    <span class="fa fa-edit editBtn" ng-click="editForecast()" ng-hide="forecastSummary.isEditing" title="Edit"></span>
+                                    <span class="fa fa-check saveBtn" ng-click="saveForecast()" title="Save" ng-show="forecastSummary.isEditing"></span>
+                                    <span class="fa fa-times undoBtn" ng-click="cancelForecast()" title="Undo" ng-show="forecastSummary.isEditing"></span>
+                                    <input ng-show="forecastSummary.isEditing" type="text" class="edit" ng-model="forecastSummary.editingModal.UpcomingWeekCommit" />
+                                    <span ng-hide="forecastSummary.isEditing">{{formatDecimal(forecastSummary.data.UpcomingWeekCommit, displayFormat)}}</span>
+                                </span>
+                                <span ng-hide="w.Editable && forecastEditable">{{formatDecimal(w.UpcomingWeekCommit, displayFormat)}}</span>
+                            </td>
+                        </tr>
+                        <tr class="line2">
+                            <td class="center">Following Week Commit</td>
+                            <td class="number" ng-class="{'highlight': w.Editable}" ng-repeat="w in forecastSummary.data.WeeklyForecasts">
+                                <span ng-show="w.Editable && forecastEditable">
+                                    <span class="fa fa-edit editBtn" ng-click="editForecast()" ng-hide="forecastSummary.isEditing" title="Edit"></span>
+                                    <span class="fa fa-check saveBtn" ng-click="saveForecast()" title="Save" ng-show="forecastSummary.isEditing"></span>
+                                    <span class="fa fa-times undoBtn" ng-click="cancelForecast()" title="Undo" ng-show="forecastSummary.isEditing"></span>
+                                    <input ng-show="forecastSummary.isEditing" type="text" class="edit" ng-model="forecastSummary.editingModal.FollowingWeekCommit" />
+                                    <span ng-hide="forecastSummary.isEditing">{{formatDecimal(forecastSummary.data.FollowingWeekCommit, displayFormat)}}</span>
+                                </span>
+                                <span ng-hide="w.Editable && forecastEditable">{{formatDecimal(w.FollowingWeekCommit, displayFormat)}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="14" class="noBd">&nbsp;</td>
+                        </tr>
+                        <tr class="line">
+                            <td class="center">Weekly Actual</td>
+                            <td class="number" ng-repeat="w in forecastSummary.data.WeeklyForecasts">{{formatDecimal(w.WeeklyActual, displayFormat)}}</td>
+                        </tr>
+                        <tr class="line2">
+                            <td class="center">Weekly Attainment</td>
+                            <td class="number" ng-repeat="w in forecastSummary.data.WeeklyForecasts"><span ng-show="w.UpcomingWeekCommit && w.UpcomingWeekCommit > 0">{{formatPercentage(((w.WeeklyActual || 0) / w.UpcomingWeekCommit - 1) * 100)}}</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="14" class="noBd">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="report" ng-show="teamForecasts.data.length == 0">
+                    <tr class="header">
+                        <th>CQ Bookings</th>
+                        <th>CQ Weighted Pipeline</th>
+                        <th>CQ Pipline</th>
+                        <td class="noBd" rowspan="2">&nbsp;</td>
+                        <th>CQ Expected + Won</th>
+                        <th>CQ SFC Expected</th>
+                        <th>CQ SFC Upside</th>
+                        <th>CQ SFC Pipeline</th>
+                        <td class="noBd" rowspan="2">&nbsp;</td>
+                        <th>Commit / Bookings Ratio</th>
+                        <th>Commit / WPipeline Ratio</th>
+                        <th>Commit / Pipeline Ratio</th>
+                        <th>Commit / Expected + Won Ratio</th>
+                        <th>Commit / Upside + Expected + Won Ratio</th>
+                    </tr>
+                    <tr class="line">
+                        <td class="number">{{formatDecimal(forecastSummary.data.QtrBooking, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecastSummary.data.WeightedPipe, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecastSummary.data.TotalPipe, displayFormat)}}</td>
+                        
+                        <td class="number">{{formatDecimal(forecastSummary.data.SfcWon + forecastSummary.data.SfcExpected, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecastSummary.data.SfcExpected, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecastSummary.data.SfcUpside, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecastSummary.data.SfcPipeline, displayFormat)}}</td>
+                        
+                        <td class="number"><span ng-show="forecastSummary.data.QtrCommit && forecastSummary.data.QtrCommit > 0">{{formatPercent((forecastSummary.data.QtrBooking || 0) / forecastSummary.data.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="forecastSummary.data.QtrCommit && forecastSummary.data.QtrCommit > 0">{{formatPercent((forecastSummary.data.WeightedPipe || 0) / forecastSummary.data.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="forecastSummary.data.QtrCommit && forecastSummary.data.QtrCommit > 0">{{formatPercent((forecastSummary.data.TotalPipe || 0) / forecastSummary.data.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="forecastSummary.data.QtrCommit && forecastSummary.data.QtrCommit > 0">{{formatPercent(((forecastSummary.data.SfcWon || 0) + (forecastSummary.data.SfcExpected || 0)) / forecastSummary.data.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="forecastSummary.data.QtrCommit && forecastSummary.data.QtrCommit > 0">{{formatPercent(((forecastSummary.data.SfcWon || 0) + (forecastSummary.data.SfcExpected || 0) + (forecastSummary.data.SfcUpside || 0)) / forecastSummary.data.QtrCommit)}}</span></td>
+                    </tr>
+                </table>
+                <div class="clearfix"></div>
+            </apex:pageBlock>
+
+            <apex:pageBlock html-ng-show="teamForecasts.data.length > 0">
+                <apex:facet name="header">
+                    <div class="sectionTitle"><span ng-class="{'fa':true, 'fa-caret-down':!$storage.teamSection1Collapsed, 'fa-caret-right':$storage.teamSection1Collapsed}" ng-click="$storage.teamSection1Collapsed=!$storage.teamSection1Collapsed"> Your Team's Current Quarter Forecast Rollups</span></div>
+                </apex:facet>
+                <div class="reportContainer" ng-hide="$storage.teamSection1Collapsed">
+                <table class="report">
+                    <tr class="header">
+                        <th class="minW150">Name</th>
+                        <th class="W100">CQ Bookings</th>
+                        <th class="W100">CQ Commit</th>
+                        <th class="W100">CQ Gut</th>
+                        <th class="W100">CQ Upside</th>
+                        <td class="noBd" rowspan="{{teamForecasts.data.length+2}}">&nbsp;</td>
+                        <th class="W100">Month 1 Commit / Actual</th>
+                        <th class="W100">Month 2 Commit / Actual</th>
+                        <th class="W100">Month 3 Commit / Actual</th>
+                        <th class="W100">Month 1-3 Total</th>
+                        <th class="W100">CQ Commit</th>
+                        <th class="noBd" rowspan="{{teamForecasts.data.length+2}}">&nbsp;</th>
+                        <th class="W100">Current Month Commit</th>
+                        <th class="W100">Current Month Actual</th>
+                        <th class="W100">Current Month Remaining</th>
+                    </tr>
+                
+                    <tr ng-class="{'line': !($index % 2), 'line2': !!($index % 2) }" ng-repeat="forecast in teamForecasts.data">
+                        <td class="center"><a href="{!$Page.Forecasting}?path={!UserPath}/{{forecast.UserId}}">{{forecast.UserName}}</a></td>
+                        <td class="number">{{formatDecimal(forecast.QTDBooking, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.QtrCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.QtrGut, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.QtrUpside, displayFormat)}}</td>
+                        
+                        <td class="number">{{formatDecimal(forecast.Month1, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.Month2, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.Month3, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.Month1 + forecast.Month2 + forecast.Month3, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.QtrCommit, displayFormat)}}</td>
+                        
+                        <td class="number">{{formatDecimal(forecast.CurrentMonthCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.CureentMonthActual, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.CureentMonthActual - forecast.CurrentMonthCommit, displayFormat)}}</td>
+                    </tr>
+                    <tr class="footer">
+                        <td class="center">Team Total / Average</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.QTDBooking, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.QtrCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.QtrGut, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.QtrUpside, displayFormat)}}</td>
+                        
+                        <td class="number">{{formatDecimal(teamForecasts.total.Month1, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.Month2, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.Month3, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.Month1 + teamForecasts.total.Month2 + teamForecasts.total.Month3, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.QtrCommit, displayFormat)}}</td>
+                        
+                        <td class="number">{{formatDecimal(teamForecasts.total.CurrentMonthCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.CureentMonthActual, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.CureentMonthActual - teamForecasts.total.CurrentMonthCommit, displayFormat)}}</td>
+                    </tr>
+                </table>
+                </div>
+            </apex:pageBlock>
+            <apex:pageBlock html-ng-show="teamForecasts.data.length > 0">
+                <apex:facet name="header">
+                    <div class="sectionTitle"><span ng-class="{'fa':true, 'fa-caret-down':!$storage.teamSection2Collapsed, 'fa-caret-right':$storage.teamSection2Collapsed}" ng-click="$storage.teamSection2Collapsed=!$storage.teamSection2Collapsed"> Your Team's Weekly Forecast Rollups</span></div>
+                </apex:facet>
+                <div class="reportContainer" ng-hide="$storage.teamSection2Collapsed">
+                <table class="report">
+                    <tr class="header">
+                        <th class="minW150">Name</th>
+                        <th class="W100">Current Month Commit</th>
+                        <th class="W100">Current Month Actual</th>
+                        <th class="W100">Current Month Remaining</th>
+                        <td class="noBd" rowspan="{{teamForecasts.data.length+2}}">&nbsp;</td>
+                        <th class="W100">Upcoming Week Commit</th>
+                        <th class="W100">Following Week Commit</th>
+                        <th class="W100">Two Week Total</th>
+                        <th class="W100">CQ Bookings</th>
+                        <th class="W100">Two Week Total + CQ Bookings</th>
+                        <td class="noBd" rowspan="{{teamForecasts.data.length+2}}">&nbsp;</td>
+                        <th class="W100">Last Week Commit</th>
+                        <th class="W100">Last Week Actual</th>
+                        <th class="W100">Last Week Delta</th>
+                    </tr>
+                    <tr ng-class="{'line': !($index % 2), 'line2': !!($index % 2) }" ng-repeat="forecast in teamForecasts.data">
+                        <td class="center"><a href="{!$Page.Forecasting}?path={!UserPath}/{{forecast.UserId}}">{{forecast.UserName}}</a></td>
+                        <td class="number">{{formatDecimal(forecast.CurrentMonthCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.CurrentMonthActual, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.CurrentMonthActual - forecast.CurrentMonthCommit, displayFormat)}}</td>
+                        
+                        <td class="number">{{formatDecimal(forecast.UpcomingWeekCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.FollowingWeekCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.UpcomingWeekCommit + forecast.FollowingWeekCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.QTDBooking, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.QTDBooking + forecast.UpcomingWeekCommit + forecast.FollowingWeekCommit, displayFormat)}}</td>
+                        
+                        <td class="number">{{formatDecimal(forecast.LastWeekCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.LastWeekActual, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.LastWeekActual - forecast.LastWeekCommit, displayFormat)}}</td>
+                    </tr>
+                    <tr class="footer">
+                        <td class="center">Team Total / Average</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.CurrentMonthCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.CurrentMonthActual, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.CurrentMonthActual - teamForecasts.total.CurrentMonthCommit, displayFormat)}}</td>
+                        
+                        <td class="number">{{formatDecimal(teamForecasts.total.UpcomingWeekCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.FollowingWeekCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.UpcomingWeekCommit + teamForecasts.total.FollowingWeekCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.QTDBooking, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.QTDBooking + teamForecasts.total.UpcomingWeekCommit + teamForecasts.total.FollowingWeekCommit, displayFormat)}}</td>
+                        
+                        <td class="number">{{formatDecimal(teamForecasts.total.LastWeekCommit, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.LastWeekActual, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.LastWeekActual - teamForecasts.total.LastWeekCommit, displayFormat)}}</td>
+                    </tr>
+                </table>
+                </div>
+            </apex:pageBlock>
+            <apex:pageBlock html-ng-show="teamForecasts.data.length > 0">
+                <apex:facet name="header">
+                    <div class="sectionTitle"><span ng-class="{'fa':true, 'fa-caret-down':!$storage.teamSection3Collapsed, 'fa-caret-right':$storage.teamSection3Collapsed}" ng-click="$storage.teamSection3Collapsed=!$storage.teamSection3Collapsed"> Your Team's Current Quarter Forecast Coverage Ratios</span></div>
+                </apex:facet>
+                <div class="reportContainer" ng-hide="$storage.teamSection3Collapsed">
+                <table class="report">
+                    <tr class="header">
+                        <th class="minW150">Name</th>
+                        <th class="W100">CQ Bookings</th>
+                        <th class="W100">CQ Weighted Pipeline</th>
+                        <th class="W100">CQ Pipline</th>
+                        <td class="noBd" rowspan="{{teamForecasts.data.length+2}}">&nbsp;</td>
+                        <th class="W100">CQ Expected+ Won</th>
+                        <th class="W100">CQ SFC Expected</th>
+                        <th class="W100">CQ SFC Upside</th>
+                        <th class="W100">CQ SFC Pipeline</th>
+                        <td class="noBd" rowspan="{{teamForecasts.data.length+2}}">&nbsp;</td>
+                        <th class="W100">Commit / Bookings Ratio</th>
+                        <th class="W100">Commit / WPipeline Ratio</th>
+                        <th class="W100">Commit / Pipeline Ratio</th>
+                        <th class="W100">Commit / Expected + Won Ratio</th>
+                        <th class="W100">Commit / Upside + Expected + Won Ratio</th>
+                    </tr>
+                    <tr ng-class="{'line': !($index % 2), 'line2': !!($index % 2) }" ng-repeat="forecast in teamForecasts.data">
+                        <td class="center"><a href="{!$Page.Forecasting}?path={!UserPath}/{{forecast.UserId}}">{{forecast.UserName}}</a></td>
+                        <td class="number">{{formatDecimal(forecast.QTDBooking, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.WeightedPipe, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.TotalPipe, displayFormat)}}</td>
+                        
+                        <td class="number">{{formatDecimal(forecast.SfcWon + forecast.SfcExpected, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.SfcExpected, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.SfcUpside, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(forecast.SfcPipeline, displayFormat)}}</td>
+                        
+                        <td class="number"><span ng-show="forecast.QtrCommit && forecast.QtrCommit > 0">{{formatPercentage((forecast.QTDBooking || 0) * 1.0 / forecast.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="forecast.QtrCommit && forecast.QtrCommit > 0">{{formatPercentage((forecast.WeightedPipe || 0) * 1.0 / forecast.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="forecast.QtrCommit && forecast.QtrCommit > 0">{{formatPercentage((forecast.TotalPipe || 0) * 1.0 / forecast.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="forecast.QtrCommit && forecast.QtrCommit > 0">{{formatPercentage(((forecast.SfcWon || 0) + (forecast.SfcExpected || 0)) * 1.0 / forecast.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="forecast.QtrCommit && forecast.QtrCommit > 0">{{formatPercentage(((forecast.SfcWon || 0) + (forecast.SfcExpected || 0) + (forecast.SfcUpside || 0)) * 1.0 / forecast.QtrCommit)}}</span></td>
+                    </tr>
+                    <tr class="footer">
+                        <td class="center">Team Total / Average</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.QTDBooking, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.WeightedPipe, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.TotalPipe, displayFormat)}}</td>
+                        
+                        <td class="number">{{formatDecimal(teamForecasts.total.SfcWon + teamForecasts.total.SfcExpected, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.SfcExpected, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.SfcUpside, displayFormat)}}</td>
+                        <td class="number">{{formatDecimal(teamForecasts.total.SfcPipeline, displayFormat)}}</td>
+                        
+                        <td class="number"><span ng-show="teamForecasts.total.QtrCommit && teamForecasts.total.QtrCommit > 0">{{formatPercentage((teamForecasts.total.QTDBooking || 0) * 1.0 / teamForecasts.total.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="teamForecasts.total.QtrCommit && teamForecasts.total.QtrCommit > 0">{{formatPercentage((teamForecasts.total.WeightedPipe || 0) * 1.0 / teamForecasts.total.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="teamForecasts.total.QtrCommit && teamForecasts.total.QtrCommit > 0">{{formatPercentage((teamForecasts.total.TotalPipe || 0) * 1.0 / teamForecasts.total.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="teamForecasts.total.QtrCommit && teamForecasts.total.QtrCommit > 0">{{formatPercentage(((teamForecasts.total.SfcWon || 0) + (teamForecasts.total.SfcExpected || 0)) * 1.0 / teamForecasts.total.QtrCommit)}}</span></td>
+                        <td class="number"><span ng-show="teamForecasts.total.QtrCommit && teamForecasts.total.QtrCommit > 0">{{formatPercentage(((teamForecasts.total.SfcWon || 0) + (teamForecasts.total.SfcExpected) + (teamForecasts.total.SfcUpside)) * 1.0 / teamForecasts.total.QtrCommit)}}</span></td>
+                    </tr>
+                </table>
+                </div>
+            </apex:pageBlock>
+            <apex:pageBlock >
+                <apex:facet name="header">
+                    <div class="sectionTitle"><span ng-class="{'fa':true, 'fa-caret-down':!$storage.oppSectionCollapsed, 'fa-caret-right':$storage.oppSectionCollapsed}" ng-click="$storage.oppSectionCollapsed = !$storage.oppSectionCollapsed"> Opportunity List <span ng-hide="$storage.oppSectionCollapsed || !opportunityListing.data || opportunityListing.data.length == 0">- Page {{opportunityListing.pageCount==0? 0 : opportunityListing.pageIndex}} / {{opportunityListing.pageCount}}</span></span></div>
+                </apex:facet>
+                <div class="reportContainer" ng-hide="$storage.oppSectionCollapsed" style="display:inline">
+                <div class="listCaption"> 
+                    Close Date <select ng-model="$storage.oppFilter.closeDate" ng-change="$storage.oppFilter.pageIndex=1;loadOpportunityListing();">
+                        <option value="This Quarter">This Quarter</option>
+                        <option value="Next Quarter">Next Quarter</option>
+                        <option value="This Fiscal Year">This Fiscal Year</option>
+                        <option value="Next Fiscal Year">Next Fiscal Year</option>
+                        <option value="All">All Time</option>
+                    </select>&nbsp;
+
+                    Status <select ng-model="$storage.oppFilter.status" ng-change="$storage.oppFilter.pageIndex=1;loadOpportunityListing();">
+                        <option value="All">All</option>
+                        <option value="All Open">All Open</option>
+                        <option value="All Won">All Won</option>
+                        <option value="All Open & Won">All Open &amp; Won</option>
+                        <option value="Closed Lost">Closed Lost</option>
+                        <option value="Closed No Decision">Closed No Decision</option>
+                    </select>&nbsp;
+                    Stages <select ng-model="$storage.oppFilter.stage" ng-change="$storage.oppFilter.pageIndex=1;loadOpportunityListing();">
+                        <option value="All">All Stages</option>
+                        <option value="Initial Stage Opps">Initial Stage Opps (S2-S3)</option>
+                        <option value="Adv Stage Opps">Adv Stage Opps (S4-S7)</option>
+                    </select>&nbsp;
+                    Sales Region <select ng-model="$storage.oppFilter.salesRegion" ng-change="$storage.oppFilter.pageIndex=1;loadOpportunityListing();">
+                        <option value="All">All Regions</option>
+                        <option value="NA West">NA West</option>
+                        <option value="NA Central">NA Central</option>
+                        <option value="NA East"> NA East </option>
+                        <option value="APJ">APJ</option>
+                        <option value="EMEA North">EMEA North</option>
+                        <option value="EMEA South">EMEA South</option>
+                    </select>&nbsp;
+                    Forecast Category <select ng-model="$storage.oppFilter.forecastCategory" ng-change="$storage.oppFilter.pageIndex=1;loadOpportunityListing();">
+                        <option value="All">All Categories</option>
+                        <option value="Omitted">Omitted</option>
+                        <option value="Pipeline">Pipeline</option>
+                        <option value="Upside">Upside</option>
+                        <option value="Expected">Expected</option>
+                    </select>&nbsp;
+                    <label for="enableOppRedFlag">Enable Red Flags</label> <input id="enableOppRedFlag" type="checkbox" ng-model="$storage.oppFilter.enableRedFlag" />
+
+                    <img src="/img/loading.gif" alt="loading" ng-show="opportunityListing.isLoading" />
+                    <span style="float:right" ng-show="opportunityListing.data.length > 0">
+                        <a class="actionLink fa fa-angle-double-left" ng-click="turnPageOppList(opportunityListing.pageIndex-1)" ng-show="opportunityListing.hasPrevious"> Previous Page</a>
+                        <select ng-model="opportunityListing.pageIndex" ng-options="p as p for p in opportunityListing.pagers" ng-show="opportunityListing.pageCount>1" ng-change="turnPageOppList(opportunityListing.pageIndex)"></select>
+                        <a class="actionLink" ng-click="turnPageOppList(opportunityListing.pageIndex+1)" ng-show="opportunityListing.hasNext">Next Page <span class="fa fa-angle-double-right"></span></a>
+                    </span>
+                </div>
+
+                <div ng-hide="opportunityListing.data.length > 0">No opportunities found.</div>
+                <table class="report borderReport" style="width: 100%" ng-show="opportunityListing.data.length > 0">
+                    <thead>
+                        <tr class="header">
+                            <th><a class="actionLink" ng-click="sortOppList('Name')">Opportunity Name</a> <span ng-show="$storage.oppFilter.sortField=='Name'" ng-class="{'fa':true, 'fa-arrow-circle-down':!$storage.oppFilter.isAscendingOrder, 'fa-arrow-circle-up':$storage.oppFilter.isAscendingOrder}"></span></th>
+                            <th><a class="actionLink" ng-click="sortOppList('Amount')">Amount</a> <span ng-show="$storage.oppFilter.sortField=='Amount'" ng-class="{'fa':true, 'fa-arrow-circle-down':!$storage.oppFilter.isAscendingOrder, 'fa-arrow-circle-up':$storage.oppFilter.isAscendingOrder}"></span></th>
+                            <th><a class="actionLink" ng-click="sortOppList('StageName')">Stage</a> <span ng-show="$storage.oppFilter.sortField=='StageName'" ng-class="{'fa':true, 'fa-arrow-circle-down':!$storage.oppFilter.isAscendingOrder, 'fa-arrow-circle-up':$storage.oppFilter.isAscendingOrder}"></span></th>
+                            <th><a class="actionLink" ng-click="sortOppList('Probability')">Prob (%)</a> <span ng-show="$storage.oppFilter.sortField=='Probability'" ng-class="{'fa':true, 'fa-arrow-circle-down':!$storage.oppFilter.isAscendingOrder, 'fa-arrow-circle-up':$storage.oppFilter.isAscendingOrder}"></span></th>
+                            <th><a class="actionLink" ng-click="sortOppList('CloseDate')">Close Date</a> <span ng-show="$storage.oppFilter.sortField=='CloseDate'" ng-class="{'fa':true, 'fa-arrow-circle-down':!$storage.oppFilter.isAscendingOrder, 'fa-arrow-circle-up':$storage.oppFilter.isAscendingOrder}"></span></th>
+                            <th><a class="actionLink" ng-click="sortOppList('ForecastCategoryName')">Forecast Category</a> <span ng-show="$storage.oppFilter.sortField=='ForecastCategoryName'" ng-class="{'fa':true, 'fa-arrow-circle-down':!$storage.oppFilter.isAscendingOrder, 'fa-arrow-circle-up':$storage.oppFilter.isAscendingOrder}"></span></th>
+                            <th><a class="actionLink" ng-click="sortOppList('Type')">Type</a> <span ng-show="$storage.oppFilter.sortField=='Type'" ng-class="{'fa':true, 'fa-arrow-circle-down':!$storage.oppFilter.isAscendingOrder, 'fa-arrow-circle-up':$storage.oppFilter.isAscendingOrder}"></span></th>
+                            <th><a class="actionLink" ng-click="sortOppList('NextStep')">Next Step</a> <span ng-show="$storage.oppFilter.sortField=='NextStep'" ng-class="{'fa':true, 'fa-arrow-circle-down':!$storage.oppFilter.isAscendingOrder, 'fa-arrow-circle-up':$storage.oppFilter.isAscendingOrder}"></span></th>
+                            <th><a class="actionLink" ng-click="sortOppList('OwnerId')">Owner</a> <span ng-show="$storage.oppFilter.sortField=='OwnerId'" ng-class="{'fa':true, 'fa-arrow-circle-down':!$storage.oppFilter.isAscendingOrder, 'fa-arrow-circle-up':$storage.oppFilter.isAscendingOrder}"></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-class="{'line': !($index % 2), 'line2': !!($index % 2), 'highlight1': $storage.oppFilter.enableRedFlag && opportunity.HighlightLevel == 1, 'highlight2': $storage.oppFilter.enableRedFlag && opportunity.HighlightLevel == 2, 'highlight3': $storage.oppFilter.enableRedFlag && opportunity.HighlightLevel == 3 }" ng-repeat="opportunity in opportunityListing.data">
+                            <td><a href="/{{opportunity.OppId}}" target="_blank">{{unescape(opportunity.OppName)}}</a></td>
+                            <td class="number">{{formatDecimal(opportunity.Amount, displayFormat)}}</td>
+                            <td class="center">{{unescape(opportunity.Stage)}}</td>
+                            <td class="number">{{formatPercentage(opportunity.Probability)}}</td>
+                            <td class="center">{{opportunity.CloseDate}}</td>
+                            <td class="center">{{unescape(opportunity.ForecastCategory)}}</td>
+                            <td class="center">{{unescape(opportunity.Type)}}</td>
+                            <td style="max-width: 300px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" title="{{unescape(opportunity.NextStep)}}">{{unescape(opportunity.NextStep)}}</td>
+                            <td><a href="/{{opportunity.OwnerId}}" target="_blank">{{opportunity.OwnerName}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </apex:pageBlock>
+        </div>
+    </apex:form>
+</apex:page>

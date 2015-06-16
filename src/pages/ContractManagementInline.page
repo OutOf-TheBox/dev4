@@ -1,0 +1,348 @@
+<apex:page standardcontroller="Contract_Management__c" extensions="ContractManagementInline" sidebar="false" showHeader="false">
+
+
+
+  <apex:form >
+  <apex:pageBlock rendered="{!editVar}">
+  
+  <apex:inlineEditSupport showOnEdit="theSave,theCancel" hideOnEdit="theEdit" event="ondblclick" changedStyleClass="myBoldClass" resetFunction="resetInlineEdit"/>
+  <apex:pageBlockButtons location="top" style="padding-left:100px">
+  <apex:commandButton action="{!editBtn}" value="Edit" id="theEdit" rendered="{!editVar}"/>
+  <apex:commandButton action="{!saveBtn}" value="Save" id="theSave" style="display:none"/>
+  <apex:commandButton action="{!cancelBtn}" value="Cancel" id="theCancel" style="display:none" onclick="resetInlineEdit()"/>
+  <apex:commandButton action="{!saveBtnforInline}" value="Save" id="theSave1" rendered="{!saveVar}"/>
+  <apex:commandButton action="{!cancelBtnforInline}" value="Cancel" id="theCancel1" onclick="resetInlineEdit()" rendered="{!saveVar}"/>
+  </apex:pageBlockButtons>
+   
+  <table>
+  <tr><th width="0%"></th>
+      <th width="120" style="text-align:center;padding-bottom:10px"><apex:outputLabel value="Changes"/></th>
+      <th width="180" style="text-align:center;padding-bottom:10px;padding-left:30px"><apex:outputLabel value="Section"/></th>
+      <th width="550" style="text-align:center;padding-bottom:10px"><apex:outputLabel value="Modification"/></th>
+      <th width="200" style="text-align:center;padding-bottom:10px"><apex:outputLabel value="Approved By"/></th></tr>
+  
+  </table>
+  <table><hr COLOR="Gainsboro" size="1"/>
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Indemnification__c}" label=""/></td>
+      <!--<td width="120" style="text-align:left;padding-bottom:10px">Indemnification</td>-->
+      <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Indemnification__c']}"/></td>
+
+      
+      <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField styleClass="datacol1" value="{!conmgmt.Indeminification_Section__c}" label=""/></td>
+      
+      <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Indeminification_Mod__c}" label=""/></td>
+      <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Indeminification_ApprvBy__c}" label=""/></td></tr>
+
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Warranties__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Warranties</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Warranties__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Warranties_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Warranties_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Warranties_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Limit_of_Liability__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Limitation of Liability</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Limit_of_Liability__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Limit_of_Liability_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Limit_of_Liability_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Limit_of_Liability_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Gov_Law_Venue__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Governing Law/Venue</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Gov_Law_Venue__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Gov_Law_Venue_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Gov_Law_Venue_Mod__c}" label=""/></td>
+  <td width="220" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Gov_Law_Venue_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Assignment__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Assignment</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Assignment__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Assignment_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Assignment_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Assignment_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.NonSolicitation__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Non-Solicitation</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['NonSolicitation__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.NonSolicitation_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.NonSolicitation_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.NonSolicitation_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Payment_Terms__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Payment Terms</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Payment_Terms__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Payment_Terms_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Payment_Terms_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Payment_Terms_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Delivery_Terms__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Delivery Terms</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Delivery_Terms__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Delivery_Terms_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Delivery_Terms_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Delivery_Terms_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Term_Termination__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Term/Termination</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Term_Termination__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Term_Termination_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Term_Termination_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Term_Termination_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Support__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Support</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Support__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Support_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Support_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Support_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Confidentiality__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Confidentiality</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Confidentiality__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Confidentiality_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Confidentiality_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Confidentiality_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Deleted_Sections__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Deleted Section(s)</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Deleted_Sections__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Deleted_Sections_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Deleted_Mods_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Deleted_ApprvBys_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other2__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other2__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other2_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other2_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other2_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other3__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other3__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other3_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other3_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other3_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other4__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other4__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other4_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other4_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other4_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other5__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other5__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other5_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other5_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other5_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other6__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other6__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other6_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other6_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other6_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other7__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other7__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other7_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other7_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other7_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other8__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other8__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other8_Section__c}" label=""/></td>
+  <td width="550" style="text-align:left;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other8_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:outputField value="{!conmgmt.Other8_ApprvBy__c}" label=""/></td></tr>
+  
+  </table>
+
+  </apex:pageBlock>
+  
+  <apex:pageBlock rendered="{!saveVar}">
+  
+  <apex:pageBlockButtons location="top" style="padding-left:100px">
+  <apex:commandButton action="{!editBtn}" value="Edit" id="theEdit" rendered="{!editVar}"/>
+  <apex:commandButton action="{!saveBtn}" value="Save" id="theSave" style="display:none"/>
+  <apex:commandButton action="{!cancelBtn}" value="Cancel" id="theCancel" style="display:none" onclick="resetInlineEdit()"/>
+  <apex:commandButton action="{!saveBtnforInline}" value="Save" id="theSave1" rendered="{!saveVar}"/>
+  <apex:commandButton action="{!cancelBtnforInline}" value="Cancel" id="theCancel1" onclick="resetInlineEdit()" rendered="{!saveVar}"/>
+  </apex:pageBlockButtons>
+  
+  <table>
+  <tr><th width="0%"></th>
+      <th width="120" style="text-align:left;padding-bottom:10px"><apex:outputLabel value="Changes"/></th>
+      <th width="180" style="text-align:center;padding-bottom:10px"><apex:outputLabel value="Section"/></th>
+      <th width="550" style="text-align:center;padding-bottom:10px"><apex:outputLabel value="Modification"/></th>
+      <th width="200" style="text-align:center;padding-bottom:10px"><apex:outputLabel value="Approved By"/></th></tr>
+  </table>
+  <table> <hr COLOR="Gainsboro" size="1"/>
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Indemnification__c}" label=""/></td>
+      <!--<td width="120" style="text-align:left;padding-bottom:10px">Indemnification</td>-->
+      <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Indemnification__c']}"/></td>
+      <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Indeminification_Section__c}" label=""/></td>
+      <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Indeminification_Mod__c}" label=""/></td>
+      <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Indeminification_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Warranties__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Warranties</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Warranties__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Warranties_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Warranties_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Warranties_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Limit_of_Liability__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Limitation of Liability</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Limit_of_Liability__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Limit_of_Liability_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Limit_of_Liability_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Limit_of_Liability_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Gov_Law_Venue__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Governing Law/Venue</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Gov_Law_Venue__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Gov_Law_Venue_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Gov_Law_Venue_Mod__c}" label=""/></td>
+  <td width="220" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Gov_Law_Venue_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Assignment__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Assignment</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Assignment__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Assignment_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Assignment_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Assignment_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.NonSolicitation__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Non-Solicitation</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['NonSolicitation__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.NonSolicitation_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.NonSolicitation_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.NonSolicitation_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Payment_Terms__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Payment Terms</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Payment_Terms__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Payment_Terms_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Payment_Terms_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Payment_Terms_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Delivery_Terms__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Delivery Terms</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Delivery_Terms__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Delivery_Terms_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Delivery_Terms_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Delivery_Terms_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Term_Termination__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Term/Termination</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Term_Termination__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Term_Termination_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Term_Termination_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Term_Termination_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Support__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Support</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Support__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Support_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Support_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Support_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Confidentiality__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Confidentiality</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Confidentiality__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Confidentiality_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Confidentiality_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Confidentiality_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Deleted_Sections__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Deleted Section(s)</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Deleted_Sections__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Deleted_Sections_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Deleted_Mods_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Deleted_ApprvBys_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Other_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Other_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other2__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other2__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Other2_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Other2_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other2_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other3__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other3__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Other3_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Other3_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other3_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other4__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other4__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Other4_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Other4_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other4_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other5__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other5__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Other5_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Other5_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other5_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other6__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other6__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Other6_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Other6_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other6_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other7__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other7__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Other7_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Other7_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other7_ApprvBy__c}" label=""/></td></tr>
+  
+  <tr><td width="0%" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other8__c}" label=""/></td>
+  <!--<td width="120" style="text-align:left;padding-bottom:10px">Other</td>-->
+  <td width="120" style="text-align:left;padding-bottom:10px"><apex:outputText value="{!toolsMap['Other8__c']}"/></td>
+  <td width="180" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="height:48px;" value="{!conmgmt.Other8_Section__c}" label=""/></td>
+  <td width="550" style="text-align:center;padding-bottom:10px"><apex:inputtextarea style="width:400px;height:48px;" value="{!conmgmt.Other8_Mod__c}" label=""/></td>
+  <td width="200" style="text-align:center;padding-bottom:10px"><apex:inputField value="{!conmgmt.Other8_ApprvBy__c}" label=""/></td></tr>
+  
+  </table>
+<!-- <apex:repeat value="{!fieldtypes1}" var="accNum">
+            <apex:inputField value="{!fieldtypes1[accNum].label}" />
+</apex:repeat>-->
+
+<!--<apex:dataTable value="{!accessibleFields}" var="f">
+                <apex:column >
+                    <apex:facet name="header">Label</apex:facet>
+                    <apex:outputText value="{!$ObjectType[contract_management__c].fields[f].Label}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Value</apex:facet>
+                    <apex:outputText value="{!obj[f]}"/>
+                </apex:column>
+            </apex:dataTable>-->
+  </apex:pageBlock>
+  </apex:form>
+</apex:page>

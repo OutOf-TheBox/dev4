@@ -1,0 +1,44 @@
+<apex:page showChat="false"
+           showHeader="true"
+           sidebar="true"
+           tabStyle="casePortalTab__tab"
+           title="Case Edit: {!Case.CaseNumber}"
+           standardController="Case"
+           extensions="caseExtensionsWithSharing">
+  <apex:sectionHeader title="Case Edit" subtitle="{!Case.CaseNumber}"/>
+  <apex:form >
+    <apex:pageBlock mode="maindetail" title="Case Edit">
+      <apex:pageBlockButtons >
+        <apex:commandButton value="Save" action="{!caseCustomSave}"/>
+        <apex:commandButton value="Cancel" action="{!Cancel}"/>
+      </apex:pageBlockButtons>
+      <apex:pageMessages escape="false"/>
+      <apex:pageBlockSection title="Case General Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Case Number"  value="{!Case.CaseNumber}"/>
+        <apex:outputField label="Status"       value="{!Case.Status}"/>
+        <apex:outputField label="Created Date" value="{!Case.CreatedDate}"/>
+        <apex:outputField label="Closed Date"  value="{!Case.ClosedDate}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Case Asset/Contact Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Asset Serial Number" value="{!Case.AssetId}"/>
+        <apex:inputField label="Contact Name"        value="{!Case.ContactId}" required="true"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Case Issue Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Priority"    value="{!Case.Priority}" rendered="false"/>  <!-- Hidden field.  Required to load Priority field into controller. -->
+        <apex:selectList label="Impact"
+                         value="{!casePortalImpact}"
+                         multiselect="false"
+                         required="true"
+                         size="1">
+          <apex:selectOptions value="{!casePortalImpactValues}"/>
+        </apex:selectList>
+        <apex:outputField label="Subject"     value="{!Case.Subject}"/>
+        <apex:outputField label="Description" value="{!Case.Description}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Case Resolution Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Resolution Notes" value="{!Case.casePortalResolutionNotes__c}"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+[casePortalEditPage]
+</apex:page>

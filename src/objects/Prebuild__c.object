@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object is used to track prebuild opportunities</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Available_to_Ship_within_Quarter__c</fullName>
+        <externalId>false</externalId>
+        <label>Available to Ship within Quarter?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Is_Quote_Pricing_Final__c</fullName>
+        <externalId>false</externalId>
+        <label>Is Pricing on Quote Final?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Is_Quote_Product_Configuration_Finalized__c</fullName>
+        <externalId>false</externalId>
+        <label>Is Quote Product Configuration Final?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Notes_to_Sales_Ops__c</fullName>
+        <externalId>false</externalId>
+        <label>Notes to Sales Ops</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Prebuilds</relationshipLabel>
+        <relationshipName>Prebuilds</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>PO_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>PO Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>PO at Reseller</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PO at Distributor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PO in Customer Procurement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No PO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Prebuild_Approved_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Prebuild Approved Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Prebuild_Request_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Prebuild Request Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Prebuild_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Prebuild Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Requested</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Reason_for_Rejection__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason for Rejection</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Unavailable to ship within quarter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PO not issued</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <label>Prebuild</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>PB-{000000}</displayFormat>
+        <label>Prebuild Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Prebuilds</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Only_1_Prebuild_per_Opportunity</fullName>
+        <active>true</active>
+        <errorConditionFormula>if( Opportunity__r.Prebuild_Count_Rollup__c == 1 &amp;&amp;  ISNULL(CreatedDate) ,true,false)</errorConditionFormula>
+        <errorMessage>This Opportunity already has a Prebuild record !</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Only_Requested_Status_for_SalesReps</fullName>
+        <active>true</active>
+        <errorConditionFormula>if( ($Profile.Name==&apos;NS-SALES-FieldSales-Sales Rep [w/Export]&apos; || $Profile.Name==&apos;NS-SALES-FieldSales-Sales Rep [w/o Export]&apos; || $Profile.Name==&apos;NS-SALES-FieldSales-Sales Mgr [w/o Margin]&apos; || $Profile.Name==&apos;NS-SALES-FieldSales-Sales Mgr [w/Margin]&apos;) &amp;&amp; !ISPICKVAL(Prebuild_Status__c,&apos;Requested&apos;),true,false)</errorConditionFormula>
+        <errorDisplayField>Prebuild_Status__c</errorDisplayField>
+        <errorMessage>Sales Reps can only choose Prebuild Status as &apos;Requested&apos; !</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SalesReps_NO_changes_except_Rejected</fullName>
+        <active>true</active>
+        <errorConditionFormula>if(( ($Profile.Name==&apos;NS-SALES-FieldSales-Sales Rep [w/Export]&apos; || $Profile.Name==&apos;NS-SALES-FieldSales-Sales Rep [w/o Export]&apos; || $Profile.Name==&apos;NS-SALES-FieldSales-Sales Mgr [w/o Margin]&apos; || $Profile.Name==&apos;NS-SALES-FieldSales-Sales Mgr [w/Margin]&apos;) &amp;&amp;   NOT(ISNULL(CreatedDate))   &amp;&amp; 
+ NOT(ISPICKVAL(PRIORVALUE( Prebuild_Status__c ),&apos;Rejected&apos;))),true,false )</errorConditionFormula>
+        <errorMessage>SalesReps cannot make any changes once record has been saved !</errorMessage>
+    </validationRules>
+</CustomObject>

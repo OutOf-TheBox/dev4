@@ -1,0 +1,30 @@
+<apex:component controller="SubmissionTemplateSOcomponentController" access="global">
+    <apex:attribute name="SalesOrderID" description="To pass ID to controller" type="id" assignTo="{!SOid}"/>
+    <!--<apex:outputLabel value="Sales Order Name : "></apex:outputLabel>
+        <apex:outputText value="{!SO.Name}"></apex:outputText><br/>
+    <apex:outputLabel value="Sales Order Type : "></apex:outputLabel>
+        <apex:outputText value="{!SO.Type__c}"></apex:outputText><br/>
+    <apex:outputLabel value="Sales Order Owner : "></apex:outputLabel>
+        <apex:outputText value="{!SO.Owner.Name}"></apex:outputText><br/><br/><br/>-->
+    
+    <apex:outputLabel value="Sales Order Lines"></apex:outputLabel><br/>
+    
+    <table border="1">
+    <tr>
+    <th>Sales Order Line</th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Sales Price</th>
+    <th>Package Product Code</th>
+    </tr>
+    <apex:repeat value="{!SOlines}" var="sol">
+        <tr>
+            <td>{!sol.Name}</td>
+            <td>{!sol.Product__r.Name}</td>
+            <td>{!sol.Quantity__c}</td>
+            <td>{!sol.Sale_Price__c}</td>
+            <td>{!sol.Package_Product_Code__c}</td>
+        </tr>
+    </apex:repeat>
+    </table>
+</apex:component>

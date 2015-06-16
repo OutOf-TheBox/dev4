@@ -1,0 +1,76 @@
+<apex:page standardController="Case" extensions="CaseRecommendationList" readOnly="true" tabStyle="Case" cache="false" sidebar="true">
+
+<style>
+.othCaseClass {
+
+}
+.curCaseClass {
+    background-color: #FFFFCC;
+}
+</style>
+
+<script>
+
+document.oncontextmenu = function() {
+   return false;
+}
+
+</script>
+
+    <apex:form id="myform">
+   
+        <br/><br/><apex:outputLabel value="«" /><apex:outputLink style="text-decoration:none;color: #015ba7;font-size: 91.3%;font-family: 'Verdana','Geneva',sans-serif;" value="/{!$CurrentPage.parameters.id}"> Back to Case </apex:outputLink><br/><br/>              
+        <apex:pageblock id="RecommendationList" title="Outstanding Recommendations">
+
+            <apex:outputPanel id="pnlPageBlock">
+             
+              <apex:pageblocktable value="{!recz}" var="rec" rendered="{!(ISNULL(recz))}" columnsWidth="5%">
+                  <apex:column ><apex:facet name="header">Rec Number</apex:facet></apex:column>
+                  <apex:column ><apex:facet name="header">Status</apex:facet></apex:column>
+                  <apex:column ><apex:facet name="header">Case Number</apex:facet></apex:column>
+                  <apex:column ><apex:facet name="header">Asset Name</apex:facet></apex:column>
+                  <apex:column ><apex:facet name="header">Recommendation Action</apex:facet></apex:column>
+                   <apex:facet name="footer">No Records to Display</apex:facet>
+              </apex:pageblocktable>
+              
+                <apex:pageblocktable value="{!recz}" var="rec" rendered="{!NOT(ISNULL(recz))}" columnsWidth="5%">
+                   <apex:column styleClass="{!IF(CONTAINS(rec.Case__r.id, $CurrentPage.parameters.id),'curCaseClass','othCaseClass')}" >            
+                        <apex:facet name="header">Action</apex:facet>             
+                          <apex:outputLink style="color:#015ba7" target="_parent" value="/{!rec.id}/e?retURL=apex/caseRecommendationList?id={!$CurrentPage.parameters.id}">Edit</apex:outputLink>                                              
+                    </apex:column>
+                    
+                      <apex:column styleClass="{!IF(CONTAINS(rec.Case__r.id, $CurrentPage.parameters.id),'curCaseClass','othCaseClass')}">
+                              <apex:facet name="header">Rec Number</apex:facet> 
+                              <apex:outputLink target="_parent" value="/{!rec.Id}">{!rec.Name} </apex:outputLink>
+                    </apex:column>
+                     
+                     <apex:column value="{!rec.Status__c}" styleClass="{!IF(CONTAINS(rec.Case__r.id, $CurrentPage.parameters.id),'curCaseClass','othCaseClass')}">
+                              <apex:facet name="header">Status</apex:facet> 
+                    </apex:column>
+                    
+                     <apex:column styleClass="{!IF(CONTAINS(rec.Case__r.id, $CurrentPage.parameters.id),'curCaseClass','othCaseClass')}">
+                              <apex:facet name="header">Case Number</apex:facet> 
+                              <apex:outputLink target="_parent" value="/{!rec.Case__r.Id}">{!rec.Case__r.CaseNumber} </apex:outputLink>
+                    </apex:column>
+                    
+                     <apex:column styleClass="{!IF(CONTAINS(rec.Case__r.id, $CurrentPage.parameters.id),'curCaseClass','othCaseClass')}">
+                              <apex:facet name="header">Asset Name</apex:facet> 
+                              <apex:outputLink target="_parent" value="/{!rec.Asset__r.Id}">{!rec.Asset__r.Name} </apex:outputLink>
+                    </apex:column>
+                    <apex:column value="{!rec.Recommended_Action__c}" styleClass="{!IF(CONTAINS(rec.Case__r.id, $CurrentPage.parameters.id),'curCaseClass','othCaseClass')}">
+                         <apex:facet name="header">Recommendation Action</apex:facet> 
+                    </apex:column>
+                     <apex:facet name="footer">{!Footer}</apex:facet>        
+                </apex:pageblocktable>                
+            </apex:outputPanel>
+            
+            <br/>  
+            
+            <apex:outputPanel id="pnlNavigation" rendered="{!NOT(ISNULL(recz))}">
+               <apex:commandButton action="{!showMore}" value="Show More ►►" style="font-size: 8px;font-family: 'Verdana','Geneva',sans-serif;"  disabled="{!disableValue}"   reRender="pnlPageBlock,pnlNavigation"/> 
+            </apex:outputPanel>
+            
+              
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

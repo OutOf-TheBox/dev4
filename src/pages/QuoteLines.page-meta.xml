@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>29.0</apiVersion>
+    <availableInTouch>false</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>VF page for quote line items related list on quote to remove the action column from the approved quote</description>
+    <label>QuoteLines</label>
+    <packageVersions>
+        <majorNumber>16</majorNumber>
+        <minorNumber>2</minorNumber>
+        <namespace>SBQQ</namespace>
+    </packageVersions>
+</ApexPage>

@@ -1,0 +1,419 @@
+<apex:page standardController="Expedite_Request_Email__c" extensions="ExpediteEmailRequestEdit" sidebar="false" tabStyle="Expedite_Request__c" id="thepage">
+<apex:pageMessages ></apex:pageMessages>
+<apex:form id="theform">
+
+<script>
+function callattachment(att)
+{
+alert('Hi');
+var cURL;
+cURL="";
+window.open(url, '_blank');
+}
+
+var curPopupWindow;
+function openDocumentPopup()
+{
+
+var cURL;
+cURL="PopUpUsers?newexp={!newexpemail}&reply={!reply}&replyall={!replyall}&cc=false"
+ 
+curPopupWindow = window.open(cURL, "_blank","width=650, height=475,dependent=no,resizable=yes,toolbar=no,status=no,directories=no,menubar=no,scrollbars=1", false);            
+  
+}
+function openDocumentPopup1()
+{
+
+var cURL;
+cURL="PopUpUsers?newexp={!newexpemail}&reply={!reply}&replyall={!replyall}&cc=true"
+ 
+curPopupWindow = window.open(cURL, "_blank","width=650, height=475,dependent=no,resizable=yes,toolbar=no,status=no,directories=no,menubar=no,scrollbars=1", false);            
+  
+}
+
+function setSelectedDocumentDetails2(email)
+            { 
+           
+            var emails=document.getElementById('{!$Component.thepage:theform:thepb:ccemail}').value;
+            emails=emails.trim();
+            if(emails.length>0)   
+            {           
+                document.getElementById('{!$Component.thepage:theform:thepb:ccemail}').value=emails+";"+email;
+             }
+              else  
+                document.getElementById('{!$Component.thepage:theform:thepb:ccemail}').value=email;
+               
+                          
+                  curPopupWindow.close();                             
+                  return false; 
+                         
+            }
+           
+            
+            function setSelectedDocumentDetails3(email)
+            { 
+            
+            var emails=document.getElementById('{!$Component.thepage:theform:pb2:emailto}').value;
+            emails=emails.trim();
+            if(emails.length>0)   
+            { 
+            document.getElementById('{!$Component.thepage:theform:pb2:emailto}').value=emails+";"+email;
+            }
+            else
+            document.getElementById('{!$Component.thepage:theform:pb2:emailto}').value=email;
+           
+              curPopupWindow.close();                             
+                     return false;                
+            }
+            function setSelectedDocumentDetails4(email)
+            {               
+          
+            var ccemails=document.getElementById('{!$Component.thepage:theform:pb2:reccto}').value;
+            ccemails=ccemails.trim();
+            if(ccemails.length>0)
+            document.getElementById('{!$Component.thepage:theform:pb2:reccto}').value=ccemails+";"+email;
+            else
+            document.getElementById('{!$Component.thepage:theform:pb2:reccto}').value=email;
+            curPopupWindow.close();
+                     return false;                
+            }
+            
+           
+         
+</script>
+
+<!-- new expedite email --------->
+
+<apex:outputPanel rendered="{!newexpemail}" id="id1">
+<apex:sectionHeader title="Expedite Request Email"/>
+<div align="center">
+<span style="padding-right:10px;">
+<apex:commandLink action="{!send}">
+<input type="button" value="Send Without Attachment"/>
+
+<apex:param assignTo="{!checkattachment}" value="False" name="check"/>
+</apex:commandLink>
+</span>
+<span style="padding-right:10px;">
+
+<apex:commandLink action="{!send}">
+<input type="button" value="Send With Attachment"/>
+
+<apex:param assignTo="{!checkattachment}" value="True" name="check"/>
+</apex:commandLink>
+</span>
+
+<apex:commandLink action="{!cancel}">
+<input type="button" value="Cancel"/>
+</apex:commandLink>
+</div>
+<div style="padding-bottom:5px;font-size:14px;">
+Email Recipients</div>
+<apex:pageBlock mode="edit" id="thepb">
+<table>
+<tr>
+<td valign="top" style="padding-left:10px;">
+
+Email To: 
+
+</td>
+<td valign="top">
+<apex:inputCheckbox value="{!Soowner}"/>So Owner:{!expemail.SO_Owner__r.name}<br/>
+<apex:inputCheckbox value="{!exporder}"/>Expedites Orders
+
+</td>
+<td style="padding-left:10px;">
+ <apex:repeat value="{!wrapexpemail}" var="c" id="table">
+              
+                      <!-- This is our selected Boolean property in our wrapper class -->
+                      <apex:inputCheckbox value="{!c.isselected}"/>
+                  
+                                <apex:outputtext value="{!c.oppteam}"/><br/>
+                                
+             
+
+</apex:repeat></td>
+<td style="padding-left:10px;">
+ <apex:repeat value="{!wrapexpemail2}" var="c" id="table1">
+              
+                      <!-- This is our selected Boolean property in our wrapper class -->
+                      <apex:inputCheckbox value="{!c.isselected}"/>
+                  
+                                <apex:outputtext value="{!c.oppteam}"/><br/>
+                                
+             
+
+</apex:repeat></td>
+</tr>
+</table>
+<table><tr><td valign="top">Email CC: </td>
+<td>
+<apex:inputtextarea value="{!emailcc}" style="width:711px;height:68px;" id="ccemail"/>
+</td>
+<td valign="top"><img src="/s.gif" alt="Account Name Lookup (New Window)" class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" 
+onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';" 
+title="Account Name Lookup (New Window)" onclick="openDocumentPopup();"></img></td>
+</tr></table>
+</apex:pageBlock>
+<div style="padding-top:10px;padding-bottom:5px;font-size:14px;">
+Email Details
+</div>
+<apex:pageBlock >
+<table><tr>
+<td style="padding-right:10px;">Email Subject</td><td>
+<apex:inputField value="{!exemail.Email_Subject__c}" style="width:900px;"/></td></tr>
+<tr>
+<td valign="top" style="padding-right:10px;">Email Body</td><td>
+<apex:inputField value="{!exemail.Email_Body__c}" style="width:900px;height:207px;" /></td>
+</tr></table>
+</apex:pageBlock>
+<div align="center">
+<span style="padding-right:10px;">
+<apex:commandLink action="{!send}">
+<input type="button" value="Send Without Attachment"/>
+
+<apex:param assignTo="{!checkattachment}" value="False" name="check"/>
+</apex:commandLink>
+</span>
+<span style="padding-right:10px;">
+
+<apex:commandLink action="{!send}">
+<input type="button" value="Send With Attachment"/>
+
+<apex:param assignTo="{!checkattachment}" value="True" name="check"/>
+</apex:commandLink>
+</span>
+
+
+<apex:commandLink action="{!cancel}">
+<input type="button" value="Cancel"/>
+</apex:commandLink></div>
+</apex:outputPanel>
+
+<apex:outputpanel rendered="{!detailexpemail}">
+
+<apex:sectionHeader title="Expedite Request Email"/>
+<apex:commandLink style="text-decoration:none;font-color:blue;padding-left:35px;"  value="<<Back To Expedite Request" action="{!backtoexpedite}"/>
+<div align="center">
+<span style="padding-right:10px;">
+<apex:commandButton style="width:70px" value="Reply" action="{!reply}"/></span>
+<apex:commandButton style="width:70px" value="Reply All" action="{!replyall}"/>
+</div>
+
+
+
+
+<div style="padding-top:10px;padding-bottom:5px;font-size:14px;">
+Email Details
+</div>
+<apex:pageBlock >
+<table>
+<tr>
+<td width="5%" style="padding-right:10px;">Email Type</td>
+<td width="95%"> {!InoutBound}</td>
+</tr>
+<tr>
+<td width="5%" valign="top" style="padding-right:10px;">
+
+Email To: 
+
+</td>
+
+<td width="95%" style="padding-left:10px;">
+<apex:outputfield value="{!exemailold.Email_To__c}"/>
+ </td>
+<td style="padding-left:10px;">
+ </td>
+</tr>
+<tr>
+<td width="5%" style="padding-right:10px;">Email From</td>
+<td width="95%"><apex:outputField value="{!exemailold.Email_From__c}"/></td>
+</tr>
+<tr><td valign="top" width="20%">Email CC: </td>
+<td>
+<apex:outputfield value="{!exemailold.Email_cc__c}" />
+</td>
+<td valign="top"></td>
+</tr>
+<tr>
+<td style="padding-right:10px;" width="5%">Email Subject</td><td width="95%">
+<apex:outputField value="{!exemailold.Email_Subject__c}" /></td></tr>
+<tr>
+<td width="5%" valign="top" style="padding-right:10px;">Email Body</td><td width="95%">
+<apex:outputField value="{!exemailold.Email_Body__c}" /></td>
+</tr></table>
+</apex:pageBlock>
+
+<apex:pageBlock title="Attachments" >
+<apex:pageBlockTable value="{!attachments}" var="c"> 
+<apex:column headerValue="Action" >
+      <apex:commandLink value="Edit" action="{!Editatt}" > 
+      <apex:param name="eid" value="{!c.id}" assignto="{!attid}"/>
+      </apex:commandlink>
+       &nbsp;&nbsp;|&nbsp;&nbsp;
+       <apex:commandLink value="View" target="_blank" action="{!viewatt}"> 
+      <apex:param name="vid" value="{!c.id}" assignto="{!attid}"/>
+      </apex:commandlink>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <apex:commandLink value="Delete" action="{!deleteatt}">
+      <apex:param name="did" value="{!c.id}" assignto="{!attid}"/>
+      </apex:commandLink></apex:column>
+      
+      <apex:column value="{!c.Name}" headervalue="Title"/>
+      <apex:column value="{!c.LastModifiedDate}" headervalue="Last Modified"/>
+      <apex:column value="{!c.CreatedById}"/>
+
+
+</apex:pageBlockTable>
+
+
+
+</apex:pageBlock>
+
+<div align="center">
+<span style="padding-right:10px;">
+<apex:commandButton style="width:70px" value="Reply" action="{!reply}"/></span>
+<apex:commandButton style="width:70px" value="Reply All" action="{!replyall}"/>
+</div>
+
+</apex:outputpanel>
+
+
+
+<!-- resend part--------- -->
+
+<apex:outputPanel rendered="{!edtiexpemail}">
+
+<apex:sectionHeader title="Expedite Request Email"/>
+<apex:commandLink style="text-decoration:none;font-color:blue;padding-left:35px;"  value="<<Back To Expedite Request" action="{!backtoexpedite}"/>
+<div align="center">
+<span style="padding-right:10px;">
+<apex:commandLink action="{!Resend}">
+<input type="button" value="Send Without Attachment"/>
+
+<apex:param assignTo="{!checkattachment}" value="False" name="check"/>
+</apex:commandLink>
+</span>
+<span style="padding-right:10px;">
+
+<apex:commandLink action="{!Resend}">
+<input type="button" value="Send With Attachment"/>
+
+<apex:param assignTo="{!checkattachment}" value="True" name="check"/>
+</apex:commandLink>
+</span>
+
+<apex:commandLink action="{!cancel}">
+<input type="button" value="Cancel"/>
+</apex:commandLink>
+</div>
+
+
+
+
+<div style="padding-top:10px;padding-bottom:5px;font-size:14px;">
+Email Details
+</div>
+<apex:pageBlock id="pb2">
+<table>
+
+<tr>
+<td valign="top" >
+
+Email To: 
+
+</td>
+
+<td valign="top" >
+<apex:Inputfield value="{!exemailold.Email_To__c}" style="width:900px;height:68px;" id="emailto"/>
+ </td>
+ <td valign="top" style="padding-left:0px;">
+
+<img src="/s.gif" alt="Account Name Lookup (New Window)" class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" 
+onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';" 
+title="Account Name Lookup (New Window)" onclick="openDocumentPopup();"></img></td>
+</tr>
+
+<tr><td valign="top">Email CC: </td>
+<td>
+<apex:Inputfield value="{!exemailold.Email_cc__c}" style="width:900px;height:68px;" id="reccto"/>
+</td>
+<td valign="top"><img src="/s.gif" alt="Account Name Lookup (New Window)" class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" 
+onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';" 
+title="Account Name Lookup (New Window)" onclick="openDocumentPopup1();"></img></td>
+</tr>
+<tr>
+<td style="padding-right:10px;">Email Subject</td><td>
+<apex:inputField value="{!exemailold.Email_Subject__c}" style="width:900px;"/></td></tr>
+<tr>
+<td valign="top" style="padding-right:10px;">Email Body</td><td>
+<apex:inputField value="{!exemailold.Email_Body__c}" style="width:900px;height:207px;" /></td>
+</tr></table>
+</apex:pageBlock>
+<div align="center">
+<span style="padding-right:10px;">
+<apex:commandLink action="{!Resend}">
+<input type="button" value="Send Without Attachment"/>
+
+<apex:param assignTo="{!checkattachment}" value="False" name="check"/>
+</apex:commandLink>
+</span>
+<span style="padding-right:10px;">
+
+<apex:commandLink action="{!Resend}">
+<input type="button" value="Send With Attachment"/>
+
+<apex:param assignTo="{!checkattachment}" value="True" name="check"/>
+</apex:commandLink>
+</span>
+
+<apex:commandLink action="{!cancel}">
+<input type="button" value="Cancel"/>
+</apex:commandLink>
+</div>
+
+
+
+</apex:outputPanel>
+
+
+<apex:outputPanel rendered="{!attachmentexp}" >
+<apex:sectionHeader title="Expedite Request Email"/>
+<div align="center">
+<span style="padding-right:10px;">
+<apex:commandLink action="{!sendwithattachment}">
+<input type="button" value="Send"/>
+
+
+</apex:commandLink>
+</span>
+
+
+<apex:commandLink action="{!cancel}">
+<input type="button" value="Cancel"/>
+</apex:commandLink>
+</div>
+Attachments
+<apex:pageBlock >
+
+          <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" ></apex:inputFile> <br/><br/>
+    
+          <apex:inputFile value="{!attachment2.body}" filename="{!attachment2.name}" ></apex:inputFile> <br/><br/>
+          
+         
+          <apex:inputFile value="{!attachment3.body}" filename="{!attachment3.name}" ></apex:inputFile> <br/><br/>
+          
+          
+          <apex:inputFile value="{!attachment4.body}" filename="{!attachment4.name}" ></apex:inputFile> <br/><br/>
+          
+         
+          <apex:inputFile value="{!attachment5.body}" filename="{!attachment5.name}" ></apex:inputFile> 
+          </apex:pageBlock>        
+</apex:outputPanel>
+
+</apex:form>
+<apex:outputPanel rendered="{!attachmentexp}">
+</apex:outputPanel>
+<!--
+<apex:relatedList id="noteslist" list="CombinedAttachments" subject="{!exeemailattach.id}" /> -->
+</apex:page>

@@ -1,0 +1,17 @@
+<apex:page standardController="Category_Notes__c" extensions="KBArticleDisplayController" sidebar="true" >
+<apex:outputPanel >
+    <apex:pageBlock title="KB Articles">
+       
+        <apex:pageBlockSection columns="1">
+
+            <apex:pageBlockTable value="{!kbTypes}" var="kbt">			   
+                <apex:column headerValue="Title">
+                    <apex:outputLink value="/knowledge/publishing/articleOnlineDetail.apexp?id={!kbt.kbId}" target="_blank">{!kbt.title}</apex:outputLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+
+    </apex:pageBlock>
+    </apex:outputPanel>
+
+</apex:page>

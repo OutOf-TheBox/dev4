@@ -1,0 +1,60 @@
+<apex:page standardController="RMAv2__c">
+  <apex:outputText value="*** WARNING  WARNING  WARNING (TSE - include this warning block at the top of the order data email!) <br/>*** <br/>*** This RMA is for a non-Brighton/1.4 SPECIAL-BUILD controller! <br/>*** <br/>"
+                   rendered="{!CONTAINS(RMAv2__c.rmaPart__c, 'CONT-SPEC')}"
+                   escape="false"/>
+  <apex:outputText value="*** Be sure and note the Nimble OS Version and Configuration Details <br/>"
+                   rendered="{!CONTAINS(RMAv2__c.rmaPart__c, 'CONT-SPEC')}"
+                   escape="false"/>
+  <apex:outputText value="*** to determine what kind of controller to build and ship! <br/>*** <br/>*** WARNING  WARNING  WARNING <br/><br/>"
+                   rendered="{!CONTAINS(RMAv2__c.rmaPart__c, 'CONT-SPEC')}"
+                   escape="false"/>
+  <apex:outputText value="RMA Number: {!RMAv2__c.Name} "/><br/>
+  <apex:outputText value="Order Type: {!RMAv2__c.rmaOrderType__c} "/><br/>
+  <apex:outputText value="Order Provider: {!RMAv2__c.rmaOutgoingShipmentOrderProvider__c} "/><br/>
+  <apex:outputText value="Order Depot: {!RMAv2__c.rmaOutgoingShipmentOrderDepot__c} "/><br/>
+  <apex:outputText value="Date/Time Opened: {!RMAv2__c.rmaDateTimeOpened__c} "/><br/>
+  <apex:outputText value="FA Required: {!RMAv2__c.rmaFaRequired__c} "/><br/>
+  <apex:outputText value="Nimble OS Version: {!RMAv2__c.rmaNimbleOsVersion__c} <br/>"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == 'Nimble', true, false)}"
+                   escape="false"/>
+  <apex:outputText value="Part: {!RMAv2__c.rmaPart__c} "/><br/>
+  <apex:outputText value="Part Number: {!RMAv2__c.rmaPartNumber__c} "/><br/>
+  <apex:outputText value="Case Asset Serial Number: {!RMAv2__c.rmaCaseNumber__r.Asset.Name} <br/>"
+                   rendered="{!IF(RMAv2__c.rmaType__c == 'System/part return', true, false)}"
+                   escape="false"/>
+  <apex:outputText value="Disk Shelf Serial Number (if item being returned is a disk shelf): {!RMAv2__c.rmaDiskShelfAsset__r.Name} <br/>"
+                   rendered="{!IF(RMAv2__c.rmaType__c == 'System/part return', true, false)}"
+                   escape="false"/>
+  <apex:outputText value="Case Asset SO Number: {!RMAv2__c.rmaCaseNumber__r.Asset.Sales_Order__c} <br/>"
+                   rendered="{!IF(RMAv2__c.rmaType__c == 'System/part return', true, false)}"
+                   escape="false"/>
+  <apex:outputText value="Quantity: {!RMAv2__c.rmaQuantity__c} "/><br/>
+  <apex:outputText value="Shipment Account Name: {!RMAv2__c.rmaShipmentAccountName__c} "/><br/>
+  <apex:outputText value="Shipment Street 1: {!RMAv2__c.rmaShipmentStreet1__c} "/><br/>
+  <apex:outputText value="Shipment Street 2: {!RMAv2__c.rmaShipmentStreet2__c} "/><br/>
+  <apex:outputText value="Shipment City: {!RMAv2__c.rmaShipmentCity__c} "/><br/>
+  <apex:outputText value="Shipment State: {!RMAv2__c.rmaShipmentState__c} "/><br/>
+  <apex:outputText value="Shipment Postal Code: {!RMAv2__c.rmaShipmentPostalCode__c} "/><br/>
+  <apex:outputText value="Shipment Country: {!RMAv2__c.rmaShipmentCountry__c} "/><br/>
+  <apex:outputText value="Shipment Attn: {!RMAv2__c.rmaShipmentAttn__c} "/><br/>
+  <apex:outputText value="Shipment Phone: {!RMAv2__c.rmaShipmentPhone__c} "/><br/>
+  <apex:outputText value="Shipment Email: {!RMAv2__c.rmaShipmentEmail__c} "/><br/>
+  <apex:outputText value="Shipment SLA: {!RMAv2__c.rmaShipmentSla__c} "/><br/>
+  <apex:outputText value="Reason: {!RMAv2__c.rmaReason__c} <br/>"
+                   rendered="{!IF(RMAv2__c.rmaType__c == 'System/part return', true, false)}"
+                   escape="false"/>
+  <apex:outputText value="Detailed Reason: <br/>"
+                   rendered="{!IF(RMAv2__c.rmaType__c == 'System/part return', true, false)}"
+                   escape="false"/>
+  <apex:outputField value="{!RMAv2__c.rmaDetailedReason__c} "
+                    rendered="{!IF(RMAv2__c.rmaType__c == 'System/part return', true, false)}"/>
+  <apex:outputText value="<br/>"
+                   rendered="{!IF(RMAv2__c.rmaType__c == 'System/part return', true, false)}"
+                   escape="false"/>
+  <apex:outputText value="Configuration Details: <br/>"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == 'Nimble', true, false)}"
+                   escape="false"/>
+  <apex:outputField value="{!RMAv2__c.rmaConfigurationDetails__c} "
+                    rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == 'Nimble', true, false)}"/>
+  <br/>
+</apex:page>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>InDevelopment</deploymentStatus>
+    <description>This is an Escalation object with the following design attributes:
+
+- An Escalation object has a Case as a parent.
+- A Case can have multiple Escalation objects as children.
+- Each instance of an Escalation object represents a separate escalation of a Case.
+- Each Escalation object has its own escalated and de-escalated dates.
+- A Case could be escalated multiple times (such as for a problem that reoccurs), and therefore would have multiple Escalation objects.</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Case_Number__c</fullName>
+        <description>This is the Case Number of the parent Case for this Escalation object.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the Case Number of the parent Case for this Escalation object.</inlineHelpText>
+        <label>Case Number</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Escalations</relationshipLabel>
+        <relationshipName>Escalations</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Created_Timestamp__c</fullName>
+        <defaultValue>NOW()</defaultValue>
+        <externalId>false</externalId>
+        <label>Created Timestamp</label>
+        <required>true</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>De_escalated_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>De-escalated By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Escalations</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>De_escalated_Timestamp__c</fullName>
+        <defaultValue>$System.OriginDateTime</defaultValue>
+        <externalId>false</externalId>
+        <label>De-escalated Timestamp</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>De_escalation_Criteria__c</fullName>
+        <externalId>false</externalId>
+        <label>De-escalation Criteria</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reason_Escalated__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason Escalated</label>
+        <required>true</required>
+        <type>TextArea</type>
+    </fields>
+    <label>Escalation</label>
+    <nameField>
+        <displayFormat>ESC-{00000}</displayFormat>
+        <label>Escalation Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Escalations</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
+</CustomObject>

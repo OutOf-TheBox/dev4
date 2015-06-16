@@ -1,0 +1,34 @@
+<apex:component access="global" controller="ApprovalQuoteLineController">
+    <apex:attribute name="qid" assignTo="{!quoteId}" type="Id" description="Quote ID"/>
+    <apex:attribute name="showMargin" type="Boolean" description="Show margin flag"/>
+    
+    <table cellspacing="0" border="1" cellpadding="5px">
+        <tr>
+            <td>Quote Line</td>
+            <td>Product</td>
+            <td>Serial Number</td>
+            <td>Quantity</td>
+            <td>Sale Price</td>
+            <td>Total</td>
+            <td>Discount %</td>
+            <apex:outputPanel layout="none" rendered="{!showMargin}">
+            <td>Adjusted Margin %</td>
+            </apex:outputPanel>
+        </tr>
+        <apex:repeat var="line" value="{!lines}">
+            <tr>
+                <td><apex:outputText value="{!line.Name}"/></td>
+                <td><apex:outputText value="{!line.SBQQ__ProductName__c}"/></td>
+                <td><apex:outputText value="{!line.Serial_Number_Calculated__c}"/></td>
+                <td><apex:outputField value="{!line.SBQQ__Quantity__c}"/></td>
+                <td><apex:outputField value="{!line.SBQQ__NetPrice__c}"/></td>
+                <td><apex:outputField value="{!line.SBQQ__NetTotal__c}"/></td>
+                <td><apex:outputField value="{!line.Global_Discount_Percent__c}"/></td>
+                <apex:outputPanel layout="none" rendered="{!showMargin}">
+                    <td><apex:outputField value="{!line.Adjusted_Margin_Percent__c}"/></td>
+                </apex:outputPanel>
+            </tr>
+        </apex:repeat>
+    </table>
+    
+</apex:component>

@@ -1,0 +1,3171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Allow_selecting_different_gift__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box to allow selecting a Gift different from the Preferred Gift.</inlineHelpText>
+        <label>Allow selecting different gift</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Amount_Hardware__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Amount_Hardware__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Amount: Hardware</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Amount_Storage_Arrays__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Amount_Storage_Arrays__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Amount: Storage Arrays</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Appointments_Completed_By__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Appointments_Completed_By__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Appointments Completed By</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>CH_Partner_Certification_Level__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Opportunity__r.Reseller_Account__r.CH_Partner_Certification_Level__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CH Partner Certification Level</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CH_Reg_Submit_Date_End__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.CH_Reg_Submit_Date_End__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CH Reg Submit Date (End)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>CH_Reg_Submit_Date_Start__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.CH_Reg_Submit_Date_Start__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CH Reg Submit Date (Start)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>CH_Reg_Submit_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>CH Registration Submission Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Channel_Deal_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Channel_Deal_Type__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Channel Deal Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Channel_Deal_Type_ref__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(SPIFF_Reference__r.Channel_Deal_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Channel Deal Type (ref)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Claim_Processed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Claim Processed</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Claim_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Claim Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Sent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Disqualified</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Duplicate (Notified)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Claims_Accepted_Through__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Claims_Accepted_Through__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Claims Accepted Through</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Confirmation_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Confirmation Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Country__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Account.BillingCountry</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Opportunity Account Billing Country</inlineHelpText>
+        <label>Country</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Create_Date_shadow_SFDC_TEST__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedDate</formula>
+        <label>Create Date (shadow) SFDC TEST</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Create_Date_shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE( CreatedDate )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Create Date (shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Currency_Code_Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Opportunity__r.CurrencyIsoCode )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Currency Code (Opportunity)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Currency_Code_SPIFF_Claim__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( CurrencyIsoCode )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Currency Code (SPIFF Claim)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Currency_Code_SPIFF_Reference__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Currency_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Currency Code (SPIFF Reference)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Customer_Name_webform__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Name (webform)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Data_Maintenance_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Maintenance Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_Approved__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Approved</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Disqualified__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Disqualified</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Days_from_Reg_Date_to_FMQ_Date_1__c</fullName>
+        <externalId>false</externalId>
+        <formula>Days_from_Reg_Date_to_Frst_Mtg_Qual_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days from Reg Date to FMQ Date - 1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Days_from_Reg_Date_to_Frst_Mtg_Qual_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Days_from_Reg_Date_to_Frst_Mtg_Qual_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days from Reg Date to Frst Mtg Qual Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Deal_Registration_ID_webform__c</fullName>
+        <externalId>false</externalId>
+        <label>Deal Registration ID (webform)</label>
+        <length>15</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Duplicate_Info__c</fullName>
+        <externalId>false</externalId>
+        <label>Duplicate Info</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Same DRID Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Same DRID Found</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>N/A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Duplicate_Notification_Sent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Duplicate Notification Sent</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Eval_All_Pass_Rev_1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.Name = &quot;Incentive Claim Form Rev-1&quot;, 
+    IF( Eval_Opportunity_Type__c +
+        Eval_Opportunity_Stage__c + 
+        Eval_Oppty_First_Mtg_Source__c + 
+        Eval_Reg_Submit_Date__c + 
+        Eval_First_Mtg_Qual_Date_range__c + 
+        Eval_Lead_Status__c +
+        Eval_First_Mtg_Qual_Date_max__c +
+        Eval_Claim_Submission_Date__c +
+        Eval_Channel_Deal_Type__c = 9, TRUE, FALSE), FALSE)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval All Pass Rev-1</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Eval_All_Pass_Rev_3__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.Name = &quot;Incentive Claim Form Rev-3&quot;, 
+IF( Eval_Opportunity_Type__c +
+Eval_Opportunity_Stage_1__c + 
+Eval_Oppty_First_Mtg_Source__c + 
+Eval_Reg_Submit_Date__c + 
+Eval_Lead_Status__c +
+Eval_Claim_Submission_Date__c +
+Eval_Oppty_Close_Date__c +
+Eval_Hardware_Amount__c +
+Eval_Channel_Deal_Type__c = 9, TRUE, FALSE), FALSE)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval All Pass Rev-3</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Eval_All_Pass_Rev_4__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.Name = &quot;Incentive Claim Form Rev-4&quot;, 
+IF( Eval_Opportunity_Type__c + 
+Eval_Opportunity_Stage_1__c + 
+Eval_Oppty_First_Mtg_Source__c + 
+Eval_Reg_Submit_Date__c + 
+Eval_Lead_Status__c + 
+Eval_Claim_Submission_Date__c + 
+Eval_Oppty_Close_Date__c + 
+Eval_Amount__c + 
+Eval_Channel_Deal_Type__c = 9, TRUE, FALSE), FALSE)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval All Pass Rev-4</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Eval_Amount1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Eval_Amount__c = 1, 
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Amount.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Amount</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Amount_shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_Amount__c = 1, &quot;Met&quot;, &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Amount (shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Channel_Deal_Type1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Eval_Channel_Deal_Type__c = 1, 
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Channel Deal Type.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Channel_Deal_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Channel Deal Type</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Claim_Submission_Date1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Eval_Claim_Submission_Date__c = 1, 
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Claim Submission Date.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Claim_Submission_Date_Shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_Claim_Submission_Date__c = 1, &quot;Met&quot;, &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Claim Submission Date (Shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Claim_Submission_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Claim Submission Date</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_First_Mtg_Qual_Date_Shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_First_Mtg_Qual_Date_range__c = 1, &quot;Met&quot;, &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval First Mtg Qual Date (Shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_First_Mtg_Qual_Date_max1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Eval_First_Mtg_Qual_Date_max__c = 1, 
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval First Mtg Qual Date (max).</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_First_Mtg_Qual_Date_max_Shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_First_Mtg_Qual_Date_max__c = 1, &quot;Met&quot;, &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval First Mtg Qual Date (max) (Shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_First_Mtg_Qual_Date_max__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval First Mtg Qual Date (max)</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_First_Mtg_Qual_Date_range1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Eval_First_Mtg_Qual_Date_range__c = 1, 
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval First Mtg Qual Date (range).</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_First_Mtg_Qual_Date_range__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval First Mtg Qual Date (range)</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Hardware_Amount1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Eval_Hardware_Amount__c = 1, 
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Hardware Amount.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Hardware_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Hardware Amount</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Hardware_Amount_shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_Hardware_Amount__c = 1, &quot;Met&quot;, &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Hardware Amount (shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Lead_Status1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Eval_Lead_Status__c = 1, 
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Lead Status.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Lead_Status_Shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_Lead_Status__c = 1, &quot;Met&quot;, &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Lead Status (Shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Lead_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Lead Status</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Opportunity_Stage1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Eval_Opportunity_Stage__c = 1,
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+ 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Opportunity Stage.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Opportunity_Stage_1__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Opportunity Stage (1)</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Opportunity_Stage_1_shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_Opportunity_Stage_1__c = 1, &quot;Met&quot;, &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Opportunity Stage (1) (shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Opportunity_Stage_1a__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Eval_Opportunity_Stage_1__c = 1,
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Opportunity Stage (1).</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Opportunity_Stage_Shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_Opportunity_Stage__c = 1, &quot;Met&quot;, &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Opportunity Stage (Shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Opportunity_Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Opportunity Stage</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Opportunity_Type1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Eval_Opportunity_Type__c  = 1, 
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Opportunity Type.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Opportunity_Type_Shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_Opportunity_Type__c = 1 , &quot;Met&quot;, &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Opportunity Type (Shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Opportunity_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Opportunity Type</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Opportunity_Type_wip__c</fullName>
+        <externalId>false</externalId>
+        <formula>OR(Oppty_Type__c = Opportunity_Type_Ref__c,Oppty_Type__c = Opportunity_Type_2_Ref__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Opportunity Type (wip)</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Eval_Oppty_Close_Date1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Eval_Oppty_Close_Date__c = 1, 
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Oppty Close Date.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Oppty_Close_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Oppty Close Date</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Oppty_Close_Date_shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_Oppty_Close_Date__c = 1, &quot;Met&quot;, &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Oppty Close Date (shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Oppty_First_Mtg_Source1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Eval_Oppty_First_Mtg_Source__c = 1, 
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Oppty First Mtg Source.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Oppty_First_Mtg_Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Oppty First Mtg Source</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Reg_Submit_Date1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Eval_Reg_Submit_Date__c = 1, 
+IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;), 
+IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;) 
+
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Reg Submit Date.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Reg_Submit_Date_Shadow__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_Reg_Submit_Date__c = 1, &quot;Met&quot;, &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Reg Submit Date (Shadow)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Reg_Submit_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Eval Reg Submit Date</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Eval_Source_is_Channel_DealType_FMS__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( Eval_Channel_Deal_Type__c = 1, 
+    IF ( Eval_Oppty_First_Mtg_Source__c = 1, &quot;Met&quot;, &quot;Not Met&quot;)
+    , &quot;Not Met&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eval Source is Channel (DealType&amp;FMS)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Evaluation_Result1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Evaluation_Result__c = &quot;Approve&quot;, 
+    IMAGE( SPIFF_Reference__r.Image_Eval_Met__c , &quot;Met&quot;),
+    IF( Evaluation_Result__c = &quot;Disqualify&quot;, 
+        IMAGE( SPIFF_Reference__r.Image_Eval_Not_Met__c , &quot;Not Met&quot;),
+        IMAGE(  SPIFF_Reference__r.Image_Eval_WIP__c, &quot;WIP&quot;) 
+      )
+  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Evaluation Result.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Evaluation_Result__c</fullName>
+        <externalId>false</externalId>
+        <label>Evaluation Result</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Evaluation_Result_old__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(Duplicate_Info__c,
+     &quot;N/A&quot;, CASE(Internal_Status__c, 
+                 &quot;Submitted&quot;, &quot;Pending&quot;, 
+                 &quot;Resolved&quot;, IF(Eval_All_Pass_Rev_1__c = TRUE, &quot;Approve&quot;, 
+                                IF(Eval_All_Pass_Rev_3__c = TRUE, &quot;Approve&quot;,
+                             &quot;Disqualify&quot;)), 
+                 IF(Lead_Status__c &lt;&gt; Lead_Status_Ref__c, &quot;Disqualify&quot;, 
+                    &quot;Review - Unresolved&quot;)
+                 ),
+     &quot;Review - Duplicate&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Evaluation Result (old)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FMSR__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( SPIFF_Reference__r.FMS__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>First Meeting Source (Ref)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FMS__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Opportunity__r.First_Meeting_Source__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>First Meeting Source</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>First_Meeting_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.First_Meeting_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>First Meeting Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>First_Meeting_Qual_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.First_Meeting_Qualification_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>First Meeting Qualification Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Fulfillment_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Fulfillment Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Fulfillment_Vendor__c</fullName>
+        <externalId>false</externalId>
+        <label>Fulfillment Vendor</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gift_Card_Number_AE__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Gift Card Number - AE</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Gift_Card_Number_SE__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Gift Card Number - SE</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Gift_Card_Number__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Gift Card Number</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Gift_Card_URL_AE__c</fullName>
+        <externalId>false</externalId>
+        <label>Gift Card URL - AE</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Gift_Card_URL_SE__c</fullName>
+        <externalId>false</externalId>
+        <label>Gift Card URL - SE</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Gift_Card_URL__c</fullName>
+        <externalId>false</externalId>
+        <label>Gift Card URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Gift_Currency_webform__c</fullName>
+        <externalId>false</externalId>
+        <label>Gift Currency (webform)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gift_Delivery__c</fullName>
+        <externalId>false</externalId>
+        <label>Gift Delivery</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tangible</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Via Reseller Payroll</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fulfillment Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Gift_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Gift Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Gift__c</fullName>
+        <externalId>false</externalId>
+        <label>Gift</label>
+        <picklist>
+            <controllingField>Gift_Delivery__c</controllingField>
+            <picklistValues>
+                <fullName>Amazon CAD 400 Gift Card</fullName>
+                <controllingFieldValues>Email</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amazon EUR 300 Gift Card</fullName>
+                <controllingFieldValues>Email</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amazon EUR 35 Gift Card</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amazon EUR 70 Gift Card</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amazon GBP 270 Gift Card</fullName>
+                <controllingFieldValues>Email</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amazon GBP 30 Gift Card</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amazon GBP 60 Gift Card</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amazon USD 100 Gift Card</fullName>
+                <controllingFieldValues>Email</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amazon USD 50 Gift Card</fullName>
+                <controllingFieldValues>Email</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>American Airlines E-gift card (USD 200)</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>American Airlines e-Gift Card (USD 350)</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>American Airlines USD 400 Gift Card</fullName>
+                <controllingFieldValues>Tangible</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Best Buy E-gift card (USD 200)</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cash USD 200</fullName>
+                <controllingFieldValues>Via Reseller Payroll</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cash USD 400</fullName>
+                <controllingFieldValues>Via Reseller Payroll</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Darden Restaurants E-gift card (USD 200)</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>iPad Mini 16GB Wi-Fi</fullName>
+                <controllingFieldValues>Tangible</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Payroll cash disbursement (USD 200)</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <controllingFieldValues>Via Reseller Payroll</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Payroll cash disbursement  (USD 350)</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <controllingFieldValues>Via Reseller Payroll</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Payroll cash disbursement (USD 400)</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Southwest Airlines e-Gift Card (USD 350)</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visa e-Gift Card (USD 350)</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visa e-Gift Card USD 1,000</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visa e-Gift Card USD 200</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visa e-Gift Card USD 400</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visa e-Gift Card USD 500</fullName>
+                <controllingFieldValues>Fulfillment Vendor</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visa Pre-paid AUD 400 Gift Card or Equivalent</fullName>
+                <controllingFieldValues>Email</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Internal_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Internal Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DRID not found</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unconverted Lead (no Oppty)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Converted Lead (no Oppty)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Resolved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Lead_Company__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead Company</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lead_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead ID</label>
+        <length>15</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lead_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lead_Status_Ref__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( SPIFF_Reference__r.Lead_Status__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Lead Status (Ref)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lead_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Manual_Update_DRID__c</fullName>
+        <externalId>false</externalId>
+        <label>Manual Update - DRID</label>
+        <length>15</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Manual_Update_Lead_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Manual Update - Lead ID</label>
+        <length>15</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Manual_Update__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Manual Update</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Amount_Ref__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Opportunity_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Amount (Ref)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Amount</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Close_Date_Ref__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Opportunity_Close_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Close Date (Ref)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Close_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.CloseDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Close Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Owner__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Owner.FirstName &amp; &quot; &quot; &amp; Opportunity__r.Owner.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Stage_Minimum__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Opportunity_Stage_Minimum__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Stage (Minimum)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Stage_short__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.OSS__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Stage (short)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Type_2_Ref__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(SPIFF_Reference__r.Opportunity_Type_2__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Type (2) (Ref)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Type_Ref__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(SPIFF_Reference__r.Opportunity_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Type (1) (Ref)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Updated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>For system functionality.</inlineHelpText>
+        <label>Opportunity Updated</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>SPIFF Claims</relationshipLabel>
+        <relationshipName>SPIFF_Claims</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>true</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Oppty_Stage__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Opportunity__r.StageName )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Stage</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Oppty_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Opportunity__r.Type )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Override_Evaluation_Result_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Override Evaluation Result - Reason</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Override_Evaluation_Result__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Override Evaluation Result</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Payout_Amount_Range_0__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Payout_Amount_Range_0__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Payout Amount (Range 0)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Payout_Amount_Range_1__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Payout_Amount_Range_1__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Payout Amount (Range 1)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Payout_Amount_Range_2__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Payout_Amount_Range_2__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Payout Amount (Range 2)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Payout_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( OR(RecordType.Name = &quot;Incentive Claim Form Rev-1&quot;, RecordType.Name = &quot;Incentive Claim Form Rev-4&quot;),
+IF( ISPICKVAL(Internal_Status__c , &quot;Resolved&quot;),
+IF( Opportunity_Amount__c &gt;= Opportunity_Amount_Ref__c, Payout_Amount_over__c, Payout_Amount_under__c),
+0),
+
+IF( RecordType.Name = &quot;Incentive Claim Form Rev-3&quot;,
+IF( ISPICKVAL(Internal_Status__c , &quot;Resolved&quot;),
+IF(Amount_Hardware__c &gt;= 150000, 
+    IF(Amount_Hardware__c&gt;= 250000,
+       Payout_Amount_Range_2__c,
+       Payout_Amount_Range_1__c),
+    0
+),
+0),
+0)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Payout Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Payout_Amount_over__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Payout_Amount_over__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Payout Amount (over)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Payout_Amount_under__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.Payout_Amount_under__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Payout Amount (under)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Preferred_Gift__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Relevant only for specific SPIFF Programs.</inlineHelpText>
+        <label>Preferred Gift</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Visa E-gift card (USD 200)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>American Airlines E-gift card (USD 200)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Best Buy E-gift card (USD 200)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Darden Restaurants E-gift card (USD 200)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Payroll cash disbursement  (USD 200)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visa E-gift card (USD 400)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>American Airlines E-gift card (USD 400)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Payroll cash disbursement (USD 400)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>American Airlines e-Gift Card (USD 350)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Southwest Airlines e-Gift Card (USD 350)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Record_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Id)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reference_Updated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>For system functionality.</inlineHelpText>
+        <label>Reference Updated</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reseller_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Reseller Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>SPIFF Claims (Reseller Account)</relationshipLabel>
+        <relationshipName>SPIFF_Claims</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reseller_Account_f__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Reseller_Account__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Reseller Account (f)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reseller_Company_webform__c</fullName>
+        <externalId>false</externalId>
+        <label>Reseller Company (webform)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reseller_Rep_Email_webform__c</fullName>
+        <externalId>false</externalId>
+        <label>Reseller Rep Email (webform)</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reseller_Rep_Name_webform__c</fullName>
+        <externalId>false</externalId>
+        <label>Reseller Rep Name (webform)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reseller_SE_Email_webform__c</fullName>
+        <externalId>false</externalId>
+        <label>Reseller SE Email (webform)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reseller_SE_Name_webform__c</fullName>
+        <externalId>false</externalId>
+        <label>Reseller SE Name (webform)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SPIFF_Program_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.SPIFF_Program_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SPIFF Program Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SPIFF_Reference_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(SPIFF_Reference__r.Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SPIFF Reference Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SPIFF_Reference__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>SPIFF Reference</label>
+        <referenceTo>SPFRef__c</referenceTo>
+        <relationshipLabel>SPIFF Claims</relationshipLabel>
+        <relationshipName>SPIFF_Claims</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sales_Area__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Opportunity__r.Sales_Area__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sales Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sales_Region__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Opportunity__r.Sales_Region__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sales Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Submission_Form_URL__c</fullName>
+        <externalId>false</externalId>
+        <label>Submission Form URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Test_Diff_First_Mtg_Date_vs_Qual__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( First_Meeting_Date__c &lt;  First_Meeting_Qual_Date__c , TRUE, FALSE)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Test Diff First Mtg Date vs Qual</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Test_num_days__c</fullName>
+        <externalId>false</externalId>
+        <formula>First_Meeting_Date__c -  CH_Reg_Submit_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Test num days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tickle__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Tickle</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Update_SPIFF_Claim__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Update SPIFF Claim</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>delme_Eval_Oppty_Owner_del__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( delme_Opportunity_Owner_del__c =  delme_Opportunity_Owner_ref_del__c , TRUE, FALSE)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>delme Eval Oppty Owner</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>delme_Opportunity_Owner_del__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Owner.FirstName &amp; &quot; &quot; &amp;  Opportunity__r.Owner.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>delme Opportunity Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>delme_Opportunity_Owner_ref_del__c</fullName>
+        <externalId>false</externalId>
+        <formula>SPIFF_Reference__r.delme_Opportunity_Owner__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>delme Opportunity Owner (ref)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>delme_Test_Eval_Oppty_Owner__c</fullName>
+        <externalId>false</externalId>
+        <label>delme Test Eval Oppty Owner</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>SPIFF Claim</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Sales_Area__c</columns>
+        <columns>NAME</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>SPIFF_Program_Name__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Evaluation_Result_old__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Processed_SPIFF_Claims</fullName>
+        <columns>Sales_Area__c</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <columns>NAME</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Reseller_Rep_Email_webform__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Override_Evaluation_Result__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Claim_Processed__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>All Processed SPIFF Claims</label>
+    </listViews>
+    <listViews>
+        <fullName>All_SPIFF_Claims</fullName>
+        <columns>SPIFF_Program_Name__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Sales_Area__c</columns>
+        <columns>NAME</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Override_Evaluation_Result__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All SPIFF Claims</label>
+    </listViews>
+    <listViews>
+        <fullName>Appointments_Q3FY15_G5000</fullName>
+        <columns>SPIFF_Program_Name__c</columns>
+        <columns>Sales_Area__c</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <columns>NAME</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Claim_Status__c</field>
+            <operation>contains</operation>
+            <value>Submitted,Pending,Approved,Gift Sent,Disqualified,Duplicate (Notified),Dup</value>
+        </filters>
+        <filters>
+            <field>SPIFF_Program_Name__c</field>
+            <operation>contains</operation>
+            <value>G5000</value>
+        </filters>
+        <label>Appointments Q3FY15 G5000</label>
+    </listViews>
+    <listViews>
+        <fullName>Avnet</fullName>
+        <columns>NAME</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Claim_Processed__c</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>SPIFF_Program_Name__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SPIFF_Program_Name__c</field>
+            <operation>contains</operation>
+            <value>avnet</value>
+        </filters>
+        <label>Avnet</label>
+    </listViews>
+    <listViews>
+        <fullName>Claims_Needing_Processing</fullName>
+        <columns>SPIFF_Program_Name__c</columns>
+        <columns>Sales_Area__c</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <columns>NAME</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Preferred_Gift__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Opportunity__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Claim_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Gift Sent,Disqualified,Duplicate (Notified),Duplicate</value>
+        </filters>
+        <label>Claims Needing Processing</label>
+    </listViews>
+    <listViews>
+        <fullName>Claims_Needing_Processing_Large_Deal</fullName>
+        <columns>SPIFF_Program_Name__c</columns>
+        <columns>Sales_Area__c</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <columns>NAME</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Claim_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Gift Sent,Disqualified,Duplicate (Notified),Duplicate</value>
+        </filters>
+        <filters>
+            <field>SPIFF_Program_Name__c</field>
+            <operation>contains</operation>
+            <value>Large Deal</value>
+        </filters>
+        <label>Claims Needing Processing - Large Deal</label>
+    </listViews>
+    <listViews>
+        <fullName>Claims_Needing_Processing_Q3FY2015</fullName>
+        <columns>SPIFF_Program_Name__c</columns>
+        <columns>Sales_Area__c</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <columns>NAME</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SPIFF_Program_Name__c</field>
+            <operation>equals</operation>
+            <value>Q3 FY15 Appointment Setting</value>
+        </filters>
+        <filters>
+            <field>Claim_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending,Duplicate (Notified)</value>
+        </filters>
+        <label>Claims Needing ProcessingQ3FY2015</label>
+    </listViews>
+    <listViews>
+        <fullName>Claims_by_Nimble_Rep</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <columns>Reseller_Rep_Email_webform__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Sales_Area__c</columns>
+        <columns>Opportunity__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Claims by Nimble Rep</label>
+    </listViews>
+    <listViews>
+        <fullName>Disqualify</fullName>
+        <columns>NAME</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>SPIFF_Reference__c</columns>
+        <columns>SPIFF_Program_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Evaluation_Result_old__c</field>
+            <operation>equals</operation>
+            <value>Disqualify</value>
+        </filters>
+        <label>Disqualify</label>
+    </listViews>
+    <listViews>
+        <fullName>Eval_Claim_Submit_Date</fullName>
+        <columns>Manual_Update__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Create_Date_shadow__c</columns>
+        <columns>Eval_Claim_Submission_Date__c</columns>
+        <columns>NAME</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Override_Evaluation_Result__c</columns>
+        <columns>Opportunity__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Eval Claim Submit Date</label>
+    </listViews>
+    <listViews>
+        <fullName>NA_Approved_SPIFF_Claims</fullName>
+        <columns>NAME</columns>
+        <columns>Sales_Area__c</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Claim_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Sales_Area__c</field>
+            <operation>startsWith</operation>
+            <value>NA</value>
+        </filters>
+        <filters>
+            <field>Evaluation_Result_old__c</field>
+            <operation>equals</operation>
+            <value>Approve</value>
+        </filters>
+        <filters>
+            <field>Claim_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending</value>
+        </filters>
+        <filters>
+            <field>Reseller_Company_webform__c</field>
+            <operation>notContain</operation>
+            <value>cdw</value>
+        </filters>
+        <label>NA Approved SPIFF Claims</label>
+    </listViews>
+    <listViews>
+        <fullName>Pending_Duplicate</fullName>
+        <columns>Sales_Area__c</columns>
+        <columns>NAME</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Override_Evaluation_Result__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Claim_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending</value>
+        </filters>
+        <filters>
+            <field>Evaluation_Result_old__c</field>
+            <operation>equals</operation>
+            <value>Review - Duplicate</value>
+        </filters>
+        <label>Pending - Duplicate</label>
+    </listViews>
+    <listViews>
+        <fullName>Q2Q3_FY15_Large_Deal</fullName>
+        <columns>NAME</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Claim_Processed__c</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>SPIFF_Program_Name__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SPIFF_Program_Name__c</field>
+            <operation>contains</operation>
+            <value>large deal</value>
+        </filters>
+        <label>Q2Q3 FY15 Large Deal</label>
+    </listViews>
+    <listViews>
+        <fullName>Q2_All_SPIFF_Claims</fullName>
+        <columns>NAME</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Override_Evaluation_Result__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SPIFF_Reference__c</field>
+            <operation>equals</operation>
+            <value>SPFR-0147</value>
+        </filters>
+        <filters>
+            <field>SPIFF_Program_Name__c</field>
+            <operation>equals</operation>
+            <value>Q2 FY15 Appointment Setting</value>
+        </filters>
+        <label>Q2 - All SPIFF Claims</label>
+    </listViews>
+    <listViews>
+        <fullName>Q2_FY2015_All_SPIFF_Claims_DSQ_or_Dup</fullName>
+        <columns>NAME</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Override_Evaluation_Result__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SPIFF_Reference__c</field>
+            <operation>equals</operation>
+            <value>SPFR-0147</value>
+        </filters>
+        <filters>
+            <field>SPIFF_Program_Name__c</field>
+            <operation>equals</operation>
+            <value>Q2 FY15 Appointment Setting</value>
+        </filters>
+        <filters>
+            <field>Claim_Status__c</field>
+            <operation>equals</operation>
+            <value>Disqualified,Duplicate (Notified),Duplicate</value>
+        </filters>
+        <label>Q2 FY2015 - All SPIFF Claims_DSQ or Dup</label>
+    </listViews>
+    <listViews>
+        <fullName>Q2_FY2016_All_SPIFF_Claims_Approved</fullName>
+        <columns>NAME</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Override_Evaluation_Result__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SPIFF_Reference__c</field>
+            <operation>equals</operation>
+            <value>SPFR-0425</value>
+        </filters>
+        <filters>
+            <field>SPIFF_Program_Name__c</field>
+            <operation>equals</operation>
+            <value>Q2 FY16 Appointment Setting</value>
+        </filters>
+        <filters>
+            <field>Claim_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved,Gift Sent</value>
+        </filters>
+        <label>Q2 FY2016 - All SPIFF Claims_Approved</label>
+    </listViews>
+    <listViews>
+        <fullName>Q2_FY2016_All_SPIFF_Claims_Pending</fullName>
+        <columns>NAME</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Override_Evaluation_Result__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CH_Partner_Certification_Level__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SPIFF_Reference__c</field>
+            <operation>equals</operation>
+            <value>SPFR-0425</value>
+        </filters>
+        <filters>
+            <field>SPIFF_Program_Name__c</field>
+            <operation>equals</operation>
+            <value>Q2 FY16 Appointment Setting</value>
+        </filters>
+        <filters>
+            <field>Claim_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending</value>
+        </filters>
+        <label>Q2 FY2016 - All SPIFF Claims_Pending</label>
+    </listViews>
+    <listViews>
+        <fullName>Q3_Q4_All_SPIFF_Claims</fullName>
+        <columns>NAME</columns>
+        <columns>Deal_Registration_ID_webform__c</columns>
+        <columns>Lead_ID__c</columns>
+        <columns>Claim_Status__c</columns>
+        <columns>Internal_Status__c</columns>
+        <columns>Evaluation_Result__c</columns>
+        <columns>Duplicate_Info__c</columns>
+        <columns>Reseller_Rep_Name_webform__c</columns>
+        <columns>Reseller_Company_webform__c</columns>
+        <columns>Customer_Name_webform__c</columns>
+        <columns>Override_Evaluation_Result__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Opportunity_Owner__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SPIFF_Reference__c</field>
+            <operation>equals</operation>
+            <value>SPFR-0022</value>
+        </filters>
+        <label>Q3 Q4 - All SPIFF Claims</label>
+    </listViews>
+    <nameField>
+        <displayFormat>SPIFF-{0000000}</displayFormat>
+        <label>SPIFF Claim Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>SPIFF Claims</pluralLabel>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Incentive_Claim_Form_Rev_1</fullName>
+        <active>true</active>
+        <label>Incentive Claim Form Rev-1</label>
+        <picklistValues>
+            <picklist>Claim_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disqualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate %28Notified%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gift Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Duplicate_Info__c</picklist>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Same DRID Found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Same DRID Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gift_Delivery__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fulfillment Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tangible</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Via Reseller Payroll</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gift__c</picklist>
+            <values>
+                <fullName>Amazon CAD 400 Gift Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Amazon EUR 300 Gift Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Amazon EUR 35 Gift Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Amazon EUR 70 Gift Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Amazon GBP 270 Gift Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Amazon GBP 30 Gift Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Amazon GBP 60 Gift Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Amazon USD 100 Gift Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Amazon USD 50 Gift Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>American Airlines E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>American Airlines USD 400 Gift Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>American Airlines e-Gift Card %28USD 350%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Best Buy E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cash USD 200</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cash USD 400</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Darden Restaurants E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payroll cash disbursement  %28USD 350%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payroll cash disbursement %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payroll cash disbursement %28USD 400%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Southwest Airlines e-Gift Card %28USD 350%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visa Pre-paid AUD 400 Gift Card or Equivalent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visa e-Gift Card %28USD 350%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visa e-Gift Card USD 200</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visa e-Gift Card USD 400</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>iPad Mini 16GB Wi-Fi</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Internal_Status__c</picklist>
+            <values>
+                <fullName>Converted Lead %28no Oppty%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DRID not found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resolved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Unconverted Lead %28no Oppty%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Gift__c</picklist>
+            <values>
+                <fullName>American Airlines E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>American Airlines E-gift card %28USD 400%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>American Airlines e-Gift Card %28USD 350%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Best Buy E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Darden Restaurants E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payroll cash disbursement  %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payroll cash disbursement %28USD 400%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Southwest Airlines e-Gift Card %28USD 350%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visa E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visa E-gift card %28USD 400%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Incentive_Claim_Form_Rev_2</fullName>
+        <active>true</active>
+        <label>Incentive Claim Form Rev-2</label>
+        <picklistValues>
+            <picklist>Claim_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disqualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate %28Notified%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gift Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Duplicate_Info__c</picklist>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Same DRID Found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Same DRID Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gift_Delivery__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tangible</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gift__c</picklist>
+            <values>
+                <fullName>Amazon EUR 70 Gift Card</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Internal_Status__c</picklist>
+            <values>
+                <fullName>Converted Lead %28no Oppty%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DRID not found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resolved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unconverted Lead %28no Oppty%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Gift__c</picklist>
+            <values>
+                <fullName>American Airlines E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Best Buy E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Darden Restaurants E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payroll cash disbursement  %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visa E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Incentive_Claim_Form_Rev_3</fullName>
+        <active>true</active>
+        <description>AE and SE. Opportunity Hardware Amount</description>
+        <label>Incentive Claim Form Rev-3</label>
+        <picklistValues>
+            <picklist>Claim_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disqualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate %28Notified%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gift Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Duplicate_Info__c</picklist>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Same DRID Found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Same DRID Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gift_Delivery__c</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fulfillment Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tangible</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Via Reseller Payroll</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gift__c</picklist>
+            <values>
+                <fullName>Visa e-Gift Card USD 1%2C000</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visa e-Gift Card USD 500</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Internal_Status__c</picklist>
+            <values>
+                <fullName>Converted Lead %28no Oppty%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DRID not found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resolved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Unconverted Lead %28no Oppty%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Gift__c</picklist>
+            <values>
+                <fullName>American Airlines E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Best Buy E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Darden Restaurants E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payroll cash disbursement  %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visa E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Incentive_Claim_Form_Rev_4</fullName>
+        <active>true</active>
+        <description>AE and SE; Opportunity Total Amount</description>
+        <label>Incentive Claim Form Rev-4</label>
+        <picklistValues>
+            <picklist>Claim_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disqualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplicate %28Notified%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gift Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Duplicate_Info__c</picklist>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Same DRID Found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Same DRID Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gift_Delivery__c</picklist>
+            <values>
+                <fullName>Fulfillment Vendor</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gift__c</picklist>
+            <values>
+                <fullName>Visa e-Gift Card USD 1%2C000</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Internal_Status__c</picklist>
+            <values>
+                <fullName>Converted Lead %28no Oppty%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DRID not found</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resolved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Unconverted Lead %28no Oppty%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Gift__c</picklist>
+            <values>
+                <fullName>Best Buy E-gift card %28USD 200%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Claim_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Deal_Registration_ID_webform__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Lead_ID__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Internal_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Reseller_Rep_Name_webform__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Oppty_Stage__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Do_not_Allow_selecting_different_gift</fullName>
+        <active>false</active>
+        <description>Do not Allow_selecting_different_gift unless checkbox set.</description>
+        <errorConditionFormula>AND(!ISBLANK(TEXT(Gift__c)),
+TEXT(Preferred_Gift__c) &lt;&gt; TEXT(Gift__c),
+!Allow_selecting_different_gift__c)</errorConditionFormula>
+        <errorDisplayField>Allow_selecting_different_gift__c</errorDisplayField>
+        <errorMessage>The Gift selected is different from the Preferred Gift. If you would like to proceed with the different gift, check the &quot;Allow_selecting_different_gift&quot; box.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Do_not_allow_Preferred_Gift</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(!ISPICKVAL(Preferred_Gift__c,&quot;&quot;),
+ SPIFF_Program_Name__c &lt;&gt; &quot;Q3 FY15 Appointment Setting&quot;, SPIFF_Program_Name__c &lt;&gt; &quot;Q2 FY16 Appointment Setting&quot;
+)</errorConditionFormula>
+        <errorDisplayField>Preferred_Gift__c</errorDisplayField>
+        <errorMessage>Preferred Gift is not an option for this SPIFF Program.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Force_Conscious_Override_of_Evaluation_R</fullName>
+        <active>true</active>
+        <description>Before Approving a Claim with Evaluation Result not &quot;Approve&quot;, you must set the &quot;Override Evaluation Result&quot; checkbox.</description>
+        <errorConditionFormula>AND(  
+     Override_Evaluation_Result__c = FALSE,
+    Evaluation_Result__c != &quot;Approve&quot;,
+    ISPICKVAL(Claim_Status__c, &quot;Approved&quot;)  
+)</errorConditionFormula>
+        <errorDisplayField>Override_Evaluation_Result__c</errorDisplayField>
+        <errorMessage>Before Approving a Claim with Evaluation Result not being &quot;Approve&quot;, you must set the &quot;Override Evaluation Result&quot; checkbox.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Force_Gift_Card_Number</fullName>
+        <active>true</active>
+        <description>Before Approving, for Gifts Delivered by Email, you must set the Gift Card Number.</description>
+        <errorConditionFormula>AND(  
+ISPICKVAL(  Gift_Delivery__c ,&quot;Email&quot;),
+ISBLANK(Gift_Card_Number__c  ),
+ISPICKVAL(Claim_Status__c, &quot;Approved&quot;)  
+)</errorConditionFormula>
+        <errorDisplayField>Gift_Card_Number__c</errorDisplayField>
+        <errorMessage>Before Approving, for Gifts Delivered by Email, you must set the Gift Card Number.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Force_Gift_Value</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( ISBLANK( Gift_Value__c ), ISPICKVAL( Gift_Delivery__c , &quot;Tangible&quot;)  )</errorConditionFormula>
+        <errorDisplayField>Gift_Value__c</errorDisplayField>
+        <errorMessage>For Tangible gifts, you must manually set the Gift Value.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Force_Gift_information</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+ISPICKVAL( Gift__c, &quot;&quot; ), 
+ISPICKVAL(Claim_Status__c, &quot;Approved&quot;) 
+)</errorConditionFormula>
+        <errorDisplayField>Gift__c</errorDisplayField>
+        <errorMessage>Before Approving, you must set the Gift information.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Force_No_Gift_Card_Number</fullName>
+        <active>true</active>
+        <description>Gift Card Number should not be set for Tangible / Via Reseller Payroll Gifts.</description>
+        <errorConditionFormula>AND(  
+OR(ISPICKVAL( Gift_Delivery__c  ,&quot;Tangible&quot;),ISPICKVAL( Gift_Delivery__c  ,&quot;Via Reseller Payroll&quot;)),
+Gift_Card_Number__c &lt;&gt; &quot;&quot;
+)</errorConditionFormula>
+        <errorDisplayField>Gift_Card_Number__c</errorDisplayField>
+        <errorMessage>Gift Card Number should not be set for Tangible or Via Reseller Payroll Gifts.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Force_Override_Evaluation_Result_Reason</fullName>
+        <active>true</active>
+        <description>For Override_Evaluation_Result = TRUE, Please specify the Reason for overriding the Evaluation Result.</description>
+        <errorConditionFormula>AND(
+    Override_Evaluation_Result__c = TRUE,
+    ISBLANK( Override_Evaluation_Result_Reason__c )
+)</errorConditionFormula>
+        <errorDisplayField>Override_Evaluation_Result_Reason__c</errorDisplayField>
+        <errorMessage>Please specify the Reason for overriding the Evaluation Result.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>No_Claim_Status_to_Disqualified_if_Dup</fullName>
+        <active>true</active>
+        <description>Do not allow setting of Claim Status to Disqualified if Claim is Duplicate.</description>
+        <errorConditionFormula>ISCHANGED( Claim_Status__c )  &amp;&amp; ( ISPICKVAL( Claim_Status__c , &quot;Disqualified&quot;) &amp;&amp;  Evaluation_Result_old__c  = &quot;Review - Duplicate&quot; )</errorConditionFormula>
+        <errorDisplayField>Claim_Status__c</errorDisplayField>
+        <errorMessage>You may not set the Claim Status to &quot;Disqualified&quot; if the Claim is a Duplicate.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>No_Clearing_Override_Result_if_Gift_Sent</fullName>
+        <active>true</active>
+        <description>Do not allow clearing the Override Evaluation Result checkbox, if Claim Status = Gift Sent.</description>
+        <errorConditionFormula>AND(
+Override_Evaluation_Result__c = FALSE,
+ISPICKVAL( Claim_Status__c , &quot;Gift Sent&quot;) 
+)</errorConditionFormula>
+        <errorDisplayField>Override_Evaluation_Result__c</errorDisplayField>
+        <errorMessage>You may not clear the Override Evaluation Result checkbox, if Claim Status = Gift Sent.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>No_Manual_Set_Claim_Status_Dupl_Notified</fullName>
+        <active>true</active>
+        <description>Do not allow manual setting of Claim Status to Duplicate (Notified)</description>
+        <errorConditionFormula>ISCHANGED( Claim_Status__c )  &amp;&amp; ( ISPICKVAL( Claim_Status__c , &quot;Duplicate (Notified)&quot;))</errorConditionFormula>
+        <errorDisplayField>Claim_Status__c</errorDisplayField>
+        <errorMessage>You may not set claim status to &quot;Duplicate (Notified)&quot;. Select &quot;Duplicate&quot; instead.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>No_Manual_Update</fullName>
+        <active>true</active>
+        <description>Do not allow Manual Update per Claim Status.</description>
+        <errorConditionFormula>AND(
+Manual_Update__c = TRUE,
+ISPICKVAL( Claim_Status__c, &quot;Gift Sent&quot; )
+)</errorConditionFormula>
+        <errorDisplayField>Manual_Update__c</errorDisplayField>
+        <errorMessage>You may not Manual Update if Claim status is Gift Sent.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>No_Manual_set_Claim_Status_to_Gift_Sent</fullName>
+        <active>false</active>
+        <description>Do not allow manual setting of Claim Status to Gift Sent.</description>
+        <errorConditionFormula>ISCHANGED( Claim_Status__c )  &amp;&amp; ( ISPICKVAL( Claim_Status__c , &quot;Gift Sent&quot;)  )</errorConditionFormula>
+        <errorDisplayField>Claim_Status__c</errorDisplayField>
+        <errorMessage>You may not manually set the Claim Status to &quot;Gift Sent&quot;. Set to &quot;Approved&quot; instead.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>UpdateSPIFF_Claim</fullName>
+        <availability>online</availability>
+        <description>Manually force the Apex functionality to update SPIFF Claim</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Update SPIFF Claim</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/24.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/24.0/apex.js&quot;)}
+if({!SPIFF_Claim__c.Manual_Update__c} == 1){
+var label = this.value;
+this.value = &quot;Updating SPIFF Claim&quot;;
+this.disabled = true;
+this.className = &quot;btnDisabled&quot;;
+var rs;
+try{
+setTimeout(function(){
+var claimId = &apos;{!SPIFF_Claim__c.Id}&apos;;
+rs = sforce.apex.execute(&quot;SPIFFClaim&quot;, &quot;manualUpdateSPIFF_Claim&quot;, {&quot;claimId&quot;:claimId});
+if(rs!=&apos;&apos;) alert(rs);
+window.location = window.location.href;
+},500);
+}catch(err){
+this.value = label;
+this.disabled = false;
+this.className = &quot;btn&quot;;
+alert(err);
+}
+}else{
+alert(&apos;For the Update SPIFF Claim button to work, you must first enter “Manual Update” mode&apos;);
+}</url>
+    </webLinks>
+</CustomObject>

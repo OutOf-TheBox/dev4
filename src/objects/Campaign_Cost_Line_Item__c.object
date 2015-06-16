@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Allocated_Budget__c</fullName>
+        <externalId>false</externalId>
+        <label>Allocated Budget</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CCLI_Actual_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>CCLI Actual Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CCLI_Budgeted_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>CCLI Forecasted Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CCLI_Forecasted_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>If  ( CCLI_Actual_Amount__c&gt;0, CCLI_Actual_Amount__c,CCLI_Budgeted_Cost__c )</formula>
+        <label>CCLI Forecasted Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CCLI_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>CCLI Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CH_Funding_Type__c</fullName>
+        <description>Returns -1 if contra activity, 1 if MDF activity and 0 if other type of activity</description>
+        <externalId>false</externalId>
+        <formula>CASE( Sub_Department_Code__c , &quot;18 - Partner Contra&quot;, -1, &quot;39 - Partner MDF Activity&quot;, 1,0)</formula>
+        <label>CH Funding Type</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Campaign__c</fullName>
+        <externalId>false</externalId>
+        <label>Campaign</label>
+        <referenceTo>Campaign</referenceTo>
+        <relationshipLabel>Campaign Cost Line Items</relationshipLabel>
+        <relationshipName>Campaign_Cost_Line_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Contra_Expense__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select this Checkbox only if the cost line item is getting funded by Contra</inlineHelpText>
+        <label>Contra Expense</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Date__c</fullName>
+        <defaultValue>Today()</defaultValue>
+        <externalId>false</externalId>
+        <label>Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Department_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Department Code</label>
+        <picklist>
+            <picklistValues>
+                <fullName>5000 - VP Discretionary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5100 - Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5200 - EMEA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5300 - APJ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5400 - TME Lab</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5120 - NA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5600 - Alliances</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6000 - Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Finance_Approved_Budget__c</fullName>
+        <description>Budget Approved by Finance</description>
+        <externalId>false</externalId>
+        <label>Finance Approved Budget</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Incremental_Allocation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select this checkbox if dollars added were part of incremental allocation</inlineHelpText>
+        <label>Incremental Allocation</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Non_Budgeted_Expense__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Non Budgeted Expense</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Receipt_Document_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Receipt / Document Attached?</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sub_Department_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub Department Code</label>
+        <picklist>
+            <controllingField>Department_Code__c</controllingField>
+            <picklistValues>
+                <fullName>10 - Local Events (TS, UG, HE etc.)</fullName>
+                <controllingFieldValues>5120 - NA</controllingFieldValues>
+                <controllingFieldValues>5200 - EMEA</controllingFieldValues>
+                <controllingFieldValues>5300 - APJ</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11 - Regional Events</fullName>
+                <controllingFieldValues>5120 - NA</controllingFieldValues>
+                <controllingFieldValues>5200 - EMEA</controllingFieldValues>
+                <controllingFieldValues>5300 - APJ</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12 - Event Properties</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>13 - Collateral (Printing)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>14 - Promotional/Swag</fullName>
+                <controllingFieldValues>5120 - NA</controllingFieldValues>
+                <controllingFieldValues>5200 - EMEA</controllingFieldValues>
+                <controllingFieldValues>5300 - APJ</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15 - List Purchase/Rental</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 - Customer Programs</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - Partner Opex</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <controllingFieldValues>5200 - EMEA</controllingFieldValues>
+                <controllingFieldValues>5300 - APJ</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>18 - Partner Contra</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <controllingFieldValues>5200 - EMEA</controllingFieldValues>
+                <controllingFieldValues>5300 - APJ</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19 - Public Relations</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <controllingFieldValues>5120 - NA</controllingFieldValues>
+                <controllingFieldValues>5200 - EMEA</controllingFieldValues>
+                <controllingFieldValues>5300 - APJ</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>20 - Consulting / Misc Expenses</fullName>
+                <controllingFieldValues>5000 - VP Discretionary</controllingFieldValues>
+                <controllingFieldValues>5120 - NA</controllingFieldValues>
+                <controllingFieldValues>5200 - EMEA</controllingFieldValues>
+                <controllingFieldValues>5300 - APJ</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>21 - Marketo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>22 - Website Hosting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>23 - Website/Infrastructure</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>24 - Community &amp; Social</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>25 - Customer Referral Program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>26 - WebEx (Webinar Platform)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>27 - Digital Marketing</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <controllingFieldValues>5200 - EMEA</controllingFieldValues>
+                <controllingFieldValues>5300 - APJ</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>28 - Global Content (Analysts, Third party Content, Testing etc.)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>29 - Analyst Subscriptions</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>30 - Creative Services (video,photography, powerpoint)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>31 - Alliances Program Fees</fullName>
+                <controllingFieldValues>5600 - Alliances</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>32 - TME Lab</fullName>
+                <controllingFieldValues>5400 - TME Lab</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>33 - Branding</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>34 - Customer Experience Program</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - Content, Creative, Third Party Projects</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>36 - PM Tools</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>37 - PM Equipment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>38 - Federal</fullName>
+                <controllingFieldValues>5120 - NA</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>39 - Partner MDFs/MOUs - Field Marketing</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>40 - Mktg Deal Incentives</fullName>
+                <controllingFieldValues>5100 - Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>50 - SE Training</fullName>
+                <controllingFieldValues>6000 - Sales</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sub_Dept_Program_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub Dept Program Code</label>
+        <picklist>
+            <controllingField>Sub_Department_Code__c</controllingField>
+            <picklistValues>
+                <fullName>17 - 10 CDW - Discretionary</fullName>
+                <controllingFieldValues>17 - Partner Opex</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 11 Partner Focused Nimble Events</fullName>
+                <controllingFieldValues>17 - Partner Opex</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 12 - Key Partner Events</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 13 - Partner MDF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 1 Cisco Appreciation</fullName>
+                <controllingFieldValues>17 - Partner Opex</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 2 Alliance Trade Show</fullName>
+                <controllingFieldValues>17 - Partner Opex</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 3 Partner Internal Training</fullName>
+                <controllingFieldValues>17 - Partner Opex</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 4 Partner Sponsorship Fee</fullName>
+                <controllingFieldValues>17 - Partner Opex</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 5 Channel Company Fee</fullName>
+                <controllingFieldValues>17 - Partner Opex</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 6 Deal Reg SPIFF - MacMeetings</fullName>
+                <controllingFieldValues>17 - Partner Opex</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 7 Gold/Silver MDF - MacMeetings</fullName>
+                <controllingFieldValues>17 - Partner Opex</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 8 Bronze MDF - MacMeetings</fullName>
+                <controllingFieldValues>17 - Partner Opex</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17 - 9 Non CDW DMR</fullName>
+                <controllingFieldValues>17 - Partner Opex</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>18 - 1 Partner SKO</fullName>
+                <controllingFieldValues>18 - Partner Contra</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>18 - 2 MOU - MacMeetings</fullName>
+                <controllingFieldValues>18 - Partner Contra</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>18 - 3 CDW Core MacMeetings</fullName>
+                <controllingFieldValues>18 - Partner Contra</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>23 - 1 - Hosting</fullName>
+                <controllingFieldValues>23 - Website/Infrastructure</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>23 - 2 - Maintenance</fullName>
+                <controllingFieldValues>23 - Website/Infrastructure</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>23 - 3 - Other Refresh Work</fullName>
+                <controllingFieldValues>23 - Website/Infrastructure</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>23 - 4 - SEO</fullName>
+                <controllingFieldValues>23 - Website/Infrastructure</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>23 - 5 - Marketo</fullName>
+                <controllingFieldValues>23 - Website/Infrastructure</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>23 - 6 - WebEx</fullName>
+                <controllingFieldValues>23 - Website/Infrastructure</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>23 - 7 - Other Tools, Consulting</fullName>
+                <controllingFieldValues>23 - Website/Infrastructure</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>27 - 1 - List Purchase/Rental</fullName>
+                <controllingFieldValues>27 - Digital Marketing</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>27 - 2 - Asset Syndication</fullName>
+                <controllingFieldValues>27 - Digital Marketing</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>27 - 3 - Banner/Ads/Blogger Ads</fullName>
+                <controllingFieldValues>27 - Digital Marketing</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>27 - 4 - SEM</fullName>
+                <controllingFieldValues>27 - Digital Marketing</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>27 - 5 - Campaign Setup/Creation</fullName>
+                <controllingFieldValues>27 - Digital Marketing</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>27 - 6 - Online Events</fullName>
+                <controllingFieldValues>27 - Digital Marketing</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>27 - 7 - Customer Referral Program</fullName>
+                <controllingFieldValues>27 - Digital Marketing</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>27 - 8 - Misc. Digital Activities</fullName>
+                <controllingFieldValues>27 - Digital Marketing</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>34 - 1 - Case Studies</fullName>
+                <controllingFieldValues>34 - Customer Experience Program</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>34 - 2 - Advisory Councils</fullName>
+                <controllingFieldValues>34 - Customer Experience Program</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>34 - 3 - Customer Videos</fullName>
+                <controllingFieldValues>34 - Customer Experience Program</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>34 - 4 - Customer Incentives</fullName>
+                <controllingFieldValues>34 - Customer Experience Program</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 10 - Surveys/Webinars</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 11 - Videos with customers/partners</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 12 - Thought Leadership/Other projects</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 1 - Creative Services</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 2 - Collateral Updates</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 3 - Analyst SAS Days</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 4 - Audit</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 5 - Third Party Study</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 6 - Analyst Webcasts/Webinars</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 7 - Whiteboard/Explainer Videos</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 8 - Lab Validation</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>35 - 9 - Writing Resources</fullName>
+                <controllingFieldValues>35 - Content, Creative, Third Party Projects</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <label>Campaign Cost Line Item</label>
+    <nameField>
+        <label>Campaign Cost Line Item Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Campaign Cost Line Items</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

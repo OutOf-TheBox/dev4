@@ -1,0 +1,38 @@
+<apex:page standardController="Expedite_Request__c" extensions="salesorderlinectrl" sidebar="false" showHeader="false">
+<apex:form >
+<apex:pageMessages ></apex:pageMessages>
+<apex:pageBlock title="Sales Order Lines">
+
+<apex:pageBlockTable value="{!sol}" var="so">
+<apex:column headerValue="Sales Order Line #">
+<apex:commandLink value="{!so.name}" action="{!salesorderline}">
+ <apex:param value="{!so.id}" assignTo="{!Sol_id}" name="solid" />
+</apex:commandLink>
+</apex:column>
+<apex:column headerValue="Product">
+<apex:outputField value="{!so.Product__c}"/>
+</apex:column>
+<apex:column headerValue="Quantity">
+<apex:outputField value="{!so.Quantity__c}"/>
+</apex:column>
+<apex:column headerValue="Serial Number">
+<apex:outputField value="{!so.Serial_Number__c}"/>
+</apex:column>
+<apex:column headerValue="Sale Price">
+<apex:outputField value="{!so.Sale_Price__c}"/>
+</apex:column>
+<apex:column headerValue="Total">
+<apex:outputField value="{!so.Total__c}"/>
+</apex:column>
+<apex:column headerValue="Start Date">
+<apex:outputField value="{!so.Start_Date__c}"/>
+</apex:column>
+<apex:column headerValue="End Date">
+<apex:outputField value="{!so.End_Date__c}"/>
+</apex:column>
+</apex:pageBlockTable>
+</apex:pageBlock>
+
+</apex:form>
+ 
+</apex:page>

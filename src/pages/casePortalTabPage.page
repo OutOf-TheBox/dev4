@@ -1,0 +1,31 @@
+<apex:page showChat="false"
+           showHeader="true"
+           sidebar="true"
+           tabStyle="casePortalTab__tab"
+           title="Cases">
+
+  <style type="text/css">
+
+    .listHeader h2 {color: #333333;}
+
+  </style>
+
+  <apex:outputPanel styleClass="listHeader">
+
+    <apex:enhancedList customizable="false"
+                       height="400"
+                       type="Case"
+                       listId="00B80000008Gdod"/><br/><br/>
+    <apex:enhancedList customizable="false"
+                       height="400"
+                       type="Case"
+                       listId="00B80000008Gdoe"/><br/><br/>
+    <apex:enhancedList customizable="false"
+                       height="400"
+                       type="Case"
+                       listId="00B80000008Gdoc"/>
+
+  </apex:outputPanel>
+
+[casePortalTabPage]
+</apex:page>

@@ -1,0 +1,153 @@
+<apex:page sidebar="false" showHeader="false" controller="PopUpUser" id="thePage">
+<apex:pageMessages ></apex:pageMessages>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+    
+    function populateParent()
+    {
+   
+    var newex='{!newexpemail}';
+    var ccemail='{!ccemail}';
+   
+    var reply='{!reply}';
+    var replyall='{!replyall}';
+    var th= document.getElementById('{!$Component.thePage.theForm.rightval2}').value;
+    if(newex=="true")
+    {
+       top.window.opener.setSelectedDocumentDetails2(th); 
+       return false;
+    }
+    
+    if((reply=="true" || replyall=="true") && ccemail=="false")
+    {  
+   
+    top.window.opener.setSelectedDocumentDetails3(th);       
+    return false;    
+       
+    }  
+    if((reply=="true" || replyall=="true") && ccemail=="true")
+    {
+   
+    top.window.opener.setSelectedDocumentDetails4(th);
+    return false;
+    }
+
+ 
+
+}
+</script>
+
+<apex:form id="theForm">
+<apex:outputPanel id="ref">
+
+<apex:inputHidden value="{!selectedemails}" id="rightval2"/>
+</apex:outputPanel>
+<apex:inputhidden value="{!selectedvalues}" id="rightval"/>
+<apex:sectionHeader title="Email Address Lookup"/>
+
+
+<script>
+$(document).ready(function(){
+
+$('#leftclick').click(function()
+{
+moveitemleft();
+});
+
+$('#rightclick').click(function()
+{
+moveitemright();
+});
+});
+function moveitemleft()
+{
+
+    var sv='';
+$('#list2 option:selected').each(function(){
+$(this).remove();
+$('#list1').append($(this));
+
+});
+ $("#list2 option").each (function() {
+      
+       sv +=$(this).val()+",";       
+    });
+     document.getElementById('{!$Component.thePage.theForm.rightval}').value=sv;
+
+
+ }
+function moveitemright()
+{
+var sv='';
+$('#list1 option:selected').each(function(){
+$(this).remove();
+$('#list2').append($(this));
+ 
+ });
+ $("#list2 option").each (function() {
+      
+       sv +=$(this).val()+",";       
+    });
+    document.getElementById('{!$Component.thePage.theForm.rightval}').value=sv;
+
+}
+
+</script>
+&nbsp;&nbsp;&nbsp;Only co-workers with stored email addresses are displayed in the box below<br/><br/>
+<div style="padding-left:10px;">
+<apex:inputtext value="{!searchtext}"/>
+
+<apex:commandButton style="padding-left:10px;" value="Go" action="{!go}"/></div>
+<apex:pageBlock id="thepb" >
+<table>
+
+<tr>
+<td align="center">
+Contacts
+</td>
+<td></td><td align="center">cc Recipients:</td>
+</tr>
+           <tr>           <td>          
+
+                 <select id="list1" multiple="multiple" style="width:200px" size="18" >
+                  <apex:repeat value="{!uservalues}" var="c">
+                  <option value="{!c}">{!c}</option>
+                  </apex:repeat>
+                  </select> 
+                  </td>
+                  
+                  <td style="text-align: center; padding:10px;" width="50px">
+ <div class="text">
+            Add</div>
+        <div class="zen-mbs text">
+            <a id="rightclick"><img alt="Add"  class="rightArrowIcon" src="https://ap1.salesforce.com/s.gif" title="Add" /></a></div>
+        <div class="text">
+            <a id="leftclick"><img alt="Remove" class="leftArrowIcon" src="https://ap1.salesforce.com/s.gif" title="Remove" /></a></div>
+        <div class="duelingText">
+            Remove</div>
+            </td>   
+             <td>          
+
+
+
+                 <select id="list2" multiple="multiple" style="width:200px" size="18" >
+                  <apex:repeat value="{!rightvalues}" var="c">
+                  <option value="{!c}">{!c}</option>
+                  </apex:repeat>
+                  </select> 
+                  </td>       
+                  </tr>
+                  
+                  
+       </table>
+            
+ <br/>
+ <table>
+  <tr><td width="190px;"></td><td width="100px;">
+<apex:commandbutton Value="Save"  action="{!SaveTest}" oncomplete="if('{!selectedvalues}'!=''){populateParent();}else{alert('Please select atleast one user');}" rerender="ref"/>
+<apex:commandbutton value="cancel" action="{!cancel}" oncomplete="javascript:populateParent();"/>
+</td><td></td></tr></table>
+</apex:pageBlock>
+</apex:form>
+  
+</apex:page>

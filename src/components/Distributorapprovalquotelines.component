@@ -1,0 +1,28 @@
+<apex:component access="global" controller="ApprovalQuoteLineControllerdistributor">
+    <apex:attribute name="qid" assignTo="{!quoteId}" type="Id" description="Quote ID"/>
+    
+    
+    <table cellspacing="0" border="1" cellpadding="5px">
+        <tr>
+            
+            <td>Product Code</td>
+            <td>Quantity</td>
+            <td>List Price Total</td>
+            <td>BOM Package Net Unit Price</td>          
+            <td>BOM Package Net Total</td>
+            
+        </tr>
+        <apex:repeat var="line" value="{!lines}">
+            <tr>
+                
+                <td><apex:outputText value="{!line.Part_Number__c}"/></td>
+                <td><apex:outputField value="{!line.SBQQ__Quantity__c}"/></td>
+                <td><apex:outputField value="{!line.BOM_Package_Regular_Total__c}"/></td> 
+                <td><apex:outputField value="{!line.BOM_Package_Net_Unit_Price__c}"/></td>                
+                <td><apex:outputField value="{!line.BOM_Package_Net_Total__c}"/></td>
+                
+            </tr>
+        </apex:repeat>
+    </table>
+    
+</apex:component>

@@ -1,0 +1,36 @@
+<apex:page Controller="InboxController" id="page">
+<script>
+function showMessage(id,message)
+{   
+        document.getElementById("mssg").innerHTML = message;
+        document.getElementById(id).style.fontWeight = "normal";
+        InboxController.updateStatus(
+            id,function(result, event)
+                {
+                    console.log('Result..' + result);
+                    console.log('Event' + event);
+                });
+}
+</script>
+<apex:outputPanel rendered="{!IF((mssgSize != 0),'true','false')}">
+<apex:form id="form">
+<apex:panelGrid columns="2">
+<apex:pageBlock >
+<apex:pageBlockTable value="{!UnreadMssgs}" var="in" id="table">
+<apex:column headerValue="Date" style="width:50%" value="{!in.cDate}">
+</apex:column>
+<apex:column headerValue="Subject" style="width:50%">
+<a href="#" id="{!in.inId}" onClick="showMessage('{!in.inId}','{!in.message}')" style="{!IF((in.status=='Unread'),"font-weight:bold;","")}">{!in.subject}</a>
+</apex:column>
+</apex:pageBlockTable>
+</apex:pageBlock>
+<apex:pageBlock id="page1" mode="maindetail">
+<div id="mssg" style="width:100%">&nbsp;</div>
+</apex:pageBlock>
+</apex:panelGrid>
+</apex:form>
+</apex:outputPanel>
+<apex:outputPanel rendered="{!IF((mssgSize = 0),'true','false')}">
+<h1>You don't have any New Messages.</h1>
+</apex:outputPanel>
+</apex:page>

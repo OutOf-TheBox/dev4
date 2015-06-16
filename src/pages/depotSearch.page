@@ -1,0 +1,193 @@
+<apex:page controller="depotSearch"
+           title="RMA Depot Search"
+           sidebar="false"
+           showHeader="false">
+
+  <style type="text/css">
+    div.pbHeader table tbody tr td.pbTitle {width:100%!important;}
+    .ct {text-align:center;}
+    .big {font-size:120%;}
+    .small {font-size:75%;}
+    .bold {font-weight: bold;}
+    .notbold {font-weight: normal;}
+    .red {color:red;}
+    .black {color:black;}
+    .italic {font-style:italic;}
+    #countryTable {border: 1px solid black; border-spacing: 0px; border-collapse: collapse;}
+    #countryTable tr, #countryTable td {border: 1px solid black; text-align: center; color: red; font-weight: bold; padding: 4px; vertical-align: middle;}
+    #countryTable2 {color: black !important; font-weight: normal !important; text-align: left !important;}
+  </style>
+
+  <body>
+
+  <apex:messages />
+
+  <apex:form >
+
+    <apex:pageBlock title="RMA Depot Search"
+                    mode="edit">
+      <apex:pageBlockSection columns="1">
+        Use this search page to determine if an array <b>INSTALL</b> Country + Postal Code has stocked 4-hour depots nearby.  The search results will also show the NBD (Next Business Day) and ND (Next Day) depots assigned to the selected Country.<br/><br/>
+        Be sure to enter the <b>INSTALL</b> Country and Postal Code of where an array would be physically installed.<br/><br/>
+        If you have questions about depots, or the search results, contact the Service Logistics team.  You can click on this link to open an email to them: <a href="mailto:ServiceLogistics@nimblestorage.com?Subject=Question%20about%20depots%20(sent%20from%20RMA%20Depot%20Search%20Page)">ServiceLogistics@nimblestorage.com</a><br/><br/>
+        <table id="countryTable">
+        <tr><td id="countryTable2" class="big" rowspan="6">For the countries/regions listed to the right, you may sell <span class="bold red">4-hour</span> and <span class="bold red">4-hour onsite</span> service, even if a 4-hour depot search 
+                                                           comes up empty.<br/><br/>
+                                                           Service Logistics will stock a new depot within two weeks of order submission.<br/><br/>
+                                                           Note this <b>only</b> applies to the countries/regions listed to the right.  If you have questions about other parts of the world
+                                                           where a 4-hour depot search comes up empty, contact the Service Logistics team at <a href="mailto:ServiceLogistics@nimblestorage.com?Subject=Question%20about%20depots%20(sent%20from%20RMA%20Depot%20Search%20Page)">ServiceLogistics@nimblestorage.com</a></td>
+            <td>Australia</td>
+            <td>Bermuda</td>
+            <td>Canada</td>
+        </tr>
+        <tr>
+            <td>Hong Kong</td>
+            <td>New Zealand</td>
+            <td>Norway</td>
+        </tr>
+        <tr>
+            <td>Philippines</td>
+            <td>Singapore</td>
+            <td>South Africa</td>
+        </tr>
+        <tr>
+            <td>South Korea</td>
+            <td>Switzerland</td>
+            <td>Taiwan</td>
+        </tr>
+        <tr>
+            <td>Thailand</td>
+            <td>United States</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3">EU countries<br/>
+                            <a class="italic notbold" href="http://europa.eu/about-eu/countries/index_en.htm" target="_blank">Click here to see EU member countries</a></td>
+        </tr>
+        </table><br/>
+        <apex:selectList value="{!country}"
+                         id="country"
+                         label="Install Country"
+                         multiselect="false"
+                         required="true"
+                         size="1">
+          <apex:selectOptions value="{!countryValues}"/>
+        </apex:selectList>
+        <apex:inputText value="{!postalCode}"
+                        id="postalCode"
+                        label="Install Postal Code"
+                        required="true"
+                        onkeypress="return noenter(event);"/>
+        <apex:outputText value="{!errorPostalCode}"
+                         id="errorPostalCode"
+                         label=" "
+                         style="color:red; font-weight:bold; font-size:120%;"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockButtons location="bottom">
+        <apex:commandButton value="Search"
+                            id="searchButton"
+                            action="{!doSearch}"
+                            rerender="country,postalCode,errorPostalCode,searchResults4Hour,searchResultsNbdNd"/>
+
+        <apex:actionfunction name="doSearchActionFunction"
+                             action="{!doSearch}"
+                             rerender="country,postalCode,errorPostalCode,searchResults4Hour,searchResultsNbdNd"/>
+
+      <script type='text/javascript'>
+        function noenter(ev)
+          {if ((window.event && window.event.keyCode == 13) ||  // IE
+               ev.which == 13)                                  // Firefox
+             {doSearchActionFunction();
+              return false;
+             }
+           else
+             {return true;
+             }
+          }
+      </script>
+
+      </apex:pageBlockButtons>
+    </apex:pageBlock>
+  </apex:form><br/><br/>
+
+  <apex:pageBlock title="Search Results: 4-Hour Depots"
+                  id="searchResults4Hour"
+                  mode="edit">
+    <apex:pageBlockSection columns="1">
+      Below are the 4-hour depots found for Country + Postal Code:<br/>
+      <apex:outputText value="<b>{!country} + {!postalCode}</b>"
+                       escape="false"
+                       rendered="{!country <> null && postalCode <> null && errorPostalCode == null}"/>
+      <apex:pageBlockTable value="{!searchResults4Hour}"
+                           var="a">
+
+        <apex:column headerValue="Depot Name"
+                     headerClass="ct"
+                     styleClass="ct"
+                     value="{!a.depotMap4Hour_4HourDepot__r.Name}"/>
+        
+        <apex:column headerValue="Drive Time (in HH:MM)"
+                     headerClass="ct"
+                     styleClass="ct">
+          <apex:outputText value="{0, number,0}:{1, number,00}">
+            <apex:param value="{!FLOOR(ROUND(a.depotMap4HourDriveTime__c, 0) / 60)}" />
+            <apex:param value="{!MOD(ROUND(a.depotMap4HourDriveTime__c, 0), 60)}" />
+          </apex:outputText>
+        </apex:column>
+
+        <apex:column headerValue="Miles"
+                     headerClass="ct"
+                     styleClass="ct"
+                     value="{!a.depotMap4HourMiles__c}"/>
+
+        <apex:column headerValue="Provider"
+                     headerClass="ct"
+                     styleClass="ct"
+                     value="{!a.depotMap4Hour_4HourDepot__r.depotProvider__c}"/>
+
+        <apex:column headerValue="Location Description"
+                     headerClass="ct"
+                     styleClass="ct"
+                     value="{!a.depotMap4Hour_4HourDepot__r.depotLocationDescription__c}"/>
+
+      </apex:pageBlockTable>
+      <apex:outputText value="*** No search results to display.  No 4-hour depots defined for this country + postal code. ***"
+                       rendered="{!searchResults4Hour.size == 0}"/>
+    </apex:pageBlockSection>
+  </apex:pageBlock><br/><br/>
+
+  <apex:pageBlock title="Search Results: NBD (Next Business Day) and ND (Next Day) Depots"
+                  id="searchResultsNbdNd"
+                  mode="edit">
+    <apex:pageBlockSection columns="1">
+      Below are the NBD and ND depots found for Country:<br/>
+      <apex:outputText value="<b>{!country}</b>"
+                       escape="false"
+                       rendered="{!country <> null && postalCode <> null && errorPostalCode == null}"/><br/>
+      <apex:outputText value="*** No search results to display.  No NBD/ND depots defined for this country. ***"
+                       rendered="{!IF(searchResultsNbdNd.size == 0, true, false)}"/>
+      <apex:outputText value="{!searchResultsNbdNd[0].depotMapNbdNd_NbdDepot__r.Name}"
+                       label="NBD Depot"
+                       rendered="{!IF(searchResultsNbdNd.size != null && searchResultsNbdNd.size > 0, true, false)}"/>
+      <apex:outputText value="{!searchResultsNbdNd[0].depotMapNbdNd_NbdDepot__r.depotProvider__c}"
+                       label="NBD Depot Provider"
+                       rendered="{!IF(searchResultsNbdNd.size != null && searchResultsNbdNd.size > 0, true, false)}"/>
+      <apex:outputText value="{!searchResultsNbdNd[0].depotMapNbdNd_NbdDepot__r.depotLocationDescription__c}<br/><br/>"
+                       label="NBD Depot Location"
+                       rendered="{!IF(searchResultsNbdNd.size != null && searchResultsNbdNd.size > 0, true, false)}"
+                       escape="false"/>
+      <apex:outputText value="{!searchResultsNbdNd[0].depotMapNbdNd_NdDepot__r.Name}"
+                       label="ND Depot"
+                       rendered="{!IF(searchResultsNbdNd.size != null && searchResultsNbdNd.size > 0, true, false)}"/>
+      <apex:outputText value="{!searchResultsNbdNd[0].depotMapNbdNd_NdDepot__r.depotProvider__c}"
+                       label="ND Depot Provider"
+                       rendered="{!IF(searchResultsNbdNd.size != null && searchResultsNbdNd.size > 0, true, false)}"/>
+      <apex:outputText value="{!searchResultsNbdNd[0].depotMapNbdNd_NdDepot__r.depotLocationDescription__c}"
+                       label="ND Depot Location"
+                       rendered="{!IF(searchResultsNbdNd.size != null && searchResultsNbdNd.size > 0, true, false)}"/>
+    </apex:pageBlockSection>
+  </apex:pageBlock>
+
+  </body>
+
+</apex:page>

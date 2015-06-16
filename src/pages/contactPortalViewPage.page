@@ -1,0 +1,61 @@
+<apex:page showChat="false"
+           showHeader="true"
+           sidebar="true"
+           tabStyle="contactPortalTab__tab"
+           title="Contact: {!Contact.Name}"
+           standardController="Contact"
+           extensions="contactExtensionsWithSharing">
+  <apex:sectionHeader title="Contact" subtitle="{!Contact.Name}"/>
+  <apex:form >
+    <apex:pageBlock mode="maindetail" title="Contact Detail">
+      <apex:pageBlockButtons >
+        <apex:commandButton value="Edit" action="{!Edit}"/>
+      </apex:pageBlockButtons>
+      <apex:pageBlockSection title="Contact Name Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="First Name" value="{!Contact.FirstName}"/>
+        <apex:outputField label="Last Name"  value="{!Contact.LastName}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Contact Status Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Inactive" value="{!Contact.contactInactive__c}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Contact Email/Phone Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Email"        value="{!Contact.Email}"/>
+        <apex:outputField label="Phone"        value="{!Contact.Phone}"/>
+        <apex:outputField label="Mobile Phone" value="{!Contact.MobilePhone}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Contact Mailing Address Information" showheader="true" collapsible="false" columns="1">
+        <apex:outputField label="Mailing Street"         value="{!Contact.MailingStreet}"/>
+        <apex:outputField label="Mailing City"           value="{!Contact.MailingCity}"/>
+        <apex:outputField label="Mailing State/Province" value="{!Contact.MailingState}"/>
+        <apex:outputField label="Mailing Postal Code"    value="{!Contact.MailingPostalCode}"/>
+        <apex:outputField label="Mailing Country"        value="{!Contact.MailingCountry}"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+       <apex:pageblock id="CustomList" title="Related External Cases">
+ <apex:pageBlockButtons location="top">
+ <apex:commandButton action="/apex/caseportalnewpage?def_account_id={!conaccountId}&def_contact_id={!Contact.Id}&retURL=/apex/contactportalviewpage?id={!Contact.Id}&sfdc.override=1" value="New Case"/>
+ </apex:pageBlockButtons>
+ 
+ <apex:pageblocktable value="{!cases}" var="c" rendered="{!NOT(ISNULL(cases))}">
+  <apex:column >
+  <apex:facet name="header">Action</apex:facet>                        
+      <a href="/apex/caseportaleditpage?id={!c.Id}&retURL=/apex/contactportalviewpage?id={!Contact.Id}&sfdc.override=1" target="_parent">Edit</a>
+  &nbsp; | &nbsp;  <a href="/{!c.Id}/s?retURL=/apex/contactportalviewpage?id={!Contact.Id}" target="_parent">Cls</a>
+ 
+ </apex:column>
+ <apex:column value="{!c.CaseNumber}"/>
+ <apex:column value="{!c.OwnerId}"/>
+ <apex:column value="{!c.Category__c}"/>
+ <apex:column value="{!c.Status}"/>   
+ <apex:column value="{!c.Priority}"/>   
+ <apex:column value="{!c.Subject}"/>
+ <apex:column value="{!c.ContactId}"/>    
+ <apex:column value="{!c.CreatedDate}"/>    
+ <apex:column value="{!c.Case_Type__c}"/>     
+ </apex:pageblocktable>
+ </apex:pageblock>
+  </apex:form>
+  <!--  <apex:relatedList list="Cases" title="Cases"/> -->
+    <apex:relatedList list="Assets" title="Assets"/>
+[contactPortalViewPage]
+</apex:page>

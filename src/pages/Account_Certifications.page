@@ -1,0 +1,18 @@
+<!--
+-- Author: Rod Bell
+-- Email: bell_rod@yahoo.com
+--
+-- Description: A page that displays total active completes classes on the Account Layouts.
+-- 
+-->
+
+
+<apex:page standardController="Account" extensions="accountCertificationExtension">
+    <apex:pageBlock title="Certifications">
+        <apex:pageBlockTable value="{!certCounts}" var="cert">
+        <apex:column headerValue="Certification" value="{!cert[0]}"/>
+        <apex:column headerValue="Active Certifications" value="{!cert[1]}"/>        
+        <apex:column headerValue="Expired Certifications" value="{!cert[2]}"/>        
+        </apex:pageBlockTable>
+    </apex:pageBlock>   
+</apex:page>

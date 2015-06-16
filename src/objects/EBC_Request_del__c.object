@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>InDevelopment</deploymentStatus>
+    <description>This object is used to track incoming requests to set up Executive Briefing Meetings from various internal groups at Nimble.</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Airfare_Paid_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Airfare Paid By</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Nimble Storage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visitor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Annual_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <label>Annual Revenue</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendee_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Attendee Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Business Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Press/Analyst</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Breakfast_enter_time__c</fullName>
+        <externalId>false</externalId>
+        <label>Breakfast (enter time)</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company_Description_Facts__c</fullName>
+        <externalId>false</externalId>
+        <label>Company Description / Facts</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Company_Name_Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Company Name &amp; Location</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Competition_Nimble_is_Facing_in_Deal__c</fullName>
+        <externalId>false</externalId>
+        <label>Competition Nimble is Facing in Deal</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Description_of_Nimble_Lifetime_Purchases__c</fullName>
+        <externalId>false</externalId>
+        <label>Description of Nimble Lifetime Purchases</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Dinner_Night_Before_After_Meeting__c</fullName>
+        <externalId>false</externalId>
+        <label>Dinner (Night Before / After Meeting)</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Dinning_Preferences__c</fullName>
+        <externalId>false</externalId>
+        <label>Dinning Preferences/Dietary Restrictions</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Going_Out_for_Lunch_enter_time__c</fullName>
+        <externalId>false</externalId>
+        <label>Going Out for Lunch (enter time)</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Hotel_Paid_for_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Hotel Paid By</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Nimble Storage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visitor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Industry__c</fullName>
+        <externalId>false</externalId>
+        <label>Industry</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Market_Cap__c</fullName>
+        <externalId>false</externalId>
+        <label>Market Cap</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Meeting_End_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Meeting End Time</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Meeting_Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Meeting Location (Building, City)</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Meeting_Purpose_Desired_Outcome__c</fullName>
+        <externalId>false</externalId>
+        <label>Meeting Purpose &amp; Desired Outcome</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Meeting_Room_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Meeting Room Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Meeting_Start_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Meeting Start Time</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Need_Help_with_Dinner_Reservation__c</fullName>
+        <externalId>false</externalId>
+        <label>Need Help with Dinner Reservation?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Need_Help_with_Travel_Arrangements__c</fullName>
+        <externalId>false</externalId>
+        <label>Do Attendees Need Help with Travel?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Preferred_Meeting_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Preferred Meeting Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Related_Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Related Opportunity (if available)</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>EBC Requests</relationshipLabel>
+        <relationshipName>EBC_Requests</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Requested_Nimble_Employees__c</fullName>
+        <externalId>false</externalId>
+        <label>Requested Nimble Employees</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Snacks_enter_time__c</fullName>
+        <externalId>false</externalId>
+        <label>Snacks (enter time)</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Stage_of_Buying_Process__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage of Buying Process</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Ticker_Symbol__c</fullName>
+        <externalId>false</externalId>
+        <label>Ticker Symbol</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Top_Customer_Storage_Problems__c</fullName>
+        <externalId>false</externalId>
+        <label>Top Customer Storage Problems</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Topics_of_Primary_Interest_to_Visitor__c</fullName>
+        <externalId>false</externalId>
+        <label>Topics of Primary Interest to Visitor</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Hybrid Storage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Applications: MS Exchange,SQL,SharePoint</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Data Center Growth and Efficiency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Virtualization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VDI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Data Protection</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oracle Data Base Applications</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SmartStack Architectures</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CASL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Service Provider</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Storage on Demand (SoD)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Software Defined Storage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Support</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Visitors_Name_Titles__c</fullName>
+        <externalId>false</externalId>
+        <label>Visitors (Name &amp; Titles)</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Website__c</fullName>
+        <externalId>false</externalId>
+        <label>Website</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Working_Lunch_Delivered_enter_time__c</fullName>
+        <externalId>false</externalId>
+        <label>Working Lunch, Delivered (enter time)</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X1_Corporate_Product_Overview__c</fullName>
+        <externalId>false</externalId>
+        <label>1. Corporate/Product Introduction</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High Level Overview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Longer More Detailed Deep Dive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skip It - Not Needed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other [see presentation notes below]</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>X1_Minutes_Needed_for_Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>1. Minutes Needed for Topic</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X1_Requested_Speaker_s_Enter_Names__c</fullName>
+        <externalId>false</externalId>
+        <label>1. Requested Speaker(s) - Enter Names</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X2_Minutes_Needed_for_Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>2. Minutes Needed for Topic</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X2_Requested_Speaker_s_Enter_Names__c</fullName>
+        <externalId>false</externalId>
+        <label>2. Requested Speaker(s) - Enter Names</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X2_Storage_Technology_Overview__c</fullName>
+        <externalId>false</externalId>
+        <label>2. Storage Technology Overview</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High Level Overview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Longer More Detailed Deep Dive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skip It - Not Needed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other [see presentation notes below]</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>X3_Minutes_Needed_for_Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>3. Minutes Needed for Topic</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X3_Requested_Speaker_s_Enter_Names__c</fullName>
+        <externalId>false</externalId>
+        <label>3. Requested Speaker(s) - Enter Names</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X4_Minutes_Needed_for_Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>4. Minutes Needed for Topic</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X4_Product_Road_Map__c</fullName>
+        <externalId>false</externalId>
+        <label>4. Product Road Map</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High Level Overview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Longer More Detailed Deep Dive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skip It - Not Needed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other [see presentation notes below]</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>X4_Requested_Speaker_s_Enter_Names__c</fullName>
+        <externalId>false</externalId>
+        <label>4. Requested Speaker(s) - Enter Names</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X5_Minutes_Needed_for_Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>5. Minutes Needed for Topic</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X5_Requested_Speaker_s_Enter_Names__c</fullName>
+        <externalId>false</externalId>
+        <label>5. Requested Speaker(s) - Enter Names</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X5_Solutions__c</fullName>
+        <externalId>false</externalId>
+        <label>5. Solutions</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High Level Overview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Longer More Detailed Deep Dive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skip It - Not Needed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other [see presentation notes below]</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>X6_Application__c</fullName>
+        <externalId>false</externalId>
+        <label>6. Applications</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High Level Overview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Longer More Detailed Deep Dive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skip It - Not Needed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other [see presentation notes below]</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>X6_Minutes_Needed_for_Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>6. Minutes Needed for Topic</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X6_Requested_Speaker_s_Enter_Names__c</fullName>
+        <externalId>false</externalId>
+        <label>6. Requested Speaker(s) - Enter Names</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X7_Channel__c</fullName>
+        <externalId>false</externalId>
+        <label>7. Channel</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High Level Overview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Longer More Detailed Deep Dive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skip It - Not Needed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other [see presentation notes below]</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>X7_Minutes_Needed_for_Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>7. Minutes Needed for Topic</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X7_Requested_Speaker_s_Enter_Names__c</fullName>
+        <externalId>false</externalId>
+        <label>7. Requested Speaker(s) - Enter Names</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X8_Lab_Tour_15_to_30_Min__c</fullName>
+        <externalId>false</externalId>
+        <label>8. Lab Tour</label>
+        <picklist>
+            <picklistValues>
+                <fullName>15 to 30 Minute Presentation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skip It - Not Needed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other [see presentation notes below]</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>X8_Minutes_Needed_for_Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>8. Minutes Needed for Topic</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X8_Requested_Speaker_s_Enter_Names__c</fullName>
+        <externalId>false</externalId>
+        <label>8. Requested Speaker(s) - Enter Names</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X9_Executive_Visits_with__c</fullName>
+        <externalId>false</externalId>
+        <label>9. Executive Visits with</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CEO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CFO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CEO &amp; CFO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Founders</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skip It - Not Needed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other [see presentation notes below]</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>X9_Minutes_Needed_for_Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>9. Minutes Needed for Topic</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X9_Requested_Speaker_s_Enter_Names__c</fullName>
+        <externalId>false</externalId>
+        <label>9. Requested Speaker(s) - Enter Names</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>x3_Hands_On_Product_Session__c</fullName>
+        <externalId>false</externalId>
+        <label>3. Hands-On Product Session</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High Level Overview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Longer More Detailed Deep Dive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skip It - Not Needed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other [see presentation notes below]</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <label>EBC Request</label>
+    <nameField>
+        <label>EBC Request Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>EBC Requests</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

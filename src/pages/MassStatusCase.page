@@ -1,0 +1,21 @@
+<apex:page standardController="Case" recordSetVar="cases">
+    <apex:form >
+        <apex:pageBlock title="Case Status Mass-Update"  mode="edit">
+            <apex:pageBlockSection >
+                <apex:inputField value="{!case.status}">
+                    <apex:actionSupport event="onchange"  rerender="caselist"/>
+                </apex:inputField>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Save"  action="{!save}" />
+                <apex:commandButton value="Cancel"  action="{!cancel}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:pageBlock title="Selected  Cases"  id="caselist">
+        <apex:pageBlockTable value="{!selected}"  var="case" >
+            <apex:column value="{!case.casenumber}" />
+            <apex:column value="{!case.status}" />
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

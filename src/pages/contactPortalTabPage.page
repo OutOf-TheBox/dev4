@@ -1,0 +1,31 @@
+<apex:page showChat="false"
+           showHeader="true"
+           sidebar="true"
+           tabStyle="contactPortalTab__tab"
+           title="Contacts">
+
+  <style type="text/css">
+
+    .listHeader h2 {color: #333333;}
+
+  </style>
+
+  <apex:outputPanel styleClass="listHeader">
+
+    <apex:enhancedList customizable="false"
+                       height="400"
+                       type="Contact"
+                       listId="00B80000008Gdjw"/><br/><br/>
+
+    <apex:outputText value="NOTE: The below list is of INACTIVE contacts.  Inactive contacts will not have Super User access in InfoSight, nor can they be used as contacts on any Assets or Cases."
+                     style="color: red; font-weight:bold; font-size:100%;"/>
+
+    <apex:enhancedList customizable="false"
+                       height="400"
+                       type="Contact"
+                       listId="00B80000008IXGL"/>
+
+  </apex:outputPanel>
+
+[contactPortalTabPage]
+</apex:page>

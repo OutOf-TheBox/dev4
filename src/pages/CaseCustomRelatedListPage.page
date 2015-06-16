@@ -1,0 +1,33 @@
+<apex:page standardController="Asset" extensions="CaseCustomRelatedListController">
+<script>
+function onNewButton(url)
+{
+window.parent.location.href=url;
+}
+</script>
+ <apex:form >
+ <apex:pageblock id="CustomList" title="Related Internal Cases">
+ <apex:pageBlockButtons location="top">
+ <apex:commandButton onclick="onNewButton('/500/e?def_account_id={!Asset.AccountId}&def_asset_id={!Asset.Id}&def_contact_id={!Asset.ContactId}&def_product_id={!Asset.Product2.Id}&nooverride=1&retURL={!Asset.Id}&sfdc.override=1')" value="New Case"/>
+ </apex:pageBlockButtons>
+ 
+ <apex:pageblocktable value="{!cases}" var="c" rendered="{!NOT(ISNULL(cases))}">
+  <apex:column >
+  <apex:facet name="header">Action</apex:facet>                        
+  <a href="/{!c.Id}/e?id={!c.Id}&nooverride=1&retURL={!Asset.Id}&sfdc.override=1" target="_parent">Edit</a>
+  &nbsp; | &nbsp;  <a href="/{!c.Id}/s?retURL={!Asset.Id}" target="_parent">Cls</a>
+ 
+ </apex:column>
+ <apex:column value="{!c.CaseNumber}"/>
+ <apex:column value="{!c.OwnerId}"/>
+ <apex:column value="{!c.Category__c}"/>
+ <apex:column value="{!c.Status}"/>   
+ <apex:column value="{!c.Priority}"/>   
+ <apex:column value="{!c.Subject}"/>
+ <apex:column value="{!c.ContactId}"/>    
+ <apex:column value="{!c.CreatedDate}"/>    
+ <apex:column value="{!c.Case_Type__c}"/>     
+ </apex:pageblocktable>
+ </apex:pageblock>
+ </apex:form>
+</apex:page>

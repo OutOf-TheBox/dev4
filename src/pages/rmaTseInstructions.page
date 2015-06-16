@@ -1,0 +1,229 @@
+<apex:page standardController="RMAv2__c">
+  <apex:outputText value="To submit RMA:"/><br/><br/>
+
+  <apex:outputText value="WARNING: This RMA's case's account is marked critical, and has SHI (Special Handling Instructions).  "
+                   rendered="{!RMAv2__c.rmaCaseNumber__r.account.accountCritical__c}"
+                   style="color: red; font-weight:bold; font-size:120%;"/>
+  <apex:outputLink value="{!URLFOR($Action.Account.View, RMAv2__c.rmaCaseNumber__r.account.id)}"
+                   rendered="{!RMAv2__c.rmaCaseNumber__r.account.accountCritical__c}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   target="_blank">CLICK HERE</apex:outputLink>
+  <apex:outputText value=" to view account in a separate window.<br/><br/>"
+                   rendered="{!RMAv2__c.rmaCaseNumber__r.account.accountCritical__c}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: This RMA's case's account has SHI (Special Handling Instructions).  "
+                   rendered="{!AND(NOT(RMAv2__c.rmaCaseNumber__r.account.accountCritical__c), LEN(RMAv2__c.rmaCaseNumber__r.account.accountShi__c) > 4)}"
+                   style="color: red; font-weight:bold; font-size:120%;"/>
+  <apex:outputLink value="{!URLFOR($Action.Account.View, RMAv2__c.rmaCaseNumber__r.account.id)}"
+                   rendered="{!AND(NOT(RMAv2__c.rmaCaseNumber__r.account.accountCritical__c), LEN(RMAv2__c.rmaCaseNumber__r.account.accountShi__c) > 4)}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   target="_blank">CLICK HERE</apex:outputLink>
+  <apex:outputText value=" to open the account in a separate window.<br/><br/>"
+                   rendered="{!AND(NOT(RMAv2__c.rmaCaseNumber__r.account.accountCritical__c), LEN(RMAv2__c.rmaCaseNumber__r.account.accountShi__c) > 4)}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: This RMA's case's asset is marked critical, and has SHI (Special Handling Instructions).  "
+                   rendered="{!RMAv2__c.rmaCaseNumber__r.asset.assetCritical__c}"
+                   style="color: red; font-weight:bold; font-size:120%;"/>
+  <apex:outputLink value="{!URLFOR($Action.Asset.View, RMAv2__c.rmaCaseNumber__r.asset.id)}"
+                   rendered="{!RMAv2__c.rmaCaseNumber__r.asset.assetCritical__c}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   target="_blank">CLICK HERE</apex:outputLink>
+  <apex:outputText value=" to view asset in a separate window.<br/><br/>"
+                   rendered="{!RMAv2__c.rmaCaseNumber__r.asset.assetCritical__c}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: This RMA's case's asset has SHI (Special Handling Instructions).  "
+                   rendered="{!AND(NOT(RMAv2__c.rmaCaseNumber__r.asset.assetCritical__c), LEN(RMAv2__c.rmaCaseNumber__r.asset.assetShi__c) > 4)}"
+                   style="color: red; font-weight:bold; font-size:120%;"/>
+  <apex:outputLink value="{!URLFOR($Action.Asset.View, RMAv2__c.rmaCaseNumber__r.asset.id)}"
+                   rendered="{!AND(NOT(RMAv2__c.rmaCaseNumber__r.asset.assetCritical__c), LEN(RMAv2__c.rmaCaseNumber__r.asset.assetShi__c) > 4)}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   target="_blank">CLICK HERE</apex:outputLink>
+  <apex:outputText value=" to open the asset in a separate window.<br/><br/>"
+                   rendered="{!AND(NOT(RMAv2__c.rmaCaseNumber__r.asset.assetCritical__c), LEN(RMAv2__c.rmaCaseNumber__r.asset.assetShi__c) > 4)}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: This RMA's case's asset is marked 'Customer Elected Not To Renew'.  DO NOT PROVIDE ANY SUPPORT FOR THIS ASSET!  Instruct customer to contact their account team to renew support.  If the situation gets hot, call Mike Nangle for assistance.  "
+                   rendered="{!RMAv2__c.rmaCaseNumber__r.asset.Customer_Elected_Not_to_Renew__c}"
+                   style="color: red; font-weight:bold; font-size:120%;"/>
+  <apex:outputLink value="{!URLFOR($Action.Asset.View, RMAv2__c.rmaCaseNumber__r.asset.id)}"
+                   rendered="{!RMAv2__c.rmaCaseNumber__r.asset.Customer_Elected_Not_to_Renew__c}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   target="_blank">CLICK HERE</apex:outputLink>
+  <apex:outputText value=" to view asset in a separate window.<br/><br/>"
+                   rendered="{!RMAv2__c.rmaCaseNumber__r.asset.Customer_Elected_Not_to_Renew__c}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: This RMA's case's asset Status is something OTHER than 'Shipped' or 'Return Pending'.  Be aware of this when working with this asset.  "
+                   rendered="{!AND(RMAv2__c.rmaCaseNumber__r.asset.Status <> 'Shipped', RMAv2__c.rmaCaseNumber__r.asset.Status <> 'Return Pending')}"
+                   style="color: red; font-weight:bold; font-size:120%;"/>
+  <apex:outputLink value="{!URLFOR($Action.Asset.View, RMAv2__c.rmaCaseNumber__r.asset.id)}"
+                   rendered="{!AND(RMAv2__c.rmaCaseNumber__r.asset.Status <> 'Shipped', RMAv2__c.rmaCaseNumber__r.asset.Status <> 'Return Pending')}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   target="_blank">CLICK HERE</apex:outputLink>
+  <apex:outputText value=" to view asset in a separate window.<br/><br/>"
+                   rendered="{!AND(RMAv2__c.rmaCaseNumber__r.asset.Status <> 'Shipped', RMAv2__c.rmaCaseNumber__r.asset.Status <> 'Return Pending')}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: This RMA's case's asset support has expired.  Get approval from Support Management before submitting this RMA!  "
+                   rendered="{!IF(AND(RMAv2__c.rmaCaseNumber__r.Asset.Support_End_Date__c <> null,
+                                      RMAv2__c.rmaCaseNumber__r.Asset.Support_End_Date__c < TODAY()), true, false)}"
+                   style="color:red; font-weight:bold; font-size:120%;"/>
+  <apex:outputLink value="{!URLFOR($Action.Asset.View, RMAv2__c.rmaCaseNumber__r.asset.id)}"
+                   rendered="{!IF(AND(RMAv2__c.rmaCaseNumber__r.Asset.Support_End_Date__c <> null,
+                                      RMAv2__c.rmaCaseNumber__r.Asset.Support_End_Date__c < TODAY()), true, false)}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   target="_blank">CLICK HERE</apex:outputLink>
+  <apex:outputText value=" to view asset in a separate window.  <br/><br/>"
+                   rendered="{!IF(AND(RMAv2__c.rmaCaseNumber__r.Asset.Support_End_Date__c <> null,
+                                      RMAv2__c.rmaCaseNumber__r.Asset.Support_End_Date__c < TODAY()), true, false)}"
+                   style="color: red; font-weight:bold; font-size:120%;"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: New fields and logic added to RMA system since the last time this RMA was saved.  Some data in these Instructions, or the below Order Data, may be inaccurate or incomplete.  Edit and re-save the RMA to populate these fields and display correct data! <br/><br/>"
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderDepot__c == null, true, false)}"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: You picked component CHA_NODISK (complete chassis, but without disks).  Do not pick this component/part unless the Platform team, or an Engineering Escalation, determined this is the component/part to pick! <br/><br/>"
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(RMAv2__c.rmaComponent__c == 'CHA_NODISK (complete chassis, but without disks)', true, false)}"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: This RMA's case's asset is a 'G' model, but you picked a non-G model for this RMA.  Verify, and correct either the Asset or the RMA! <br/><br/>"
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!AND(OR(BEGINS(RMAv2__c.rmaModel__c, 'CHA_NODISK'),
+                                      BEGINS(RMAv2__c.rmaModel__c, 'CONT-STD'),
+                                      BEGINS(RMAv2__c.rmaModel__c, 'CONT-SPEC')),
+                                   RMAv2__c.rmaCaseNumber__r.asset.assetIsAGModel__c = 'Yes',
+                                   RMAv2__c.rmaIsForAGModel__c = 'No')}"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: This RMA's case's asset is a non-G model, but you picked a 'G' model for this RMA.  Verify, and correct either the Asset or the RMA! <br/><br/>"
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!AND(OR(BEGINS(RMAv2__c.rmaModel__c, 'CHA_NODISK'),
+                                      BEGINS(RMAv2__c.rmaModel__c, 'CONT-STD'),
+                                      BEGINS(RMAv2__c.rmaModel__c, 'CONT-SPEC')),
+                                   RMAv2__c.rmaCaseNumber__r.asset.assetIsAGModel__c = 'No',
+                                   RMAv2__c.rmaIsForAGModel__c = 'Yes')}"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: Order Provider/Depot was not found due to Shipment Country not being recognized.  Make sure there is no two-letter country code at the end.  You can also override the shipment country to a recognized value. <br/><br/>"
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == 'Unknown', true, false)}"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: Shipment SLA is 4-Hour, but no 4-Hour depot was found for this Shipment Country + Postal Code.  If 4-Hour delivery is required, verify with RMA Team and/or Flash Logistics that it can be accomplished! <br/><br/>"
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(AND(RMAv2__c.rmaShipmentSla__c == '4-Hour',
+                                      RMAv2__c.rmaOutgoingShipmentOrder4HrDepotFound__c == 'No'), true, false)}"
+                   escape="false"/>
+
+  <apex:outputText value="WARNING: Order was uplifted.  Check depot inventory to see if part is available: <br/>"
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+  <apex:outputText value="<ul><li>Bring up "
+                   style="color:red; font-weight:bold; font-size:100%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+  <apex:outputLink value="https://www.flashtrac.com/customers/nimblestorage/login.aspx"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   target="_blank">Flashtrac</apex:outputLink>
+  <apex:outputText value=" website. </li>"
+                   style="color:red; font-weight:bold; font-size:100%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+  <apex:outputText value="<li>Log in with User ID 'nsupport' and Password '13nbs3050'. </li>"
+                   style="color:red; font-weight:bold; font-size:100%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+  <apex:outputText value="<li>On the left side of the screen, navigate to Review Inventory / Review Item Availability. </li>"
+                   style="color:red; font-weight:bold; font-size:100%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+  <apex:outputText value="<li>In the 'Enter Part #' field, enter the part number shown in square brackets in the RMA's Part field (don't enter the square brackets, just the part number).  Or, you can leave this field blank to list all parts for a selected depot. </li>"
+                   style="color:red; font-weight:bold; font-size:100%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+  <apex:outputText value="<li>In the 'WareHouse' pulldown, select the depot shown in the RMA's Order Data / Order Depot field.  Or, you can leave this field blank to list all depots for a selected part. </li>"
+                   style="color:red; font-weight:bold; font-size:100%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+  <apex:outputText value="<li>NOTE: You must fill in either a part number, or a depot.  Both fields cannot be left blank. </li>"
+                   style="color:red; font-weight:bold; font-size:100%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+  <apex:outputText value="<li>Click the 'Search' button. </li>"
+                   style="color:red; font-weight:bold; font-size:100%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+  <apex:outputText value="<li>The 'Parts Availability' section will refresh with an inventory of your selected part, and/or warehouse.  If you don't see any results, it means either you entered the part number incorrectly (go back and double-check it), or there is no inventory available for that part in that depot. </li>"
+                   style="color:red; font-weight:bold; font-size:100%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+  <apex:outputText value="<li><i>If no parts are available, go ahead and submit RMA, but you may want to let customer know part may have to be pulled from somewhere else.  If Flash or the RMA Team cannot meet the SLA, they will contact Support. </i></li>"
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+  <apex:outputText value="<li>Click 'Logout' to exit the Flashtrac system. </li></ul><br/>"
+                   style="color:red; font-weight:bold; font-size:100%;"
+                   rendered="{!AND(CONTAINS(RMAv2__c.rmaUplift__c, 'Yes'), CONTAINS(RMAv2__c.rmaOutgoingShipmentOrderProvider__c, 'Flash'))}"
+                   escape="false"/>
+
+  <apex:outputText value="1. Set this RMA's Outgoing AND Return Shipment Status to: OPEN-10: Ordered, waiting for confirmation"
+                   rendered="{!IF(RMAv2__c.rmaType__c == 'Advance replacement', true, false)}"/>
+  <apex:outputText value="1. Set Outgoing Shipment Status to: OPEN-10: Ordered, waiting for confirmation"
+                   rendered="{!IF(RMAv2__c.rmaType__c == 'Additional part requested', true, false)}"/>
+  <apex:outputText value="1. Set Return Shipment Status to: OPEN-10: Ordered, waiting for confirmation"
+                   rendered="{!IF(RMAv2__c.rmaType__c == 'System/part return', true, false)}"/>                   
+  <br/>
+  <apex:outputText value="2. Click 'Save' to save RMA with the updated status."/><br/>
+  <apex:outputText value="3. Copy the below Order Data into your buffer. Click anywhere on some Order Data text, press Ctrl-A to select the entire section, press Ctrl-C to copy it."/><br/>
+  <apex:outputText value="4. In the Case this RMA belongs to, click 'Send an Email'."/><br/>
+  <apex:outputText value="5. Click 'Select Template'.  Select 'RMA Email Template'."/><br/>
+  <apex:outputText value="6. If you see 'Text-Only [Switch to HTML]' then click the '[Switch to HTML]' to get into HTML mode.  You must be in HTML mode to ensure the emails are formatted correctly."/><br/>
+  <apex:outputText value="7. Ensure 'From' address is some form of supportcase@nimblestorage.com address."/><br/>
+  <apex:outputText value="8. Blank out 'To' field (we're not sending the email to a contact)."/><br/>
+  <apex:outputText value="9. In 'Additional To' field, enter: "/>
+  <apex:outputText value="rma-flash@nimblestorage.com "
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == 'Flash', true, false)}"/>
+  <apex:outputText value="rma@nimblestorage.com "
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == 'Nimble', true, false)}"/>
+  <apex:outputText value="(UKNOWN - Edit and re-save the RMA to populate new fields required to calculate the provider.) "
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == null, true, false)}"/>
+  <apex:outputText value="(UKNOWN - Shipment Country not recognized.  See the WARNING at the top of these instructions.) "
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == 'Unknown', true, false)}"/>
+  <br/>
+  <apex:outputText value="10. Blank out 'BCC' field."/><br/>
+  <apex:outputText value="11. Replace '123456' in subject with actual RMA number."/><br/>
+  <apex:outputText value="12. Paste Order Data you copied earlier into email body. Make sure Order Data, and the Case Reference Number at the bottom, are the only things in email body."/><br/>
+  <apex:outputText value="13. Click 'Send' to send email."/><br/><br/>
+  <apex:outputText value="If changes must be made after submission, you must email "/>
+  <apex:outputText value="rma-flash@nimblestorage.com "
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == 'Flash', true, false)}"/>
+  <apex:outputText value="rma@nimblestorage.com "
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == 'Nimble', true, false)}"/>
+  <apex:outputText value="(UKNOWN - Edit and re-save the RMA to populate new fields required to calculate the provider.) "
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == null, true, false)}"/>
+  <apex:outputText value="(UKNOWN - Shipment Country not recognized.  See the WARNING at the top of these instructions.) "
+                   style="color:red; font-weight:bold; font-size:120%;"
+                   rendered="{!IF(RMAv2__c.rmaOutgoingShipmentOrderProvider__c == 'Unknown', true, false)}"/>
+
+  <apex:outputText value="and explain the changes in detail.  Be sure and reference the RMA number, and modify the RMA record itself with the changes!"/><br/>
+</apex:page>

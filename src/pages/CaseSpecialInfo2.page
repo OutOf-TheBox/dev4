@@ -1,0 +1,12 @@
+<apex:page standardController="Case" extensions="DynamicCaseValues"  tabStyle="Case">
+<span style="font-family: 'Arial','Helvetica',sans-serif; font-size: 1.1em; font-weight: bold; color: #4D4D4D;">
+<apex:outputText value="Number of Open Cases with this Asset: "/>&nbsp;&nbsp;
+<apex:outputText value="{!NumCasesAsset}"/><br/>
+<apex:outputText value="Number of Open Cases with this Contact: "/>&nbsp;&nbsp;
+<apex:outputText value="{!NumCasesAsset}"/><br/></span>
+<span style="font-weight: bold; color: #C30000; font-size: 2em;">
+<apex:outputText escape="false" rendered="{!IF(case.Asset.SLA__c = 'Premium 4 Hour',true, false)}" value="*** SLA: PREMIUM 4 HOUR ***"/>
+<apex:outputText escape="false" rendered="{!IF(case.Asset.SLA__c = 'Premium 4 Hour Onsite',true, false)}" value="*** SLA: PREMIUM 4 HOUR ONSITE ***"/></span>
+<span style="font-weight: bold; color: #C30000; font-size: 2em;">
+<apex:outputText escape="false" rendered="{!IF(case.Account.accountDoNotProvideSupport__c,true, false)}" value="*** Do not provide case support for this account except for P1 cases.  Do not issue ANY RMAs.  See Rod Bagg for any exceptions to these. ***"/></span>
+</apex:page>

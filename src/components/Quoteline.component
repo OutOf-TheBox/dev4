@@ -1,0 +1,28 @@
+<apex:component controller="quotelinecntlr" access="global">
+<apex:attribute name="QuoteId" assignTo="{!QID}" type="String" description="id of Quote"/>
+
+
+<b> Product SKUs: </b>
+ <br/>
+    <table style="border:1px solid #000000;border-collapse:collapse;" cellpadding="2" cellspacing="2" width="100%">
+        <!-- <tr height="10px"></tr>
+         <tr>
+            
+            <th style="border:1px solid #000000;" width="10%" >Product</th>  
+           
+         </tr>-->
+          <apex:repeat value="{!QuoteLin}" var="Ql">
+           <tr>
+                <!--<td style="border:1px solid #000000;">{!Ql.SBQQ__Product__r.name}</td>--->
+                 <td style="border:1px solid #000000;">{!Ql.Part_Number__c}</td>
+                 <td style="border:1px solid #000000;">{!Ql.SBQQ__Quantity__c}</td>
+               
+            </tr>
+  
+  </apex:repeat>
+              
+  </table>
+
+
+  
+</apex:component>

@@ -1,0 +1,7 @@
+<apex:page sidebar="false" title="SPIFF Claim list">
+  <link rel="stylesheet" href="https://service.apsona.com/sfdc/embed-page.css" />
+  <script src="https://service.apsona.com/sfdc/embed-page.js"></script>
+  <iframe id="iframe0"
+  src="/apex/apsona__ApsonaForSalesforce?showHeader=false&apsona_loc=part/widelist/SPIFF_Claim__c"
+  scrolling="auto" height="700" width="100%" frameborder="0"></iframe>
+</apex:page>
