@@ -13,10 +13,17 @@ public with sharing class GoogleServices {
 	private static final string ENDPOINT_GOOGLE_TIMEZONE = 'https://maps.googleapis.com/maps/api/timezone/xml';
 	private static final string ENDPOINT_AIRPORT = 'http://airports.pidgets.com/v1/airports';
 	
-	/** Callout to get Geo information by city name */
-	public static Geo getGeo(string city){
+	/** Callout to get Geo information by address with full matched */
+	public static Geo getGeoFullMatch(string addr){
+		Geo geo = getGeo(addr);
+		if(geo!=null && geo.isPartialMatch) geo = null;
+		return geo;
+	}
+	
+	/** Callout to get Geo information by address */
+	private static Geo getGeo(string addr){
 		Geo geo;
-		HTTPResponse res = doCallOut(ENDPOINT_GOOGLE_GEOCODE+'?sensor=false&address='+ EncodingUtil.urlEncode(city,'UTF-8'));
+		HTTPResponse res = doCallOut(ENDPOINT_GOOGLE_GEOCODE+'?sensor=false&address='+ EncodingUtil.urlEncode(addr,'UTF-8'));
 		if(res.getStatusCode()==200){
 			geo = new geo(res.getBody()); 
 			if(!geo.isStatusOK){geo=null;}
@@ -41,17 +48,16 @@ public with sharing class GoogleServices {
 	/** Callout to get the closest airport information by city name. 
 	 * @Param : latLong a string of latitude and longtitude separated by a comma. 
 	 */
-	public static Airport getNearestAirport(string latLong){ 
-		Airport airport;
+	public static Airport[] getNearestAirportsAsc(string latLong){  
+		Airport[] listAirport;
 		HTTPResponse res = doCallOut(ENDPOINT_AIRPORT+'?format=xml&near='+EncodingUtil.urlEncode(latLong,'UTF-8'));
 		if(res.getStatusCode()==200){
 			// Geting xml from response body: becuase it contain html and xml mixed together
 			String separator = '<?xml version=';
 	 		String resXML = separator + res.getBody().substringAfterLast(separator) ;
-	 		airport = new Airport(resXML);
-	 		if(!airport.isStatusOK){airport=null;}
-		}  
-		return airport; 
+	 		listAirport = (new AirportsGenerator(resXML)).lstAirport; 
+		}   
+		return listAirport; 
 	}
 	
 	/** Callout handler for all webservices 
@@ -66,12 +72,18 @@ public with sharing class GoogleServices {
         req.setMethod('GET');  
         req.setHeader('Accept', 'application/xml');
       	req.setHeader('Content-Type', 'application/xml');
-      	req.setTimeout(6000);
-      	
+      	req.setTimeout(40000); // Bunhor @ 17-June-15: 40000 since callout 3 times (maximum is 120,000 milliseconds. The maximum cumulative timeout for callouts by a single Apex transaction is 120 seconds.)
+        
         // Sending the request and Recieving the response
-        Http http = new Http();
-        HTTPResponse res = Test.isRunningTest()? getMockResponse(req) : http.send(req);  
-        return res; 
+        HTTPResponse res; 
+        try{
+        	res = Test.isRunningTest()? getMockResponse(req) : (new Http()).send(req);
+        	system.debug('================res==='+res);
+        	system.debug('================res=getBody=='+res.getBody());
+        }catch(Exception ex){
+        	res = new HTTPResponse();
+        } 
+        return res;
     } 
     
     //---------Inner Classes--------------
@@ -94,6 +106,7 @@ public with sharing class GoogleServices {
     public class Geo extends XMLParser{
     	private Decimal lat;
     	private Decimal lng;
+    	public boolean isPartialMatch;
     	
     	/** Constructor */
     	public Geo(String xml){
@@ -102,6 +115,9 @@ public with sharing class GoogleServices {
     		if(isStatusOK){
 	    		lat = Decimal.valueOf(getNode(root, 'GeocodeResponse', 'GeocodeResponse/result/geometry/location/lat').getText());
 	    		lng = Decimal.valueOf(getNode(root, 'GeocodeResponse', 'GeocodeResponse/result/geometry/location/lng').getText());
+	    		
+	    		DOM.XMLNode nodePartialMatch = getNode(root, 'GeocodeResponse', 'GeocodeResponse/result/partial_match'); 
+	    		isPartialMatch = nodePartialMatch==null? false : Boolean.valueOf(nodePartialMatch.getText());
     		}
     	}
     	
@@ -120,28 +136,44 @@ public with sharing class GoogleServices {
     		super(xml);
     		isStatusOK = 'OK' == getNode(root, 'TimeZoneResponse', 'TimeZoneResponse/status').getText();	
     		if(isStatusOK){
-	    		raw_offset = Decimal.valueOf(getNode(root, 'TimeZoneResponse', 'TimeZoneResponse/raw_offset').getText());
-	    		dst_offset = Decimal.valueOf(getNode(root, 'TimeZoneResponse', 'TimeZoneResponse/dst_offset').getText());
+	    		//raw_offset = Decimal.valueOf(getNode(root, 'TimeZoneResponse', 'TimeZoneResponse/raw_offset').getText());
+	    		//dst_offset = Decimal.valueOf(getNode(root, 'TimeZoneResponse', 'TimeZoneResponse/dst_offset').getText());
 	    		time_zone_id = getNode(root, 'TimeZoneResponse', 'TimeZoneResponse/time_zone_id').getText(); 
     		}
     	}
     	
     	/** Getting offset as hour, regarding DST */
-    	public Integer getOffsetAsHour(){ return math.abs(Integer.valueOf((raw_offset+dst_offset)/3600)) ;} // raw_offset and dst_offset are in seconds: convert to hour by dividing 3600 
+    	//public Integer getOffsetAsHour(){ return math.abs(Integer.valueOf((raw_offset+dst_offset)/3600)) ;} // raw_offset and dst_offset are in seconds: convert to hour by dividing 3600 
     } 
     
     /** DTO class for Airport */
-    public class Airport extends XMLParser{ 
+    public class Airport{ 
     	public String code;
+    	public String airportType;
+    	public Integer runway_length; 
+    }
+    
+    /** Airports Generator*/
+    public class AirportsGenerator extends XMLParser{ 
+    	public Airport[] lstAirport;
     	
     	/** Constructor */
-    	public Airport(String xml){
+    	public AirportsGenerator(String xml){
     		super(xml);
-    		List<DOM.XMLNode> lstAirport = getNodes(root, 'airports');
-    		try{ // Use try: in case fail response (out of bound, null pointer) 
-    			code = getNode(lstAirport[0], 'airport', 'airport/code').getText(); // Airports are sorted by distance asc, so the closest is at index 0 
-    			isStatusOK = true;
-    		}catch(Exception ex){}
+    		List<DOM.XMLNode> lstAirportNode = getNodes(root, 'airports');
+    		if(lstAirportNode!=null && !lstAirportNode.isEmpty()){
+    			lstAirport = new List<Airport>();
+    			for(DOM.XMLNode node : lstAirportNode){
+    				Airport ap = new Airport();
+    				ap.code 			= getNode(node, 'airport', 'airport/code').getText();
+    				ap.airportType 		= getNode(node, 'airport', 'airport/type').getText();
+    				
+    				string runwayLen = getNode(node, 'airport', 'airport/runway_length').getText();
+    				ap.runway_length = String.isBlank(runwayLen)? 0 : Integer.valueOf(runwayLen);
+    				
+    				lstAirport.add(ap);	
+    			}
+    		} 
     	} 
     } 
      
@@ -201,7 +233,7 @@ public with sharing class GoogleServices {
     }
         
     /** Mock respones Geo*/
-    private static final string MOCKRESPONE_GEO = '<GeocodeResponse>'+
+    public static string MOCKRESPONE_GEO = '<GeocodeResponse>'+
 													'<status>OK</status>'+ 
 													'<result>'+
 														'<geometry>'+
@@ -225,14 +257,26 @@ public with sharing class GoogleServices {
 														'<b>Warning</b>:  Cannot modify header information'+ 
 														'<?xml version="1.0"?>'+
 														'<airports>'+
-															'<airport>'+	
-																'<code>SFO</code>'+
-																'<lat>37.6148</lat>'+
-																'<lon>-122.392</lon>'+ 
-																'<dist>17.966</dist>'+
-															'</airport>'+
-															'<airport>'+	
-																'<code>OAK</code>'+ 
+															'<airport>'+ 
+																'<code>MOD</code>'+
+																 '<lat>37.6319</lat>'+
+																 '<lon>-120.959</lon>'+
+																 '<name>Modesto City County Airport-Harry Sham Field</name>'+
+																 '<city>Modesto</city>'+
+																 '<state>California</state>'+
+																 '<country>United States</country>'+
+																 '<woeid>12520978</woeid>'+
+																 '<tz>America/Los_Angeles</tz>'+
+																 '<phone></phone>'+
+																 '<type>Airports</type>'+
+																 '<email></email>'+
+																 '<url></url>'+
+																 '<runway_length>8911</runway_length>'+
+																 '<elev>97</elev>'+
+																 '<icao>KMOD</icao>'+
+																 '<direct_flights>1</direct_flights>'+
+																 '<carriers>2</carriers>'+
+																 '<dist>129.444</dist>'+ 
 															'</airport>'+ 
 														'</airports>'; 
 }
